@@ -1,0 +1,3664 @@
+[
+  {
+    "id": "recipe-breakfast-01",
+    "slug": "avena-cocida-con-canela-y-manzana-verde",
+    "title": "Avena cocida con canela y manzana verde",
+    "summary": "Preparación de avena cocida con canela y manzana verde basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 10,
+    "ingredients": [
+      {
+        "ingredientId": "rolled-oats",
+        "displayName": "avena en hojuelas",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water-or-plant-milk",
+        "displayName": "agua o leche vegetal sin azúcar",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "green-apple",
+        "displayName": "manzana verde",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "picada en cubos"
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela en polvo",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "chia-seeds",
+        "displayName": "semillas de chía",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "stevia",
+        "displayName": "stevia",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Calienta el agua o la leche vegetal en una olla pequeña.",
+      "Agrega la avena y cocina a fuego medio durante 5 a 7 minutos.",
+      "Añade la manzana, la canela y la chía; cocina 3 minutos más mientras remueves.",
+      "Endulza con stevia si lo deseas."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "gluten"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 6,
+      "pageEnd": 7
+    }
+  },
+  {
+    "id": "recipe-breakfast-02",
+    "slug": "omelette-de-espinaca-y-champinones",
+    "title": "Omelette de espinaca y champiñones",
+    "summary": "Preparación de omelette de espinaca y champiñones basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 3,
+    "ingredients": [
+      {
+        "ingredientId": "egg-white",
+        "displayName": "claras de huevo",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "egg",
+        "displayName": "huevo entero",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "spinach",
+        "displayName": "espinaca fresca",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "mushroom",
+        "displayName": "champiñones",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": "en láminas"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Bate el huevo y las claras con una pizca de sal.",
+      "Saltea los champiñones y la espinaca con el aceite durante 2 a 3 minutos.",
+      "Vierte los huevos, cocina a fuego medio hasta que cuajen y dobla el omelette."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "egg"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 8,
+      "pageEnd": 9
+    }
+  },
+  {
+    "id": "recipe-breakfast-03",
+    "slug": "pan-de-centeno-con-aguacate-y-tomate",
+    "title": "Pan de centeno con aguacate y tomate",
+    "summary": "Preparación de pan de centeno con aguacate y tomate basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "rye-bread",
+        "displayName": "pan integral 100% centeno",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "rebanada"
+      },
+      {
+        "ingredientId": "avocado",
+        "displayName": "aguacate maduro",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": "rodajas"
+      },
+      {
+        "ingredientId": "salt-and-oregano",
+        "displayName": "sal marina y orégano",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon-juice",
+        "displayName": "jugo de limón",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Tuesta la rebanada de pan.",
+      "Tritura el aguacate y espárcelo sobre el pan.",
+      "Agrega el tomate, sal y orégano; termina con limón si lo deseas."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "gluten"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 10,
+      "pageEnd": 11
+    }
+  },
+  {
+    "id": "recipe-breakfast-04",
+    "slug": "yogur-natural-con-frutos-rojos-y-nueces",
+    "title": "Yogur natural con frutos rojos y nueces",
+    "summary": "Preparación de yogur natural con frutos rojos y nueces basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "plain-yogurt",
+        "displayName": "yogur natural sin azúcar",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "berries",
+        "displayName": "frutos rojos",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "walnuts",
+        "displayName": "nueces picadas",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-flaxseed",
+        "displayName": "semillas de linaza molida",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Vierte el yogur en un recipiente.",
+      "Agrega los frutos rojos y las nueces.",
+      "Espolvorea la linaza y sirve frío."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "milk",
+      "tree-nuts"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 12,
+      "pageEnd": 13
+    }
+  },
+  {
+    "id": "recipe-breakfast-05",
+    "slug": "smoothie-verde-bajo-en-carbohidratos",
+    "title": "Smoothie verde",
+    "summary": "Preparación de smoothie verde basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "spinach",
+        "displayName": "espinaca cruda",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "kiwi",
+        "displayName": "kiwi pelado",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water-or-plant-milk",
+        "displayName": "agua fría o leche vegetal sin azúcar",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "chia-seeds",
+        "displayName": "semillas de chía",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ice",
+        "displayName": "hielo",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Licua todos los ingredientes hasta lograr una mezcla homogénea.",
+      "Sirve inmediatamente."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated",
+      "claim_removed_from_title"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 14,
+      "pageEnd": 15
+    }
+  },
+  {
+    "id": "recipe-breakfast-06",
+    "slug": "panqueques-de-avena-y-banana-sin-harina",
+    "title": "Panqueques de avena y banana",
+    "summary": "Preparación de panqueques de avena y banana basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 4,
+    "ingredients": [
+      {
+        "ingredientId": "banana",
+        "displayName": "banana madura pequeña",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "egg",
+        "displayName": "huevos",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-oats",
+        "displayName": "avena molida",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cooking-oil",
+        "displayName": "aceite en spray o de coco",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "para cocinar"
+      }
+    ],
+    "instructions": [
+      "Tritura la banana y mézclala con los huevos y la avena.",
+      "Añade la canela.",
+      "Cocina porciones en una sartén antiadherente durante 1 a 2 minutos por lado."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated",
+      "claim_removed_from_title"
+    ],
+    "allergens": [
+      "egg",
+      "gluten"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 16,
+      "pageEnd": 17
+    }
+  },
+  {
+    "id": "recipe-breakfast-07",
+    "slug": "tostada-de-ricota-con-semillas-y-pepino",
+    "title": "Tostada de ricota con semillas y pepino",
+    "summary": "Preparación de tostada de ricota con semillas y pepino basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "whole-grain-toast",
+        "displayName": "tostada integral",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ricotta",
+        "displayName": "ricota descremada",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "en rodajas finas"
+      },
+      {
+        "ingredientId": "sunflower-or-sesame-seeds",
+        "displayName": "semillas de girasol o sésamo",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Unta la ricota sobre la tostada.",
+      "Coloca las rodajas de pepino.",
+      "Agrega las semillas y condimenta."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "gluten",
+      "milk",
+      "sesame"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 18,
+      "pageEnd": 19
+    }
+  },
+  {
+    "id": "recipe-breakfast-08",
+    "slug": "huevo-duro-con-palta-y-galletas-integrales",
+    "title": "Huevo duro con palta y galletas integrales",
+    "summary": "Preparación de huevo duro con palta y galletas integrales basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "egg",
+        "displayName": "huevo duro",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "avocado",
+        "displayName": "palta",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "whole-grain-crackers",
+        "displayName": "galletas integrales sin azúcar",
+        "quantity": 3,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "pepper-or-paprika",
+        "displayName": "pimienta o pimentón",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Pela y corta el huevo en rodajas.",
+      "Tritura la palta.",
+      "Sirve con las galletas y espolvorea pimienta o pimentón."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "egg",
+      "gluten"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 20,
+      "pageEnd": 21
+    }
+  },
+  {
+    "id": "recipe-breakfast-09",
+    "slug": "pure-de-batata-con-nueces",
+    "title": "Puré de batata con nueces",
+    "summary": "Preparación de puré de batata con nueces basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "sweet-potato",
+        "displayName": "batata pequeña hervida",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "plant-milk",
+        "displayName": "leche vegetal",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "walnuts",
+        "displayName": "nueces picadas",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Tritura la batata con la leche hasta formar un puré.",
+      "Agrega las nueces y la canela.",
+      "Sirve tibio."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "tree-nuts"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 22,
+      "pageEnd": 23
+    }
+  },
+  {
+    "id": "recipe-breakfast-10",
+    "slug": "sandwich-de-clara-de-huevo-y-palta",
+    "title": "Sándwich de clara de huevo y palta",
+    "summary": "Preparación de sándwich de clara de huevo y palta basada en el documento fuente.",
+    "category": "breakfast",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "whole-grain-bread",
+        "displayName": "pan integral sin azúcar",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": "rebanadas"
+      },
+      {
+        "ingredientId": "egg-white",
+        "displayName": "claras de huevo cocidas o revueltas",
+        "quantity": 3,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "avocado",
+        "displayName": "aguacate",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-pepper-oregano",
+        "displayName": "sal, pimienta y orégano",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Tuesta el pan.",
+      "Tritura la palta y espárcela sobre una rebanada.",
+      "Agrega las claras, condimenta y cierra el sándwich."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "egg",
+      "gluten"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+      "pageStart": 24,
+      "pageEnd": 25
+    }
+  },
+  {
+    "id": "recipe-snack-01",
+    "slug": "chips-crujientes-de-kale-al-horno",
+    "title": "Chips crujientes de kale al horno",
+    "summary": "Preparación de chips crujientes de kale al horno basada en el documento fuente.",
+    "category": "snack",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 12,
+    "ingredients": [
+      {
+        "ingredientId": "kale",
+        "displayName": "hojas de kale",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": "lavadas y secas"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva extra virgen",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "paprika",
+        "displayName": "pimentón dulce o ahumado",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal marina y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Precalienta el horno a 160 °C y retira los tallos gruesos del kale.",
+      "Mezcla el kale con el aceite, pimentón, sal y pimienta.",
+      "Distribuye sin encimar y hornea 10 a 12 minutos, girando a mitad de cocción.",
+      "Deja enfriar y consume de inmediato."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "5 SNACKS PARA DIABÉTICOS.pdf",
+      "pageStart": 4,
+      "pageEnd": 5
+    }
+  },
+  {
+    "id": "recipe-snack-02",
+    "slug": "huevos-rellenos-de-aguacate-y-atun",
+    "title": "Huevos rellenos de aguacate y atún",
+    "summary": "Preparación de huevos rellenos de aguacate y atún basada en el documento fuente.",
+    "category": "snack",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "egg",
+        "displayName": "huevos duros",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "avocado",
+        "displayName": "aguacate maduro",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "tuna",
+        "displayName": "atún al natural escurrido",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "dijon-mustard",
+        "displayName": "mostaza Dijon",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon-juice",
+        "displayName": "jugo de limón",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "unas gotas"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "paprika-or-parsley",
+        "displayName": "pimentón o perejil",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "para decorar"
+      }
+    ],
+    "instructions": [
+      "Parte los huevos a la mitad y retira las yemas.",
+      "Pisa el aguacate con las yemas, el atún, la mostaza y el limón; condimenta.",
+      "Rellena las claras y termina con pimentón o perejil."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "egg",
+      "fish",
+      "mustard"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "5 SNACKS PARA DIABÉTICOS.pdf",
+      "pageStart": 6,
+      "pageEnd": 7
+    }
+  },
+  {
+    "id": "recipe-snack-03",
+    "slug": "bastones-de-vegetales-con-hummus",
+    "title": "Bastones de vegetales con hummus",
+    "summary": "Preparación de bastones de vegetales con hummus basada en el documento fuente.",
+    "category": "snack",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "hummus",
+        "displayName": "hummus",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Corta los vegetales en bastones largos.",
+      "Sirve junto al hummus como dip."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "sesame"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "5 SNACKS PARA DIABÉTICOS.pdf",
+      "pageStart": 8,
+      "pageEnd": 9
+    }
+  },
+  {
+    "id": "recipe-snack-04",
+    "slug": "rollitos-de-jamon-y-queso-descremado",
+    "title": "Rollitos de jamón y queso descremado",
+    "summary": "Preparación de rollitos de jamón y queso descremado basada en el documento fuente.",
+    "category": "snack",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "low-sodium-ham",
+        "displayName": "jamón natural bajo en sodio",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": "fetas"
+      },
+      {
+        "ingredientId": "light-ricotta",
+        "displayName": "ricota light o queso blanco descremado",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "spinach-or-arugula",
+        "displayName": "hoja de espinaca o rúcula",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Extiende el jamón y agrega el queso y la hoja verde.",
+      "Enrolla y corta en mitades."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "milk"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "5 SNACKS PARA DIABÉTICOS.pdf",
+      "pageStart": 10,
+      "pageEnd": 11
+    }
+  },
+  {
+    "id": "recipe-snack-05",
+    "slug": "rodajas-de-manzana-con-mantequilla-de-mani",
+    "title": "Rodajas de manzana con mantequilla de maní",
+    "summary": "Preparación de rodajas de manzana con mantequilla de maní basada en el documento fuente.",
+    "category": "snack",
+    "servingsBase": 1,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "green-apple",
+        "displayName": "manzana verde mediana",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "peanut-butter",
+        "displayName": "mantequilla de maní natural",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Corta la manzana en rodajas finas.",
+      "Unta ligeramente con mantequilla de maní.",
+      "Espolvorea canela."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "servings_not_stated"
+    ],
+    "allergens": [
+      "peanut"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "5 SNACKS PARA DIABÉTICOS.pdf",
+      "pageStart": 12,
+      "pageEnd": 13
+    }
+  },
+  {
+    "id": "recipe-lunch-01",
+    "slug": "ensalada-de-quinoa-con-vegetales-al-vapor",
+    "title": "Ensalada de quinoa con vegetales al vapor",
+    "summary": "Preparación de ensalada de quinoa con vegetales al vapor basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 1,
+    "cookMinutes": 22,
+    "ingredients": [
+      {
+        "ingredientId": "quinoa",
+        "displayName": "quinoa cruda",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water",
+        "displayName": "agua",
+        "quantity": 2,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "broccoli",
+        "displayName": "brócoli",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": "en floretes"
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": "en rodajas finas"
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva extra virgen",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon",
+        "displayName": "limón",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "jugo"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "parsley",
+        "displayName": "perejil fresco",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Enjuaga la quinoa bajo agua fría durante 1 minuto.",
+      "Cocina la quinoa con el agua: cuando hierva, baja el fuego, tapa y cocina de 12 a 15 minutos; reposa 5 minutos.",
+      "Cocina el brócoli y la zanahoria al vapor durante 5 a 7 minutos.",
+      "Deja enfriar la quinoa y los vegetales antes de servir."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "source_instruction_mismatch"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 6,
+      "pageEnd": 9
+    }
+  },
+  {
+    "id": "recipe-lunch-02",
+    "slug": "pollo-al-limon-con-espinacas-salteadas",
+    "title": "Pollo al limón con espinacas salteadas",
+    "summary": "Preparación de pollo al limón con espinacas salteadas basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 15,
+    "cookMinutes": 13,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-breast",
+        "displayName": "pechuga de pollo sin piel",
+        "quantity": 300,
+        "unit": "g",
+        "preparationNote": "dos filetes"
+      },
+      {
+        "ingredientId": "lemon",
+        "displayName": "limón grande",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "jugo"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": "dientes picados; uno es opcional"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-pepper-oregano",
+        "displayName": "sal, pimienta y orégano",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "spinach",
+        "displayName": "espinacas frescas",
+        "quantity": 2,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "nutmeg",
+        "displayName": "nuez moscada",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Mezcla limón, ajo y condimentos; marina el pollo de 15 a 20 minutos.",
+      "Cocina el pollo con una cucharadita de aceite durante 4 a 5 minutos por lado.",
+      "Saltea el ajo opcional y las espinacas con la otra cucharadita de aceite durante 2 a 3 minutos.",
+      "Sirve el pollo sobre las espinacas."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 10,
+      "pageEnd": 13
+    }
+  },
+  {
+    "id": "recipe-lunch-03",
+    "slug": "sopa-de-lentejas-y-espinacas",
+    "title": "Sopa de lentejas y espinacas",
+    "summary": "Preparación de sopa de lentejas y espinacas basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 4,
+    "prepMinutes": 0,
+    "cookMinutes": 43,
+    "ingredients": [
+      {
+        "ingredientId": "dry-lentils",
+        "displayName": "lentejas secas",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla mediana",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "picada"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente picado"
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria mediana",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "celery",
+        "displayName": "apio",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate mediano",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "picado"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "displayName": "hoja de laurel",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water-or-vegetable-stock",
+        "displayName": "agua o caldo de verduras sin sal",
+        "quantity": 1.5,
+        "unit": "l",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "spinach",
+        "displayName": "espinacas frescas",
+        "quantity": 2,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Enjuaga y revisa las lentejas.",
+      "Sofríe cebolla, ajo, apio y zanahoria con el aceite.",
+      "Añade lentejas, tomate, líquido y laurel; lleva a ebullición y cocina tapado de 25 a 30 minutos.",
+      "Incorpora la espinaca durante los últimos 3 a 5 minutos.",
+      "Retira el laurel, ajusta los condimentos y sirve."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 14,
+      "pageEnd": 18
+    }
+  },
+  {
+    "id": "recipe-lunch-04",
+    "slug": "tacos-de-lechuga-con-carne-magra",
+    "title": "Tacos de lechuga con carne magra",
+    "summary": "Preparación de tacos de lechuga con carne magra basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 15,
+    "ingredients": [
+      {
+        "ingredientId": "lean-ground-meat",
+        "displayName": "carne molida magra",
+        "quantity": 200,
+        "unit": "g",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lettuce",
+        "displayName": "hojas grandes de lechuga",
+        "quantity": 4,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": "picada"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate maduro",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "paprika",
+        "displayName": "pimentón dulce",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cumin",
+        "displayName": "comino",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cilantro",
+        "displayName": "cilantro fresco",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "avocado",
+        "displayName": "aguacate",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional, en rodajas"
+      }
+    ],
+    "instructions": [
+      "Lava y seca las hojas de lechuga; mantenlas frías.",
+      "Sofríe la cebolla y el ajo con aceite durante 2 a 3 minutos.",
+      "Añade la carne y los condimentos; cocina de 7 a 10 minutos.",
+      "Agrega el tomate y cocina 2 minutos más.",
+      "Distribuye el relleno en las hojas y agrega los opcionales al servir."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 19,
+      "pageEnd": 22
+    }
+  },
+  {
+    "id": "recipe-lunch-05",
+    "slug": "arroz-integral-con-verduras-salteadas",
+    "title": "Arroz integral con verduras salteadas",
+    "summary": "Preparación de arroz integral con verduras salteadas basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 49,
+    "ingredients": [
+      {
+        "ingredientId": "cooked-brown-rice",
+        "displayName": "arroz integral cocido",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "broccoli",
+        "displayName": "brócoli",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "zucchini",
+        "displayName": "calabacín",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "low-sodium-soy-sauce",
+        "displayName": "salsa de soya baja en sodio",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "displayName": "pimienta negra",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sesame-seeds",
+        "displayName": "semillas de sésamo",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Lava y corta las verduras.",
+      "Si hace falta, cocina el arroz integral según las indicaciones del documento y reserva una taza.",
+      "Sofríe ajo y cebolla, añade zanahoria, brócoli y pimiento, y saltea 4 a 5 minutos.",
+      "Añade el calabacín y cocina 2 minutos.",
+      "Incorpora el arroz y la salsa de soya opcional; cocina 2 minutos más."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "soy",
+      "sesame"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 23,
+      "pageEnd": 26
+    }
+  },
+  {
+    "id": "recipe-lunch-06",
+    "slug": "ensalada-de-garbanzos-y-pepino",
+    "title": "Ensalada de garbanzos y pepino",
+    "summary": "Preparación de ensalada de garbanzos y pepino basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "cooked-chickpeas",
+        "displayName": "garbanzos cocidos",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino mediano",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate grande",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "red-onion",
+        "displayName": "cebolla morada",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "parsley",
+        "displayName": "perejil fresco",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "lemon",
+        "displayName": "limón",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "jugo"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cumin",
+        "displayName": "comino",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Enjuaga los garbanzos si son enlatados y prepara los vegetales.",
+      "Mezcla garbanzos, pepino, tomate, cebolla y perejil.",
+      "Combina limón, aceite y condimentos; vierte sobre la ensalada.",
+      "Sirve de inmediato o refrigera de 15 a 30 minutos."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 27,
+      "pageEnd": 30
+    }
+  },
+  {
+    "id": "recipe-lunch-07",
+    "slug": "pechuga-de-pollo-a-la-plancha-con-ensalada-mixta",
+    "title": "Pechuga de pollo a la plancha con ensalada mixta",
+    "summary": "Preparación de pechuga de pollo a la plancha con ensalada mixta basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-breast",
+        "displayName": "pechuga de pollo sin piel",
+        "quantity": 300,
+        "unit": "g",
+        "preparationNote": "dos filetes"
+      },
+      {
+        "ingredientId": "lemon",
+        "displayName": "limón",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "jugo dividido"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": "dividido"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "dried-oregano",
+        "displayName": "orégano seco o romero",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "mixed-greens",
+        "displayName": "hojas verdes",
+        "quantity": 2,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "rallada"
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Marina el pollo con limón, ajo, orégano y condimentos durante al menos 15 minutos.",
+      "Cocina los filetes de 4 a 5 minutos por lado y déjalos reposar.",
+      "Mezcla las verduras lavadas y adereza justo antes de servir.",
+      "Sirve la ensalada junto al pollo."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 31,
+      "pageEnd": 34
+    }
+  },
+  {
+    "id": "recipe-lunch-08",
+    "slug": "filete-de-salmon-al-horno-con-esparragos",
+    "title": "Filete de salmón al horno con espárragos",
+    "summary": "Preparación de filete de salmón al horno con espárragos basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 18,
+    "ingredients": [
+      {
+        "ingredientId": "salmon",
+        "displayName": "filetes de salmón",
+        "quantity": 300,
+        "unit": "g",
+        "preparationNote": "dos filetes de 150 a 180 g"
+      },
+      {
+        "ingredientId": "asparagus",
+        "displayName": "espárragos verdes",
+        "quantity": 200,
+        "unit": "g",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon",
+        "displayName": "limón",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "jugo"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente opcional"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "displayName": "pimienta negra",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt",
+        "displayName": "sal baja en sodio",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "dill-or-parsley",
+        "displayName": "eneldo o perejil",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Precalienta el horno a 200 °C y prepara el salmón y los espárragos.",
+      "Coloca los espárragos en una bandeja y condimenta con la mitad del aceite.",
+      "Pon el salmón encima, añade limón, el aceite restante y los condimentos.",
+      "Hornea de 15 a 18 minutos y sirve caliente."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "fish"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 35,
+      "pageEnd": 38
+    }
+  },
+  {
+    "id": "recipe-lunch-09",
+    "slug": "ensalada-de-atun-con-aguacate-y-huevo",
+    "title": "Ensalada de atún con aguacate y huevo",
+    "summary": "Preparación de ensalada de atún con aguacate y huevo basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 10,
+    "ingredients": [
+      {
+        "ingredientId": "tuna",
+        "displayName": "atún en agua escurrido",
+        "quantity": 170,
+        "unit": "g",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "avocado",
+        "displayName": "aguacate maduro",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "egg",
+        "displayName": "huevos duros",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lettuce",
+        "displayName": "lechuga",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate pequeño",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon",
+        "displayName": "limón",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": "jugo"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "red-onion-herbs",
+        "displayName": "cebolla morada y hierbas frescas",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Cuece los huevos durante 10 minutos si aún no están listos.",
+      "Lava y corta los vegetales y el aguacate.",
+      "Escurre y desmenuza el atún.",
+      "Arma la ensalada sobre la lechuga y distribuye los demás ingredientes.",
+      "Aliña con limón, aceite, sal y pimienta."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "egg",
+      "fish"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 39,
+      "pageEnd": 42
+    }
+  },
+  {
+    "id": "recipe-lunch-10",
+    "slug": "sopa-de-verduras-sin-fideos",
+    "title": "Sopa de verduras sin fideos",
+    "summary": "Preparación de sopa de verduras sin fideos basada en el documento fuente.",
+    "category": "lunch",
+    "servingsBase": 4,
+    "prepMinutes": 0,
+    "cookMinutes": 31,
+    "ingredients": [
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "zucchini",
+        "displayName": "calabacín",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cauliflower",
+        "displayName": "coliflor",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "celery",
+        "displayName": "apio",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate maduro",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water-or-vegetable-stock",
+        "displayName": "agua o caldo de verduras",
+        "quantity": 1.5,
+        "unit": "l",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "displayName": "hoja de laurel",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "dried-oregano",
+        "displayName": "orégano seco",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Lava y corta las verduras de tamaño similar.",
+      "Sofríe cebolla y ajo con aceite de 2 a 3 minutos; agrega el tomate y cocina 3 minutos.",
+      "Añade las demás verduras, líquido, laurel y condimentos; lleva a ebullición.",
+      "Cocina tapado a fuego lento de 20 a 25 minutos.",
+      "Retira el laurel, ajusta el sabor y sirve."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+      "pageStart": 43,
+      "pageEnd": 46
+    }
+  },
+  {
+    "id": "recipe-dinner-01",
+    "slug": "bowl-de-tofu-con-arroz-integral-y-vegetales",
+    "title": "Bowl de tofu con arroz integral y vegetales",
+    "summary": "Preparación de bowl de tofu con arroz integral y vegetales basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 54,
+    "ingredients": [
+      {
+        "ingredientId": "tofu",
+        "displayName": "tofu firme",
+        "quantity": 200,
+        "unit": "g",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "low-sodium-soy-sauce",
+        "displayName": "salsa de soya baja en sodio",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sesame-or-olive-oil",
+        "displayName": "aceite de sésamo o de oliva",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "broccoli",
+        "displayName": "brócoli",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ginger",
+        "displayName": "jengibre rallado",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "cooked-brown-rice",
+        "displayName": "arroz integral cocido",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sesame-seeds",
+        "displayName": "semillas de sésamo",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "leafy-greens",
+        "displayName": "espinaca baby o rúcula",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Cocina el arroz integral según el documento y reserva una taza.",
+      "Dora el tofu con el aceite durante 3 a 4 minutos por lado; añade la salsa de soya y cocina 1 minuto.",
+      "Saltea ajo, jengibre y vegetales durante 5 minutos.",
+      "Arma cada bowl con hojas verdes, arroz, tofu y vegetales; termina con aceite y semillas opcionales."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "soy",
+      "sesame"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 6,
+      "pageEnd": 9
+    }
+  },
+  {
+    "id": "recipe-dinner-02",
+    "slug": "pollo-con-salsa-de-mostaza-y-dulzor-sin-azucar",
+    "title": "Pollo con salsa de mostaza y dulzor sin azúcar añadido",
+    "summary": "Preparación de pollo con salsa de mostaza y dulzor sin azúcar añadido basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 11,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-breast",
+        "displayName": "pechuga de pollo sin piel",
+        "quantity": 300,
+        "unit": "g",
+        "preparationNote": "dos filetes de 150 a 180 g"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tsp",
+        "preparationNote": "dividido"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "dijon-mustard",
+        "displayName": "mostaza Dijon sin azúcar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sweetener-substitute",
+        "displayName": "sustituto dulce indicado en la fuente",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": "opciones del PDF requieren revisión"
+      },
+      {
+        "ingredientId": "apple-cider-vinegar-or-lemon",
+        "displayName": "vinagre de manzana o jugo de limón",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic-powder",
+        "displayName": "ajo en polvo",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Mezcla los ingredientes de la salsa hasta obtener una preparación homogénea.",
+      "Condimenta y cocina el pollo de 4 a 5 minutos por lado.",
+      "Vierte la salsa sobre el pollo y cocina 1 minuto a fuego bajo.",
+      "Sirve caliente."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "sweetener_options_need_review"
+    ],
+    "allergens": [
+      "mustard"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 10,
+      "pageEnd": 12
+    }
+  },
+  {
+    "id": "recipe-dinner-03",
+    "slug": "ensalada-de-lentejas-con-queso-feta-y-tomate",
+    "title": "Ensalada de lentejas con queso feta y tomate",
+    "summary": "Preparación de ensalada de lentejas con queso feta y tomate basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 25,
+    "ingredients": [
+      {
+        "ingredientId": "cooked-lentils",
+        "displayName": "lentejas cocidas",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cherry-tomatoes",
+        "displayName": "tomates cherry",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "feta-cheese",
+        "displayName": "queso feta",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cucumber",
+        "displayName": "pepino",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "red-onion",
+        "displayName": "cebolla morada",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "parsley-or-cilantro",
+        "displayName": "perejil o cilantro",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon-or-vinegar",
+        "displayName": "limón o vinagre de manzana",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Si hace falta, cocina las lentejas de 20 a 25 minutos, escurre y enfría.",
+      "Prepara los vegetales y las hierbas.",
+      "Mezcla lentejas, vegetales y queso feta.",
+      "Combina aceite y limón o vinagre, adereza y sirve fría o a temperatura ambiente."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "milk"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 13,
+      "pageEnd": 16
+    }
+  },
+  {
+    "id": "recipe-dinner-04",
+    "slug": "sopa-de-calabaza-sin-crema",
+    "title": "Sopa de calabaza sin crema",
+    "summary": "Preparación de sopa de calabaza sin crema basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 4,
+    "prepMinutes": 0,
+    "cookMinutes": 28,
+    "ingredients": [
+      {
+        "ingredientId": "pumpkin",
+        "displayName": "calabaza",
+        "quantity": 500,
+        "unit": "g",
+        "preparationNote": "pelada y en cubos"
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ginger",
+        "displayName": "jengibre rallado",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "nutmeg-or-cumin",
+        "displayName": "nuez moscada o comino",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "water-or-vegetable-stock",
+        "displayName": "agua o caldo de verduras",
+        "quantity": 750,
+        "unit": "ml",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Pela y corta la calabaza; pica cebolla y ajo.",
+      "Sofríe la cebolla 2 minutos; añade ajo y jengibre y cocina 1 minuto.",
+      "Agrega calabaza y líquido; cocina tapado de 20 a 25 minutos.",
+      "Procesa hasta obtener una textura suave, ajusta los condimentos y sirve."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 17,
+      "pageEnd": 20
+    }
+  },
+  {
+    "id": "recipe-dinner-05",
+    "slug": "albondigas-de-carne-magra-con-pure-de-coliflor",
+    "title": "Albóndigas de carne magra con puré de coliflor",
+    "summary": "Preparación de albóndigas de carne magra con puré de coliflor basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 22,
+    "ingredients": [
+      {
+        "ingredientId": "lean-ground-meat",
+        "displayName": "carne molida magra",
+        "quantity": 250,
+        "unit": "g",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": "dientes, dividido"
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla pequeña",
+        "quantity": 0.25,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "parsley",
+        "displayName": "perejil fresco",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "mustard",
+        "displayName": "mostaza sin azúcar",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "egg-white",
+        "displayName": "clara de huevo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-oats-or-chickpea-flour",
+        "displayName": "avena molida o harina de garbanzos",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tsp",
+        "preparationNote": "dividido"
+      },
+      {
+        "ingredientId": "cauliflower",
+        "displayName": "coliflor pequeña",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "en floretes"
+      },
+      {
+        "ingredientId": "plant-milk-or-water",
+        "displayName": "leche vegetal sin azúcar o agua",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Mezcla los ingredientes de las albóndigas y forma bolitas de 3 a 4 cm.",
+      "Cocina las albóndigas en sartén de 8 a 10 minutos, girándolas.",
+      "Cocina la coliflor y un diente de ajo de 10 a 12 minutos.",
+      "Escurre y procesa la coliflor con aceite, líquido y condimentos.",
+      "Sirve las albóndigas con el puré."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "egg",
+      "gluten",
+      "mustard"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 21,
+      "pageEnd": 23
+    }
+  },
+  {
+    "id": "recipe-dinner-06",
+    "slug": "guiso-de-berenjena-y-garbanzos",
+    "title": "Guiso de berenjena y garbanzos",
+    "summary": "Preparación de guiso de berenjena y garbanzos basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 15,
+    "cookMinutes": 38,
+    "ingredients": [
+      {
+        "ingredientId": "eggplant",
+        "displayName": "berenjena mediana",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "cooked-chickpeas",
+        "displayName": "garbanzos cocidos",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "tomato",
+        "displayName": "tomate grande",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "paprika",
+        "displayName": "pimentón dulce",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cumin",
+        "displayName": "comino",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water-or-vegetable-stock",
+        "displayName": "agua o caldo",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "parsley",
+        "displayName": "perejil fresco",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Corta la berenjena; opcionalmente sálala 15 minutos, enjuaga y seca.",
+      "Sofríe cebolla y ajo 2 minutos; añade pimiento y cocina 3 minutos.",
+      "Agrega berenjena y cocina de 6 a 8 minutos.",
+      "Incorpora tomate y especias durante 2 a 3 minutos.",
+      "Añade garbanzos y líquido; cocina tapado de 10 a 15 minutos y sirve."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 24,
+      "pageEnd": 27
+    }
+  },
+  {
+    "id": "recipe-dinner-07",
+    "slug": "zoodles-con-pesto-ligero",
+    "title": "Zoodles con pesto ligero",
+    "summary": "Preparación de zoodles con pesto ligero basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 10,
+    "cookMinutes": 3,
+    "ingredients": [
+      {
+        "ingredientId": "zucchini",
+        "displayName": "calabacines medianos",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 2,
+        "unit": "tsp",
+        "preparationNote": "dividido"
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "fresh-basil",
+        "displayName": "albahaca fresca",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "nuts",
+        "displayName": "nueces o almendras",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo pequeño",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "water",
+        "displayName": "agua fría",
+        "quantity": 3,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "lemon-juice",
+        "displayName": "jugo de limón",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "parmesan",
+        "displayName": "queso parmesano rallado",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Corta los calabacines en forma de fideos; opcionalmente sala, reposa 10 minutos y seca.",
+      "Saltea los zoodles durante 2 a 3 minutos y retira del fuego.",
+      "Procesa los ingredientes del pesto hasta obtener una salsa fluida.",
+      "Mezcla los zoodles con el pesto y sirve de inmediato."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "tree-nuts",
+      "milk"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 28,
+      "pageEnd": 31
+    }
+  },
+  {
+    "id": "recipe-dinner-08",
+    "slug": "pechuga-rellena-de-espinaca-y-queso",
+    "title": "Pechuga rellena de espinaca y queso",
+    "summary": "Preparación de pechuga rellena de espinaca y queso basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 25,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-breast",
+        "displayName": "pechugas de pollo",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "cantidad no indicada en la lista coherente con la preparación"
+      },
+      {
+        "ingredientId": "spinach",
+        "displayName": "espinaca picada",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "cantidad no indicada"
+      },
+      {
+        "ingredientId": "low-fat-cheese",
+        "displayName": "queso bajo en grasa",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "cantidad no indicada"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "unas gotas para cocinar"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo picado",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "cantidad no indicada"
+      },
+      {
+        "ingredientId": "salt-pepper-spices",
+        "displayName": "sal, pimienta y especias",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcionales"
+      }
+    ],
+    "instructions": [
+      "Sofríe el ajo y la espinaca; retira del fuego y mezcla con el queso.",
+      "Abre las pechugas en forma de libro y aplánalas para igualar el grosor.",
+      "Rellena con la mezcla y cierra con palillos o hilo de cocina.",
+      "Cocina de 6 a 8 minutos por lado o lleva al horno a 180 °C durante 25 minutos.",
+      "Retira palillos o hilo antes de servir."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "source_ingredient_page_mismatch",
+      "quantities_not_stated"
+    ],
+    "allergens": [
+      "milk"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 32,
+      "pageEnd": 35
+    }
+  },
+  {
+    "id": "recipe-dinner-09",
+    "slug": "guiso-de-carne-con-papas-y-zanahorias",
+    "title": "Guiso de carne con papas y zanahorias",
+    "summary": "Preparación de guiso de carne con papas y zanahorias basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 58,
+    "ingredients": [
+      {
+        "ingredientId": "lean-beef",
+        "displayName": "carne magra de res",
+        "quantity": 250,
+        "unit": "g",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "potato",
+        "displayName": "papa mediana",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "aprox. 120 g"
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria mediana",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "displayName": "tomate triturado natural",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "water-or-vegetable-stock",
+        "displayName": "agua o caldo",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-oil",
+        "displayName": "aceite de oliva",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "displayName": "hoja de laurel",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "oregano-or-thyme",
+        "displayName": "orégano o tomillo",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt-and-pepper",
+        "displayName": "sal y pimienta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      }
+    ],
+    "instructions": [
+      "Dora la carne con el aceite durante 4 a 5 minutos y reserva.",
+      "Sofríe cebolla, ajo y pimiento durante 3 minutos.",
+      "Añade zanahoria, papa, tomate, carne y condimentos.",
+      "Vierte el líquido, lleva a ebullición y cocina tapado a fuego bajo de 40 a 50 minutos.",
+      "Retira el laurel y sirve."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 36,
+      "pageEnd": 39
+    }
+  },
+  {
+    "id": "recipe-dinner-10",
+    "slug": "pollo-con-vegetales-al-wok",
+    "title": "Pollo con vegetales al wok",
+    "summary": "Preparación de pollo con vegetales al wok basada en el documento fuente.",
+    "category": "dinner",
+    "servingsBase": 4,
+    "prepMinutes": 0,
+    "cookMinutes": 13,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-breast",
+        "displayName": "pechuga de pollo",
+        "quantity": 250,
+        "unit": "g",
+        "preparationNote": "en tiras"
+      },
+      {
+        "ingredientId": "red-pepper",
+        "displayName": "pimiento rojo",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "carrot",
+        "displayName": "zanahoria",
+        "quantity": 0.5,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "broccoli",
+        "displayName": "brócoli",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "onion",
+        "displayName": "cebolla",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "olive-or-sesame-oil",
+        "displayName": "aceite de oliva o sésamo",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "low-sodium-soy-sauce",
+        "displayName": "salsa de soya baja en sodio",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ginger",
+        "displayName": "jengibre rallado",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "garlic",
+        "displayName": "ajo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "diente"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "displayName": "pimienta negra",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sesame-or-scallion",
+        "displayName": "sésamo o cebolla de verdeo",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Lava y corta los vegetales y el pollo.",
+      "Cocina el pollo con la mitad del aceite durante 5 a 6 minutos y reserva.",
+      "Sofríe ajo y jengibre; añade los vegetales y cocina 5 minutos.",
+      "Devuelve el pollo al wok, agrega la salsa de soya y cocina 2 minutos más.",
+      "Sirve caliente."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "soy",
+      "sesame"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+      "pageStart": 40,
+      "pageEnd": 43
+    }
+  },
+  {
+    "id": "recipe-dessert-01",
+    "slug": "mousse-de-aguacate-y-cacao-sin-azucar",
+    "title": "Mousse de aguacate y cacao sin azúcar añadido",
+    "summary": "Preparación de mousse de aguacate y cacao sin azúcar añadido basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 2,
+    "prepMinutes": 30,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "avocado",
+        "displayName": "aguacate maduro grande",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "unsweetened-cocoa",
+        "displayName": "cacao puro sin azúcar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "plant-milk",
+        "displayName": "leche vegetal sin azúcar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": "puede requerir una cucharada adicional"
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "ajustar al gusto; rango fuente de 1 a 2 cucharaditas"
+      },
+      {
+        "ingredientId": "cinnamon-or-salt",
+        "displayName": "canela o sal fina",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Retira la pulpa del aguacate maduro.",
+      "Procesa con cacao, leche vegetal, edulcorante y vainilla hasta obtener una mezcla homogénea.",
+      "Ajusta la textura con más leche vegetal si hace falta y prueba el dulzor.",
+      "Divide en recipientes y refrigera al menos 30 minutos."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 6,
+      "pageEnd": 9
+    }
+  },
+  {
+    "id": "recipe-dessert-02",
+    "slug": "pudin-de-chia-con-leche-vegetal-y-vainilla",
+    "title": "Pudín de chía con leche vegetal y vainilla",
+    "summary": "Preparación de pudín de chía con leche vegetal y vainilla basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 2,
+    "prepMinutes": 120,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "chia-seeds",
+        "displayName": "semillas de chía",
+        "quantity": 4,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "plant-milk",
+        "displayName": "leche vegetal sin azúcar",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "ajustar al gusto; rango fuente de 1 a 2 cucharaditas"
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Mezcla la leche vegetal con la vainilla y el edulcorante.",
+      "Añade la chía y revuelve bien.",
+      "Deja reposar 5 minutos, vuelve a revolver, cubre y refrigera al menos 2 horas.",
+      "Divide en recipientes y sirve."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 10,
+      "pageEnd": 12
+    }
+  },
+  {
+    "id": "recipe-dessert-03",
+    "slug": "gelatina-sin-azucar-con-frutas-frescas",
+    "title": "Gelatina sin azúcar con frutas frescas",
+    "summary": "Preparación de gelatina sin azúcar con frutas frescas basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 4,
+    "prepMinutes": 180,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "sugar-free-gelatin",
+        "displayName": "gelatina sin azúcar",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": "sobre"
+      },
+      {
+        "ingredientId": "water",
+        "displayName": "agua",
+        "quantity": 2,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "fresh-fruit",
+        "displayName": "frutas frescas indicadas en la fuente",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": "en cubos"
+      },
+      {
+        "ingredientId": "mint",
+        "displayName": "menta",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Disuelve la gelatina en una taza de agua caliente.",
+      "Añade una taza de agua fría y deja templar.",
+      "Distribuye la fruta en recipientes y vierte la gelatina.",
+      "Refrigera de 3 a 4 horas y sirve fría."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 13,
+      "pageEnd": 16
+    }
+  },
+  {
+    "id": "recipe-dessert-04",
+    "slug": "manzana-al-horno-con-canela",
+    "title": "Manzana al horno con canela",
+    "summary": "Preparación de manzana al horno con canela basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 30,
+    "ingredients": [
+      {
+        "ingredientId": "apple",
+        "displayName": "manzanas medianas",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela en polvo",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "baking-sweetener",
+        "displayName": "edulcorante apto para hornear",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "coconut-oil-or-butter",
+        "displayName": "aceite de coco o mantequilla sin sal",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "nuts",
+        "displayName": "nueces o almendras",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Lava las manzanas y retira el corazón o córtalas a la mitad y quita las semillas.",
+      "Colócalas en una fuente y añade canela y los opcionales elegidos.",
+      "Hornea a 180 °C durante 25 a 30 minutos.",
+      "Sirve caliente."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "milk",
+      "tree-nuts"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 17,
+      "pageEnd": 20
+    }
+  },
+  {
+    "id": "recipe-dessert-05",
+    "slug": "flan-de-coco-sin-azucar",
+    "title": "Flan de coco sin azúcar añadido",
+    "summary": "Preparación de flan de coco sin azúcar añadido basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 4,
+    "prepMinutes": 120,
+    "cookMinutes": 40,
+    "ingredients": [
+      {
+        "ingredientId": "coconut-milk",
+        "displayName": "leche de coco sin azúcar",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "plant-milk",
+        "displayName": "leche vegetal sin azúcar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "egg",
+        "displayName": "huevos enteros",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "egg-white",
+        "displayName": "clara de huevo",
+        "quantity": 1,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "unsweetened-shredded-coconut",
+        "displayName": "coco rallado sin azúcar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "baking-sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "ajustar al gusto; rango fuente de 1 a 2 cucharaditas"
+      },
+      {
+        "ingredientId": "cinnamon-or-lemon-zest",
+        "displayName": "canela o ralladura de limón",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Bate los huevos, la clara y el edulcorante.",
+      "Agrega las leches, la vainilla y el coco; mezcla hasta homogeneizar.",
+      "Reparte en moldes y hornea a baño maría a 160 °C durante 35 a 40 minutos.",
+      "Enfría y refrigera al menos 2 horas antes de servir."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "egg",
+      "coconut"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 21,
+      "pageEnd": 23
+    }
+  },
+  {
+    "id": "recipe-dessert-06",
+    "slug": "galletas-de-avena-y-platano",
+    "title": "Galletas de avena y plátano",
+    "summary": "Preparación de galletas de avena y plátano basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 8,
+    "prepMinutes": 0,
+    "cookMinutes": 18,
+    "ingredients": [
+      {
+        "ingredientId": "banana",
+        "displayName": "plátanos maduros",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "rolled-oats",
+        "displayName": "avena en hojuelas",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "ground-cinnamon",
+        "displayName": "canela en polvo",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "chia-or-nuts",
+        "displayName": "semillas de chía o nueces",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "salt",
+        "displayName": "sal fina",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "una pizca"
+      },
+      {
+        "ingredientId": "sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Precalienta el horno a 180 °C y prepara una bandeja.",
+      "Pisa los plátanos y mezcla con la avena, canela, vainilla, sal y opcionales.",
+      "Forma porciones, aplánalas y distribúyelas en la bandeja.",
+      "Hornea de 15 a 18 minutos y deja enfriar."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "yield_range_8_to_10"
+    ],
+    "allergens": [
+      "gluten",
+      "tree-nuts"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 24,
+      "pageEnd": 27
+    }
+  },
+  {
+    "id": "recipe-dessert-07",
+    "slug": "yogur-griego-con-frutos-rojos-y-nueces",
+    "title": "Yogur griego con frutos rojos y nueces",
+    "summary": "Preparación de yogur griego con frutos rojos y nueces basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 2,
+    "prepMinutes": 0,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "greek-yogurt",
+        "displayName": "yogur griego natural sin azúcar",
+        "quantity": 250,
+        "unit": "g",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "berries",
+        "displayName": "frutos rojos",
+        "quantity": 0.5,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "nuts",
+        "displayName": "nueces picadas",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "chia-or-flax",
+        "displayName": "chía o linaza molida",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional"
+      }
+    ],
+    "instructions": [
+      "Mezcla el yogur con vainilla y edulcorante si los usas.",
+      "Divide en dos recipientes.",
+      "Agrega los frutos rojos, nueces y semillas opcionales.",
+      "Sirve de inmediato o refrigera sin las nueces hasta el momento de servir."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [
+      "milk",
+      "tree-nuts"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 28,
+      "pageEnd": 31
+    }
+  },
+  {
+    "id": "recipe-dessert-08",
+    "slug": "trufas-de-cacao-y-almendra-sin-azucar",
+    "title": "Trufas de cacao y almendra sin azúcar añadido",
+    "summary": "Preparación de trufas de cacao y almendra sin azúcar añadido basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 10,
+    "prepMinutes": 30,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "ground-almonds",
+        "displayName": "almendras molidas",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "unsweetened-cocoa",
+        "displayName": "cacao puro sin azúcar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "coconut-oil",
+        "displayName": "aceite de coco",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "ajustar al gusto; rango fuente de 1 a 2 cucharaditas"
+      },
+      {
+        "ingredientId": "salt",
+        "displayName": "sal fina",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "una pizca"
+      },
+      {
+        "ingredientId": "coating",
+        "displayName": "cacao, coco o semillas molidas",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "opcional para rebozar"
+      }
+    ],
+    "instructions": [
+      "Mezcla almendras, cacao, sal y edulcorante.",
+      "Agrega aceite de coco y vainilla hasta formar una masa moldeable.",
+      "Forma bolitas y rebózalas si lo deseas.",
+      "Refrigera al menos 30 minutos."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "yield_range_10_to_12"
+    ],
+    "allergens": [
+      "tree-nuts",
+      "coconut"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 32,
+      "pageEnd": 35
+    }
+  },
+  {
+    "id": "recipe-dessert-09",
+    "slug": "helado-de-platano-congelado-y-cacao",
+    "title": "Helado de plátano congelado y cacao",
+    "summary": "Preparación de helado de plátano congelado y cacao basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 2,
+    "prepMinutes": 240,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "banana",
+        "displayName": "plátanos maduros congelados",
+        "quantity": 2,
+        "unit": "unit",
+        "preparationNote": "en rodajas"
+      },
+      {
+        "ingredientId": "unsweetened-cocoa",
+        "displayName": "cacao puro sin azúcar",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "sweetener",
+        "displayName": "edulcorante indicado en la fuente",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": "opcional; rango fuente de 1 a 2 cucharaditas"
+      },
+      {
+        "ingredientId": "plant-milk",
+        "displayName": "leche vegetal sin azúcar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "preparationNote": "solo si hace falta; hasta 2 cucharadas"
+      }
+    ],
+    "instructions": [
+      "Corta y congela los plátanos durante al menos 4 horas.",
+      "Procesa el plátano con cacao, vainilla y edulcorante opcional.",
+      "Añade leche vegetal solo si hace falta ajustar la textura.",
+      "Sirve al momento o congela 1 hora adicional para una consistencia más firme."
+    ],
+    "tags": [
+      "needs_professional_review"
+    ],
+    "allergens": [],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 36,
+      "pageEnd": 38
+    }
+  },
+  {
+    "id": "recipe-dessert-10",
+    "slug": "barritas-de-frutos-secos-y-semillas",
+    "title": "Barritas de frutos secos y semillas",
+    "summary": "Preparación de barritas de frutos secos y semillas basada en el documento fuente.",
+    "category": "dessert",
+    "servingsBase": 4,
+    "prepMinutes": 120,
+    "cookMinutes": 0,
+    "ingredients": [
+      {
+        "ingredientId": "mixed-nuts",
+        "displayName": "nueces, almendras o avellanas",
+        "quantity": 1,
+        "unit": "cup",
+        "preparationNote": "picadas"
+      },
+      {
+        "ingredientId": "pumpkin-seeds",
+        "displayName": "semillas de calabaza",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "sunflower-seeds",
+        "displayName": "semillas de girasol",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "chia-or-flax",
+        "displayName": "chía o linaza molida",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "unsweetened-shredded-coconut",
+        "displayName": "coco rallado sin azúcar",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": "opcional"
+      },
+      {
+        "ingredientId": "nut-butter",
+        "displayName": "mantequilla natural de almendras o maní",
+        "quantity": 2,
+        "unit": "tbsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "fiber-syrup",
+        "displayName": "sirope indicado en la fuente",
+        "quantity": 0.25,
+        "unit": "cup",
+        "preparationNote": "requiere revisión profesional"
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "displayName": "extracto de vainilla",
+        "quantity": 1,
+        "unit": "tsp",
+        "preparationNote": null
+      },
+      {
+        "ingredientId": "salt",
+        "displayName": "sal fina",
+        "quantity": null,
+        "unit": "to_taste",
+        "preparationNote": "una pizca"
+      }
+    ],
+    "instructions": [
+      "Mezcla los frutos secos, semillas, coco y sal.",
+      "Combina la mantequilla de frutos secos, el sirope y la vainilla.",
+      "Une ambas mezclas y compacta en una fuente forrada.",
+      "Refrigera 2 horas o congela 30 minutos.",
+      "Corta en barritas y conserva refrigerado."
+    ],
+    "tags": [
+      "needs_professional_review",
+      "sweetener_options_need_review"
+    ],
+    "allergens": [
+      "tree-nuts",
+      "peanut",
+      "coconut"
+    ],
+    "publicationStatus": "draft",
+    "source": {
+      "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+      "pageStart": 39,
+      "pageEnd": 42
+    }
+  }
+]

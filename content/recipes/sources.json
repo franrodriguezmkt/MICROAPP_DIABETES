@@ -1,0 +1,56 @@
+[
+  {
+    "fileName": "10 RECETAS DE DESAYUNOS PARA DIABÉTICOS.pdf",
+    "pageCount": 25,
+    "role": "recipe_library",
+    "recipeCount": 10
+  },
+  {
+    "fileName": "10 RECETAS DE ALMUERZOS PARA DIABÉTICOS.pdf",
+    "pageCount": 46,
+    "role": "recipe_library",
+    "recipeCount": 10
+  },
+  {
+    "fileName": "10 RECETAS DE CENAS PARA DIABÉTICOS.pdf",
+    "pageCount": 43,
+    "role": "recipe_library",
+    "recipeCount": 10
+  },
+  {
+    "fileName": "10 RECETAS DE POSTRES PARA DIABÉTICOS.pdf",
+    "pageCount": 42,
+    "role": "recipe_library",
+    "recipeCount": 10
+  },
+  {
+    "fileName": "5 SNACKS PARA DIABÉTICOS.pdf",
+    "pageCount": 13,
+    "role": "recipe_library",
+    "recipeCount": 5
+  },
+  {
+    "fileName": "Manual de intercambio de alimentos.pdf.pdf.pdf",
+    "pageCount": 24,
+    "role": "educational_reference",
+    "recipeCount": 0
+  },
+  {
+    "fileName": "Planeadores mensuales, de menú y ejercicios.pdf.pdf",
+    "pageCount": 14,
+    "role": "planning_resource",
+    "recipeCount": 0
+  },
+  {
+    "fileName": "Guía de Ejercicios para Personas con Diabetes.pdf.pdf",
+    "pageCount": 23,
+    "role": "educational_resource",
+    "recipeCount": 0
+  },
+  {
+    "fileName": "MANUAL PARA PREVENIR EL PIE DIABETICO.pdf.pdf",
+    "pageCount": 30,
+    "role": "educational_resource",
+    "recipeCount": 0
+  }
+]
