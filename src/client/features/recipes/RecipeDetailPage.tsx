@@ -6,7 +6,10 @@ import type { RecipeRepository } from "../../../domain/recipes/recipeRepository"
 import { scaleIngredient } from "../../../domain/recipes/servingScale";
 import { EmptyState } from "../../components/EmptyState";
 import { recipeRepository } from "../../lib/content";
-import { formatIngredientQuantity } from "./recipeViewModel";
+import {
+  formatAllergenLabels,
+  formatIngredientQuantity,
+} from "./recipeViewModel";
 
 export function RecipeDetailPage({
   repository = recipeRepository,
@@ -138,7 +141,7 @@ export function RecipeDetailPage({
       {recipe.allergens.length > 0 ? (
         <section className="allergen-note" aria-labelledby="allergens-title">
           <h2 id="allergens-title">Alérgenos por revisar</h2>
-          <p>{recipe.allergens.join(", ")}</p>
+          <p>{formatAllergenLabels(recipe.allergens)}</p>
         </section>
       ) : null}
 

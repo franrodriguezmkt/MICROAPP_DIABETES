@@ -25,6 +25,38 @@ function renderDetail(recipe: Recipe) {
 }
 
 describe("recipe detail", () => {
+  it("shows allergen identifiers as familiar Spanish labels", async () => {
+    const recipe: Recipe = {
+      id: "recipe-lunch-01",
+      slug: "ensalada-con-alergenos",
+      title: "Ensalada con alérgenos",
+      summary: "Preparación de ejemplo.",
+      category: "lunch",
+      servingsBase: 1,
+      prepMinutes: 5,
+      cookMinutes: 0,
+      ingredients: [
+        {
+          ingredientId: "ingredient",
+          displayName: "ingrediente",
+          quantity: 1,
+          unit: "unit",
+          preparationNote: null,
+        },
+      ],
+      instructions: ["Preparar."],
+      tags: [],
+      allergens: ["egg", "milk", "tree-nuts"],
+      publicationStatus: "approved",
+      source: { fileName: "fuente.pdf", pageStart: 1, pageEnd: 1 },
+    };
+
+    renderDetail(recipe);
+
+    expect(await screen.findByText("Huevo, leche, frutos secos")).toBeVisible();
+    expect(screen.queryByText("egg, milk, tree-nuts")).not.toBeInTheDocument();
+  });
+
   it("changes servings while preserving the source recipe", async () => {
     const user = userEvent.setup();
     const recipe: Recipe = {

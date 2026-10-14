@@ -22,6 +22,19 @@ const pluralUnits: Record<IngredientUnit, string> = {
   pinch: "pizcas",
 };
 
+const allergenLabels: Record<string, string> = {
+  coconut: "coco",
+  egg: "huevo",
+  fish: "pescado",
+  gluten: "gluten",
+  milk: "leche",
+  mustard: "mostaza",
+  peanut: "maní",
+  sesame: "sésamo",
+  soy: "soja",
+  "tree-nuts": "frutos secos",
+};
+
 export function formatIngredientQuantity(
   quantity: number | null,
   unit: IngredientUnit,
@@ -37,4 +50,12 @@ export function formatIngredientQuantity(
   const unitLabel = quantity <= 1 ? singularUnits[unit] : pluralUnits[unit];
 
   return `${formattedQuantity} ${unitLabel}`;
+}
+
+export function formatAllergenLabels(allergens: string[]): string {
+  const labels = allergens
+    .map((allergen) => allergenLabels[allergen] ?? allergen)
+    .join(", ");
+
+  return labels.length > 0 ? `${labels[0].toUpperCase()}${labels.slice(1)}` : "";
 }

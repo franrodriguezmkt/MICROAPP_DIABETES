@@ -1,4 +1,4 @@
-import rawRecipes from "../../../content/recipes/recipes.json";
+import rawRecipes from "virtual:recipe-content";
 import type { RecipeRepository } from "../../domain/recipes/recipeRepository";
 import { createJsonRecipeRepository } from "../../infrastructure/recipes/jsonRecipeRepository";
 

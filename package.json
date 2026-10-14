@@ -7,7 +7,7 @@
     "dev": "vite",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "build": "vite build",
+    "build": "vite build && node scripts/verify-production-bundle.mjs",
     "preview": "vite preview",
     "deploy": "wrangler deploy",
     "test:e2e": "playwright test"
