@@ -3,6 +3,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import { AppShell } from "../components/AppShell";
 import { EmptyState } from "../components/EmptyState";
 import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
+import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
 
 function ComingSoon({ title }: { title: string }) {
   return (
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/recetas" replace /> },
       { path: "recetas", element: <RecipeCatalogPage /> },
+      { path: "recetas/:slug", element: <RecipeDetailPage /> },
       { path: "semana", element: <ComingSoon title="Tu semana" /> },
       { path: "compras", element: <ComingSoon title="Lista de compras" /> },
       { path: "recursos", element: <ComingSoon title="Recursos" /> },

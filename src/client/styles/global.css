@@ -387,6 +387,218 @@ a {
   background: var(--color-accent);
 }
 
+.detail-status {
+  padding: var(--space-7) 0;
+  color: var(--color-muted);
+}
+
+.centered-action {
+  text-align: center;
+}
+
+.text-link,
+.back-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  color: var(--color-primary);
+  font-weight: 750;
+  text-underline-offset: 0.25rem;
+}
+
+.recipe-detail {
+  padding: var(--space-3) 0 var(--space-7);
+}
+
+.recipe-detail__header {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.detail-visual {
+  position: relative;
+  display: grid;
+  min-height: 14rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-mint);
+}
+
+.detail-visual--lunch { background: #e2efe4; }
+.detail-visual--dinner { background: #dfe9ed; }
+.detail-visual--snack { background: #f7e7cb; }
+.detail-visual--dessert { background: #f5dfdb; }
+
+.detail-visual .plate-motif {
+  width: 8rem;
+  height: 8rem;
+  border-width: 1.2rem;
+}
+
+.detail-visual .leaf-motif {
+  width: 4rem;
+  height: 1.8rem;
+  margin: -4rem 0 0 6rem;
+}
+
+.recipe-detail__intro {
+  align-self: center;
+  padding: var(--space-2) 0;
+}
+
+.recipe-detail__intro h1 {
+  max-width: 20ch;
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.recipe-detail__intro > p:not(.eyebrow) {
+  max-width: 60ch;
+  color: var(--color-muted);
+}
+
+.recipe-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.recipe-detail__meta span {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  color: var(--color-primary-strong);
+  background: var(--color-mint);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.recipe-detail__layout {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.detail-panel {
+  padding: var(--space-5) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 78%);
+}
+
+.detail-panel h2,
+.allergen-note h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.section-heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: end;
+  justify-content: space-between;
+}
+
+.servings-field {
+  display: grid;
+  grid-template-columns: auto 4.5rem;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.servings-field label {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.servings-field input {
+  width: 4.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem;
+  border: 1px solid #8ca7a0;
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.ingredient-list,
+.instruction-list {
+  margin: var(--space-4) 0 0;
+}
+
+.ingredient-list {
+  display: grid;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.ingredient-list li {
+  display: grid;
+  grid-template-columns: minmax(5rem, auto) 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ingredient-list li:last-child {
+  border-bottom: 0;
+}
+
+.ingredient-quantity {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.instruction-list {
+  display: grid;
+  gap: var(--space-4);
+  padding-left: 1.5rem;
+}
+
+.instruction-list li {
+  padding-left: var(--space-2);
+}
+
+.instruction-list li::marker {
+  color: var(--color-secondary);
+  font-weight: 800;
+}
+
+.allergen-note,
+.educational-notice {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.allergen-note {
+  border: 1px solid #dbb57e;
+  background: #fff4e0;
+}
+
+.allergen-note p,
+.educational-notice p {
+  margin: var(--space-1) 0 0;
+}
+
+.educational-notice {
+  border-left: 0.35rem solid var(--color-secondary);
+  background: var(--color-mint);
+}
+
 @media (min-width: 40rem) {
   .recipe-filters {
     grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
@@ -395,6 +607,15 @@ a {
 
   .recipe-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recipe-detail__header {
+    grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
+    padding: var(--space-5);
+  }
+
+  .recipe-detail__layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   }
 }
 
