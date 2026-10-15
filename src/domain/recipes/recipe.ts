@@ -63,6 +63,10 @@ export const recipeSchema = z.object({
   servingsBase: z.number().int().min(1).max(12),
   prepMinutes: z.number().int().nonnegative(),
   cookMinutes: z.number().int().nonnegative(),
+  imagePath: z
+    .string()
+    .regex(/^\/recipes\/[a-z0-9]+(?:-[a-z0-9]+)*\.(?:avif|webp)$/)
+    .optional(),
   ingredients: z.array(recipeIngredientSchema).min(1),
   instructions: z.array(z.string().trim().min(1)).min(1),
   tags: z.array(z.string().trim().min(1)),
