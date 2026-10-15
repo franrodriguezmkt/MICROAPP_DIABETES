@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
@@ -79,10 +79,7 @@ describe("recipe catalog", () => {
     await user.clear(
       screen.getByRole("searchbox", { name: /buscar recetas/i }),
     );
-    await user.selectOptions(
-      screen.getByRole("combobox", { name: /categoría/i }),
-      "lunch",
-    );
+    await user.click(screen.getByRole("button", { name: "Almuerzos" }));
 
     await waitFor(() => {
       expect(
@@ -92,6 +89,46 @@ describe("recipe catalog", () => {
     expect(
       screen.queryByRole("link", { name: /pudín de chía/i }),
     ).not.toBeInTheDocument();
+  });
+
+  it("offers_snack_as_a_first_class_category", async () => {
+    const user = userEvent.setup();
+    renderCatalogWith([
+      recipe(),
+      recipe({
+        id: "recipe-snack-01",
+        slug: "yogur-con-frutos-rojos",
+        title: "Yogur con frutos rojos",
+        category: "snack",
+      }),
+    ]);
+
+    const categories = screen.getByRole("group", {
+      name: /categorías de recetas/i,
+    });
+    expect(
+      within(categories).getAllByRole("button").map((button) => button.textContent),
+    ).toEqual([
+      "Todas",
+      "Desayunos",
+      "Almuerzos",
+      "Cenas",
+      "Snacks",
+      "Postres",
+    ]);
+
+    await user.click(within(categories).getByRole("button", { name: "Snacks" }));
+
+    expect(
+      await screen.findByRole("link", { name: /yogur con frutos rojos/i }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("link", { name: /pudín de chía/i }),
+    ).not.toBeInTheDocument();
+    expect(within(categories).getByRole("button", { name: "Snacks" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
   });
 
   it("shows a safe review state when production has no approved recipes", async () => {
