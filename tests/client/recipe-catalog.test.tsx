@@ -131,6 +131,38 @@ describe("recipe catalog", () => {
     );
   });
 
+  it("keeps_long_titles_and_metadata_in_the_accessible_name_flow", async () => {
+    const longTitle =
+      "Tostada integral con aguacate, tomate fresco y semillas tostadas";
+    renderCatalogWith([
+      recipe({
+        id: "recipe-snack-02",
+        slug: "tostada-integral-aguacate-tomate",
+        title: longTitle,
+        category: "snack",
+        servingsBase: 3,
+        prepMinutes: 12,
+        cookMinutes: 5,
+      }),
+    ]);
+
+    const link = await screen.findByRole("link", { name: longTitle });
+    const card = link.closest("article");
+    expect(card).not.toBeNull();
+    expect(within(card!).getByText("17 min")).toBeVisible();
+    expect(within(card!).getByText("3 porciones")).toBeVisible();
+  });
+
+  it("uses_the_shared_recipe_visual", async () => {
+    renderCatalogWith([recipe()]);
+
+    await screen.findByRole("link", { name: /pudín de chía/i });
+    expect(screen.getByTestId("recipe-visual")).toBeVisible();
+    expect(
+      screen.queryByRole("img", { name: /pudín de chía/i }),
+    ).not.toBeInTheDocument();
+  });
+
   it("shows a safe review state when production has no approved recipes", async () => {
     renderCatalogWith([]);
 
