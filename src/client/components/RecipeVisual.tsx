@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import type { Recipe } from "../../domain/recipes/recipe";
 
 type RecipeVisualRecipe = Pick<
@@ -12,6 +14,11 @@ type RecipeVisualProps = {
 
 export function RecipeVisual({ recipe, variant }: RecipeVisualProps) {
   const isDetail = variant === "detail";
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [recipe.imagePath]);
 
   return (
     <div
@@ -19,7 +26,7 @@ export function RecipeVisual({ recipe, variant }: RecipeVisualProps) {
       data-testid="recipe-visual"
       data-category={recipe.category}
     >
-      {recipe.imagePath ? (
+      {recipe.imagePath && !imageFailed ? (
         <img
           src={recipe.imagePath}
           alt=""
@@ -28,6 +35,7 @@ export function RecipeVisual({ recipe, variant }: RecipeVisualProps) {
           loading={isDetail ? "eager" : "lazy"}
           decoding="async"
           fetchPriority={isDetail ? "high" : "auto"}
+          onError={() => setImageFailed(true)}
         />
       ) : (
         <div className="recipe-visual__placeholder" aria-hidden="true">

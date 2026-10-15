@@ -93,7 +93,7 @@ test("keeps recipe navigation usable across compact accessibility layouts", asyn
     (desktopNavigationBounds?.x ?? 0) + (desktopNavigationBounds?.width ?? 0),
   ).toBeLessThanOrEqual((mainBounds?.x ?? 0) - 16);
 
-  await page.setViewportSize({ width: 667, height: 375 });
+  await page.setViewportSize({ width: 375, height: 667 });
   await page.evaluate(() => {
     document.documentElement.style.fontSize = "125%";
   });
@@ -101,5 +101,30 @@ test("keeps recipe navigation usable across compact accessibility layouts", asyn
   await expectNoHorizontalOverflow(page);
   await expect(searchBox).toBeVisible();
   await expect(navigationLinks.last()).toBeVisible();
-  await expect(categoryButtons.last()).toBeVisible();
+  await categoryButtons.last().scrollIntoViewIfNeeded();
+  const scaledLastCategoryBounds = await categoryButtons.last().boundingBox();
+  expect(scaledLastCategoryBounds?.x).toBeGreaterThanOrEqual(0);
+  expect(
+    (scaledLastCategoryBounds?.x ?? 0) +
+      (scaledLastCategoryBounds?.width ?? 0),
+  ).toBeLessThanOrEqual(375);
+
+  const longTitleCard = page
+    .locator(".recipe-card")
+    .filter({ hasText: "Pollo con salsa de mostaza y dulzor sin azúcar añadido" });
+  await longTitleCard.scrollIntoViewIfNeeded();
+  const longTitleBounds = await longTitleCard.boundingBox();
+  expect(longTitleBounds?.x).toBeGreaterThanOrEqual(0);
+  expect((longTitleBounds?.x ?? 0) + (longTitleBounds?.width ?? 0)).toBeLessThanOrEqual(
+    375,
+  );
+
+  await page.evaluate(() => document.fonts.ready);
+  const loadedEditorialFonts = await page.evaluate(() =>
+    Array.from(document.fonts)
+      .filter((font) => font.status === "loaded")
+      .map((font) => font.family.replaceAll('"', "")),
+  );
+  expect(loadedEditorialFonts).toContain("Manrope Variable");
+  expect(loadedEditorialFonts).toContain("Inter Variable");
 });
