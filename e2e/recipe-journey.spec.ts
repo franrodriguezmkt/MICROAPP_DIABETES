@@ -7,6 +7,17 @@ test("finds and opens a recipe from a direct mobile route", async ({ page }) => 
     "href",
     "/manifest.webmanifest",
   );
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+    "content",
+    "#003C37",
+  );
+
+  const manifestResponse = await page.request.get("/manifest.webmanifest");
+  expect(manifestResponse.ok()).toBe(true);
+  await expect(manifestResponse.json()).resolves.toMatchObject({
+    theme_color: "#003C37",
+    background_color: "#FFFAF7",
+  });
 
   const healthResponse = await page.request.get("/api/health");
   expect(healthResponse.ok()).toBe(true);
