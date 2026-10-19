@@ -1,3 +1,20 @@
+import rawIngredientCatalog from "../../content/ingredients/catalog.json";
+import recipes from "virtual:recipe-content";
+
+import { ingredientCatalogSchema } from "../domain/ingredients/ingredientCatalog";
+import { InMemoryPlannerRepository } from "../infrastructure/planner/InMemoryPlannerRepository";
 import { createWorkerApp } from "./app";
 
-export default createWorkerApp();
+const plannerPreview = import.meta.env.DEV;
+
+export default createWorkerApp(
+  plannerPreview
+    ? {
+        plannerPreview: true,
+        repository: new InMemoryPlannerRepository(),
+        recipes,
+        ingredientCatalog: ingredientCatalogSchema.parse(rawIngredientCatalog),
+        previewUserId: "local-preview-user",
+      }
+    : { plannerPreview: false },
+);
