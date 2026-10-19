@@ -8,6 +8,7 @@ import "./styles/tokens.css";
 import "./styles/global.css";
 import "./styles/shell.css";
 import "./styles/recipes.css";
+import "./styles/planner.css";
 
 const rootElement = document.getElementById("root");
 

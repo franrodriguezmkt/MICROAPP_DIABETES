@@ -4,6 +4,7 @@ import { AppShell } from "../components/AppShell";
 import { EmptyState } from "../components/EmptyState";
 import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
 import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
+import { WeekPage } from "../features/planner/WeekPage";
 
 function ComingSoon({ title }: { title: string }) {
   return (
@@ -22,10 +23,10 @@ export const router = createBrowserRouter([
     path: "/",
     element: <AppShell />,
     children: [
-      { index: true, element: <Navigate to="/recetas" replace /> },
+      { index: true, element: <Navigate to="/semana" replace /> },
       { path: "recetas", element: <RecipeCatalogPage /> },
       { path: "recetas/:slug", element: <RecipeDetailPage /> },
-      { path: "semana", element: <ComingSoon title="Tu semana" /> },
+      { path: "semana", element: <WeekPage /> },
       { path: "compras", element: <ComingSoon title="Lista de compras" /> },
       { path: "recursos", element: <ComingSoon title="Recursos" /> },
       { path: "cuenta", element: <ComingSoon title="Tu cuenta" /> },
