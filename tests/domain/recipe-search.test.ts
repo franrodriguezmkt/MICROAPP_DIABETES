@@ -98,6 +98,9 @@ describe("JSON recipe repository", () => {
     await expect(
       repository.getBySlug(draftRecipe.slug, { includeDrafts: true }),
     ).resolves.toBeNull();
+    await expect(
+      repository.getById(draftRecipe.id, { includeDrafts: true }),
+    ).resolves.toBeNull();
   });
 
   it("shows drafts only when both preview and the query allow them", async () => {
@@ -109,5 +112,10 @@ describe("JSON recipe repository", () => {
     await expect(repository.list({ includeDrafts: true })).resolves.toEqual([
       draftRecipe,
     ]);
+    await expect(repository.getById(draftRecipe.id)).resolves.toBeNull();
+    await expect(
+      repository.getById(draftRecipe.id, { includeDrafts: true }),
+    ).resolves.toEqual(draftRecipe);
+    await expect(repository.getById("missing-recipe")).resolves.toBeNull();
   });
 });
