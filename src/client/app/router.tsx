@@ -5,6 +5,7 @@ import { EmptyState } from "../components/EmptyState";
 import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
 import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
 import { WeekPage } from "../features/planner/WeekPage";
+import { ShoppingPage } from "../features/shopping/ShoppingPage";
 
 function ComingSoon({ title }: { title: string }) {
   return (
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
       { path: "recetas", element: <RecipeCatalogPage /> },
       { path: "recetas/:slug", element: <RecipeDetailPage /> },
       { path: "semana", element: <WeekPage /> },
-      { path: "compras", element: <ComingSoon title="Lista de compras" /> },
+      { path: "compras", element: <ShoppingPage /> },
       { path: "recursos", element: <ComingSoon title="Recursos" /> },
       { path: "cuenta", element: <ComingSoon title="Tu cuenta" /> },
     ],
