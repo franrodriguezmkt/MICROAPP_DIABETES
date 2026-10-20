@@ -12,6 +12,11 @@ export type PlannerRouteDependencies = {
   plannerPreview: boolean;
   plannerService?: PlannerService;
   previewUserId?: string;
+  resolvePlannerRequest?: (context: Context<WorkerEnv>) => {
+    plannerService: PlannerService;
+    userId: string;
+    preview: boolean;
+  };
 };
 
 const confirmationSchema = z.object({ confirmed: z.boolean().optional() });
@@ -105,11 +110,26 @@ export function createPlannerRoutes({
   plannerPreview,
   plannerService,
   previewUserId,
+  resolvePlannerRequest,
 }: PlannerRouteDependencies) {
   const app = new Hono<WorkerEnv>();
 
+  function requestPlanner(context: Context<WorkerEnv>) {
+    if (plannerPreview && plannerService && previewUserId) {
+      return {
+        plannerService,
+        userId: previewUserId,
+        preview: true,
+      };
+    }
+    return resolvePlannerRequest?.(context);
+  }
+
   app.use("/api/*", async (context, next) => {
-    if (!plannerPreview || !plannerService || !previewUserId) {
+    if (
+      !(plannerPreview && plannerService && previewUserId) &&
+      !resolvePlannerRequest
+    ) {
       return context.json(
         {
           code: "FEATURE_UNAVAILABLE",
@@ -123,17 +143,21 @@ export function createPlannerRoutes({
   });
 
   app.get("/api/me", (context) =>
-    respond(context, async () => ({
-      preferences: await plannerService!.getPreferences(previewUserId!),
-      preview: true,
-    })),
+    respond(context, async () => {
+      const request = requestPlanner(context)!;
+      return {
+        preferences: await request.plannerService.getPreferences(request.userId),
+        preview: request.preview,
+      };
+    }),
   );
 
   app.patch("/api/me/preferences", (context) =>
     respond(context, async () => {
+      const request = requestPlanner(context)!;
       const body = preferencesRequestSchema.parse(await parseJson(context));
-      const preferences = await plannerService!.updatePreferences(
-        previewUserId!,
+      const preferences = await request.plannerService.updatePreferences(
+        request.userId,
         body.preferences,
         { confirmed: body.confirmed },
       );
@@ -142,20 +166,24 @@ export function createPlannerRoutes({
   );
 
   app.get("/api/weeks/:weekStart", (context) =>
-    respond(context, async () => ({
-      plan: await plannerService!.getOrGenerateWeek(
-        previewUserId!,
-        context.req.param("weekStart"),
-      ),
-    })),
+    respond(context, async () => {
+      const request = requestPlanner(context)!;
+      return {
+        plan: await request.plannerService.getOrGenerateWeek(
+          request.userId,
+          context.req.param("weekStart"),
+        ),
+      };
+    }),
   );
 
   app.post("/api/weeks/:weekStart/regenerate", (context) =>
     respond(context, async () => {
+      const request = requestPlanner(context)!;
       const body = confirmationSchema.parse(await parseJson(context));
       return {
-        plan: await plannerService!.regenerateWeek(
-          previewUserId!,
+        plan: await request.plannerService.regenerateWeek(
+          request.userId,
           context.req.param("weekStart"),
           body,
         ),
@@ -165,10 +193,11 @@ export function createPlannerRoutes({
 
   app.put("/api/weeks/:weekStart/items/:itemId", (context) =>
     respond(context, async () => {
+      const request = requestPlanner(context)!;
       const body = replacementSchema.parse(await parseJson(context));
       return {
-        plan: await plannerService!.replaceItem(
-          previewUserId!,
+        plan: await request.plannerService.replaceItem(
+          request.userId,
           context.req.param("weekStart"),
           context.req.param("itemId"),
           body.recipeId,
@@ -178,20 +207,24 @@ export function createPlannerRoutes({
   );
 
   app.get("/api/weeks/:weekStart/shopping-list", (context) =>
-    respond(context, async () => ({
-      items: await plannerService!.getShoppingList(
-        previewUserId!,
-        context.req.param("weekStart"),
-      ),
-    })),
+    respond(context, async () => {
+      const request = requestPlanner(context)!;
+      return {
+        items: await request.plannerService.getShoppingList(
+          request.userId,
+          context.req.param("weekStart"),
+        ),
+      };
+    }),
   );
 
   app.patch("/api/weeks/:weekStart/shopping-list/:itemId", (context) =>
     respond(context, async () => {
+      const request = requestPlanner(context)!;
       const patch = shoppingPatchSchema.parse(await parseJson(context));
       return {
-        item: await plannerService!.patchShoppingItem(
-          previewUserId!,
+        item: await request.plannerService.patchShoppingItem(
+          request.userId,
           context.req.param("weekStart"),
           context.req.param("itemId"),
           patch,
@@ -202,10 +235,11 @@ export function createPlannerRoutes({
 
   app.post("/api/weeks/:weekStart/shopping-list", (context) =>
     respond(context, async () => {
+      const request = requestPlanner(context)!;
       const item = manualShoppingItemSchema.parse(await parseJson(context));
       return {
-        item: await plannerService!.addManualShoppingItem(
-          previewUserId!,
+        item: await request.plannerService.addManualShoppingItem(
+          request.userId,
           context.req.param("weekStart"),
           item,
         ),
@@ -215,8 +249,9 @@ export function createPlannerRoutes({
 
   app.delete("/api/weeks/:weekStart/shopping-list/:itemId", (context) =>
     respond(context, async () => {
-      await plannerService!.deleteManualShoppingItem(
-        previewUserId!,
+      const request = requestPlanner(context)!;
+      await request.plannerService.deleteManualShoppingItem(
+        request.userId,
         context.req.param("weekStart"),
         context.req.param("itemId"),
       );

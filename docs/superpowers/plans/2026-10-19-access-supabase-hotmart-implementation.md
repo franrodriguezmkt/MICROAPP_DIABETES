@@ -205,31 +205,31 @@ git commit -m "feat: add email OTP access flow"
 - Produces: `SupabasePlannerRepository implements PlannerRepository` using the snapshot RPCs.
 - Changes: planner routes obtain `userId` from `authorizedUser`; preview mode may still inject `previewUserId` only in development/test.
 
-- [ ] **Step 1: Write failing repository contract tests**
+- [x] **Step 1: Write failing repository contract tests**
 
 Run the same contract against `InMemoryPlannerRepository` and `SupabasePlannerRepository` with an RPC-level fake: missing preferences/week, save/read preferences, save/read one week, list multiple weeks, preserved manual lines and isolated user ids. Use literal fixtures and reject malformed RPC results through Zod.
 
-- [ ] **Step 2: Run the repository tests and verify failure**
+- [x] **Step 2: Run the repository tests and verify failure**
 
 Run: `pnpm vitest run tests/infrastructure/supabase-planner-repository.test.ts`
 
 Expected: FAIL because the Supabase repository does not exist.
 
-- [ ] **Step 3: Implement the repository adapter**
+- [x] **Step 3: Implement the repository adapter**
 
 Translate only at the adapter boundary and call the transactional RPCs. Do not duplicate generator or shopping logic; `PlannerService` remains the sole owner of those behaviors.
 
-- [ ] **Step 4: Protect and wire planner routes**
+- [x] **Step 4: Protect and wire planner routes**
 
 In production, create a request-scoped user client and repository after authorization, then construct `PlannerService` with approved build-time recipes. Keep the current injected preview path for component and browser development.
 
-- [ ] **Step 5: Run repository, service and route suites**
+- [x] **Step 5: Run repository, service and route suites**
 
 Run: `pnpm vitest run tests/infrastructure/supabase-planner-repository.test.ts tests/application/planner-service.test.ts tests/worker/planner-routes.test.ts`
 
 Expected: PASS with no changes to deterministic plan output.
 
-- [ ] **Step 6: Commit persistent planner wiring**
+- [x] **Step 6: Commit persistent planner wiring**
 
 ```bash
 git add src/infrastructure/planner/SupabasePlannerRepository.ts src/worker tests/infrastructure/supabase-planner-repository.test.ts tests/worker/planner-routes.test.ts

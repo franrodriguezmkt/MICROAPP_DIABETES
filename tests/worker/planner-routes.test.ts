@@ -1,9 +1,15 @@
 import { describe, expect, it } from "vitest";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
+import type {
+  AccessGateway,
+  AuthorizedAccess,
+} from "../../src/application/access/AccessGateway";
 import type { IngredientCatalogEntry } from "../../src/domain/ingredients/ingredientCatalog";
 import type { Recipe, RecipeCategory } from "../../src/domain/recipes/recipe";
 import { InMemoryPlannerRepository } from "../../src/infrastructure/planner/InMemoryPlannerRepository";
 import { createWorkerApp } from "../../src/worker/app";
+import type { Database } from "../../src/infrastructure/supabase/database.types";
 
 function makeRecipe(
   id: string,
@@ -219,5 +225,60 @@ describe("preview planner routes", () => {
         requestId: expect.any(String),
       });
     }
+  });
+
+  it("requires a bearer session for configured production planner routes", async () => {
+    const response = await createWorkerApp({
+      plannerPreview: false,
+      recipes,
+      ingredientCatalog,
+    }).request("http://local.test/api/me");
+
+    expect(response.status).toBe(401);
+    await expect(response.json()).resolves.toMatchObject({
+      code: "AUTH_REQUIRED",
+    });
+  });
+
+  it("uses the authorized user and their scoped repository in production", async () => {
+    const userSupabase = {
+      from() {
+        return {
+          select() {
+            return {
+              eq() {
+                return {
+                  async maybeSingle() {
+                    return { data: null, error: null };
+                  },
+                };
+              },
+            };
+          },
+        };
+      },
+    } as unknown as SupabaseClient<Database>;
+    const access: AuthorizedAccess = {
+      user: { userId: "production-user", email: "buyer@example.com" },
+      userSupabase,
+    };
+    const gateway: AccessGateway = {
+      async resolveAuthorizedUser() {
+        return access;
+      },
+    };
+    const response = await createWorkerApp({
+      plannerPreview: false,
+      recipes,
+      ingredientCatalog,
+      accessGateway: gateway,
+    }).request("http://local.test/api/me", {
+      headers: { authorization: "Bearer valid-token" },
+    });
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({
+      data: { preferences: null, preview: false },
+    });
   });
 });

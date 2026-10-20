@@ -9,6 +9,8 @@ import type { PlannerRepository } from "../application/planner/PlannerRepository
 import type { IngredientCatalogEntry } from "../domain/ingredients/ingredientCatalog";
 import type { Recipe } from "../domain/recipes/recipe";
 import { createJsonRecipeRepository } from "../infrastructure/recipes/jsonRecipeRepository";
+import { SupabasePlannerRepository } from "../infrastructure/planner/SupabasePlannerRepository";
+import { createSupabaseAccessGateway } from "../infrastructure/supabase/createSupabaseClients";
 import { createPlannerRoutes } from "./plannerRoutes";
 import { createAuthMiddleware, type WorkerEnv } from "./authMiddleware";
 import { createAccessRoutes, type AccessAuditEntry } from "./accessRoutes";
@@ -44,13 +46,6 @@ export function createWorkerApp(
     }),
   );
 
-  if (dependencies.accessGateway) {
-    app.use(
-      "/api/private/*",
-      createAuthMiddleware({ gateway: dependencies.accessGateway }),
-    );
-  }
-
   const plannerService =
     dependencies.plannerPreview &&
     dependencies.repository &&
@@ -68,12 +63,59 @@ export function createWorkerApp(
         })
       : undefined;
 
+  const productionPlannerEnabled =
+    !dependencies.plannerPreview &&
+    Boolean(dependencies.recipes && dependencies.ingredientCatalog);
+
+  if (productionPlannerEnabled) {
+    const authorize = createAuthMiddleware({
+      gateway: dependencies.accessGateway,
+      gatewayForContext: (context) =>
+        createSupabaseAccessGateway({
+          url: context.env.SUPABASE_URL,
+          publishableKey: context.env.SUPABASE_PUBLISHABLE_KEY,
+        }),
+    });
+    app.use("/api/me", authorize);
+    app.use("/api/me/*", authorize);
+    app.use("/api/weeks/*", authorize);
+  }
+
+  const productionRecipeRepository =
+    productionPlannerEnabled && dependencies.recipes
+      ? createJsonRecipeRepository(dependencies.recipes, {
+          contentPreview: false,
+        })
+      : undefined;
+
   app.route(
     "/",
     createPlannerRoutes({
       plannerPreview: dependencies.plannerPreview ?? false,
       plannerService,
       previewUserId: dependencies.previewUserId,
+      resolvePlannerRequest:
+        productionPlannerEnabled &&
+        productionRecipeRepository &&
+        dependencies.ingredientCatalog
+          ? (context) => {
+              const authorizedUser = context.get("authorizedUser");
+              return {
+                plannerService: new PlannerService({
+                  repository: new SupabasePlannerRepository(
+                    context.get("userSupabase"),
+                  ),
+                  recipeRepository: productionRecipeRepository,
+                  ingredientCatalog: dependencies.ingredientCatalog!,
+                  includeDraftRecipes: false,
+                  seed: "planner-production",
+                  idGenerator: dependencies.idGenerator,
+                }),
+                userId: authorizedUser.userId,
+                preview: false,
+              };
+            }
+          : undefined,
     }),
   );
 

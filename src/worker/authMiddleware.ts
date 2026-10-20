@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { MiddlewareHandler } from "hono";
+import type { Context, MiddlewareHandler } from "hono";
 
 import {
   AccessGatewayError,
@@ -19,7 +19,8 @@ export type WorkerEnv = {
 };
 
 type AuthMiddlewareOptions = {
-  gateway: AccessGateway;
+  gateway?: AccessGateway;
+  gatewayForContext?: (context: Context<WorkerEnv>) => AccessGateway;
   requestId?: () => string;
 };
 
@@ -30,8 +31,9 @@ function bearerToken(header: string | undefined) {
 
 export function createAuthMiddleware({
   gateway,
+  gatewayForContext,
   requestId = () => crypto.randomUUID(),
-}: AuthMiddlewareOptions): MiddlewareHandler<{ Variables: AuthVariables }> {
+}: AuthMiddlewareOptions): MiddlewareHandler<WorkerEnv> {
   return async (context, next) => {
     const token = bearerToken(context.req.header("authorization"));
     if (!token) {
@@ -46,7 +48,9 @@ export function createAuthMiddleware({
     }
 
     try {
-      const access = await gateway.resolveAuthorizedUser(token);
+      const requestGateway = gateway ?? gatewayForContext?.(context);
+      if (!requestGateway) throw new Error("Access gateway unavailable");
+      const access = await requestGateway.resolveAuthorizedUser(token);
       context.set("authorizedUser", access.user);
       context.set("userSupabase", access.userSupabase);
       await next();

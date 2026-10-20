@@ -6,6 +6,7 @@ import { InMemoryPlannerRepository } from "../infrastructure/planner/InMemoryPla
 import { createWorkerApp } from "./app";
 
 const plannerPreview = import.meta.env.DEV;
+const ingredientCatalog = ingredientCatalogSchema.parse(rawIngredientCatalog);
 
 export default createWorkerApp(
   plannerPreview
@@ -13,8 +14,12 @@ export default createWorkerApp(
         plannerPreview: true,
         repository: new InMemoryPlannerRepository(),
         recipes,
-        ingredientCatalog: ingredientCatalogSchema.parse(rawIngredientCatalog),
+        ingredientCatalog,
         previewUserId: "local-preview-user",
       }
-    : { plannerPreview: false },
+    : {
+        plannerPreview: false,
+        recipes,
+        ingredientCatalog,
+      },
 );

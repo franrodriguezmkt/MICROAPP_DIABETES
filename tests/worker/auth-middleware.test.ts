@@ -8,7 +8,7 @@ import {
 } from "../../src/application/access/AccessGateway";
 import {
   createAuthMiddleware,
-  type AuthVariables,
+  type WorkerEnv,
 } from "../../src/worker/authMiddleware";
 
 const userClient = {
@@ -16,7 +16,7 @@ const userClient = {
 } as unknown as AuthorizedAccess["userSupabase"];
 
 function testApp(gateway: AccessGateway) {
-  const app = new Hono<{ Variables: AuthVariables }>();
+  const app = new Hono<WorkerEnv>();
   app.use("/private/*", createAuthMiddleware({ gateway, requestId: () => "request-one" }));
   app.get("/private/me", (context) => {
     const user = context.get("authorizedUser");
