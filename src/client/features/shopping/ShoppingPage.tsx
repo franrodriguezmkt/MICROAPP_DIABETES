@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import type {
   ShoppingCategory,
@@ -9,6 +10,7 @@ import {
   type ManualShoppingItemInput,
   type PlannerClient,
 } from "../../lib/plannerClient";
+import { mondayFor, weekStartFromSearch } from "../../lib/weekStart";
 import { ManualShoppingItemForm } from "./ManualShoppingItemForm";
 import { ShoppingGroup } from "./ShoppingGroup";
 
@@ -27,26 +29,19 @@ const categoryOrder: Array<{ category: ShoppingCategory; title: string }> = [
   { category: "other", title: "Otros" },
 ];
 
-function mondayFor(date = new Date()) {
-  const result = new Date(
-    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-  );
-  const day = result.getUTCDay() || 7;
-  result.setUTCDate(result.getUTCDate() - day + 1);
-  return result.toISOString().slice(0, 10);
-}
-
 export function ShoppingPage({
   client = plannerClient,
   initialWeekStart = mondayFor(),
 }: ShoppingPageProps) {
+  const [searchParams] = useSearchParams();
+  const weekStart = weekStartFromSearch(searchParams, initialWeekStart);
   const [items, setItems] = useState<ShoppingListItem[]>([]);
   const [state, setState] = useState<"loading" | "ready" | "error">("loading");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const activeRequest = useRef<AbortController | null>(null);
 
-  function nextController() {
+  function nextLoadController() {
     activeRequest.current?.abort();
     const controller = new AbortController();
     activeRequest.current = controller;
@@ -54,10 +49,10 @@ export function ShoppingPage({
   }
 
   async function load() {
-    const controller = nextController();
+    const controller = nextLoadController();
     setState("loading");
     try {
-      setItems(await client.getShoppingList(initialWeekStart, controller.signal));
+      setItems(await client.getShoppingList(weekStart, controller.signal));
       setState("ready");
     } catch (error) {
       if ((error as Error).name !== "AbortError") setState("error");
@@ -67,12 +62,11 @@ export function ShoppingPage({
   useEffect(() => {
     void load();
     return () => activeRequest.current?.abort();
-    // The selected week is fixed for this route instance.
+    // Reload when browser navigation selects another week.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [weekStart]);
 
   async function toggle(item: ShoppingListItem) {
-    const previous = items;
     const optimistic = { ...item, checked: !item.checked } as ShoppingListItem;
     setItems((current) =>
       current.map((candidate) =>
@@ -82,10 +76,10 @@ export function ShoppingPage({
     setMessage("");
     try {
       const saved = await client.patchShoppingItem(
-        initialWeekStart,
+        weekStart,
         item.id,
         { checked: optimistic.checked },
-        nextController().signal,
+        new AbortController().signal,
       );
       setItems((current) =>
         current.map((candidate) =>
@@ -93,7 +87,11 @@ export function ShoppingPage({
         ),
       );
     } catch {
-      setItems(previous);
+      setItems((current) =>
+        current.map((candidate) =>
+          candidate.id === item.id ? item : candidate,
+        ),
+      );
       setMessage("No pudimos guardar el cambio. Recuperamos el estado anterior.");
     }
   }
@@ -103,9 +101,9 @@ export function ShoppingPage({
     setMessage("");
     try {
       const item = await client.addManualShoppingItem(
-        initialWeekStart,
+        weekStart,
         input,
-        nextController().signal,
+        new AbortController().signal,
       );
       setItems((current) => [...current, item]);
     } catch {
@@ -121,9 +119,9 @@ export function ShoppingPage({
     setMessage("");
     try {
       await client.deleteManualShoppingItem(
-        initialWeekStart,
+        weekStart,
         item.id,
-        nextController().signal,
+        new AbortController().signal,
       );
       setItems((current) =>
         current.filter((candidate) => candidate.id !== item.id),
@@ -140,10 +138,10 @@ export function ShoppingPage({
     setMessage("");
     try {
       const saved = await client.patchShoppingItem(
-        initialWeekStart,
+        weekStart,
         item.id,
         { label },
-        nextController().signal,
+        new AbortController().signal,
       );
       setItems((current) =>
         current.map((candidate) =>
@@ -188,7 +186,7 @@ export function ShoppingPage({
         <div className="shopping-empty">
           <h2>Organiza primero tu semana</h2>
           <p>Cuando tengas un menú, aquí aparecerán sus ingredientes.</p>
-          <a className="planner-button planner-control" href="/semana">Ir a Semana</a>
+          <a className="planner-button planner-control" href={`/semana?week=${encodeURIComponent(weekStart)}`}>Ir a Semana</a>
         </div>
       ) : (
         <div className="shopping-groups">

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import type { PlannedMealType } from "../../../domain/planner/planner";
 import type { Recipe } from "../../../domain/recipes/recipe";
 
@@ -23,9 +25,50 @@ export function RecipeReplacementDialog({
   onChoose,
   onClose,
 }: RecipeReplacementDialogProps) {
+  const dialogRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const previousFocus = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocus?.focus();
+    };
+  }, [onClose]);
+
   return (
     <div className="planner-dialog-backdrop">
       <section
+        ref={dialogRef}
         className="planner-dialog"
         role="dialog"
         aria-modal="true"
@@ -37,6 +80,7 @@ export function RecipeReplacementDialog({
             <h2 id="replacement-title">Cambiar {mealLabels[mealType]}</h2>
           </div>
           <button
+            ref={closeButtonRef}
             className="planner-icon-button planner-control"
             type="button"
             onClick={onClose}

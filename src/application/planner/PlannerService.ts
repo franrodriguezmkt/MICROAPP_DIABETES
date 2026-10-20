@@ -228,8 +228,8 @@ export class PlannerService {
   }
 
   async getShoppingList(userId: string, weekStart: string) {
-    await this.getOrGenerateWeek(userId, weekStart);
-    return (await this.requireWeek(userId, weekStart)).shoppingItems;
+    const stored = await this.dependencies.repository.getWeek(userId, weekStart);
+    return stored?.shoppingItems ?? [];
   }
 
   async patchShoppingItem(

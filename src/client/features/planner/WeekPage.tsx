@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import rawIngredientCatalog from "../../../../content/ingredients/catalog.json";
 import rawRecipes from "virtual:recipe-content";
 
@@ -13,6 +14,7 @@ import type {
 } from "../../../domain/planner/planner";
 import type { Recipe } from "../../../domain/recipes/recipe";
 import { plannerClient, type PlannerClient } from "../../lib/plannerClient";
+import { mondayFor, weekStartFromSearch } from "../../lib/weekStart";
 import { PreferencesForm } from "./PreferencesForm";
 import { RecipeReplacementDialog } from "./RecipeReplacementDialog";
 import { WeekMealCard } from "./WeekMealCard";
@@ -25,15 +27,6 @@ type WeekPageProps = {
 };
 
 type PageState = "loading" | "onboarding" | "ready" | "error";
-
-function mondayFor(date = new Date()) {
-  const result = new Date(
-    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-  );
-  const day = result.getUTCDay() || 7;
-  result.setUTCDate(result.getUTCDate() - day + 1);
-  return result.toISOString().slice(0, 10);
-}
 
 function addDays(isoDate: string, days: number) {
   const date = new Date(`${isoDate}T00:00:00Z`);
@@ -56,8 +49,10 @@ export function WeekPage({
   ingredientCatalog = ingredientCatalogSchema.parse(rawIngredientCatalog),
   initialWeekStart = mondayFor(),
 }: WeekPageProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedWeekStart = weekStartFromSearch(searchParams, initialWeekStart);
   const [state, setState] = useState<PageState>("loading");
-  const [weekStart, setWeekStart] = useState(initialWeekStart);
+  const [weekStart, setWeekStart] = useState(selectedWeekStart);
   const [preferences, setPreferences] = useState<PlannerPreferences | null>(null);
   const [plan, setPlan] = useState<WeeklyPlan | null>(null);
   const [busy, setBusy] = useState(false);
@@ -65,6 +60,7 @@ export function WeekPage({
   const [pendingPreferences, setPendingPreferences] = useState<PlannerPreferences | null>(null);
   const [replacementItem, setReplacementItem] = useState<WeeklyPlanItem | null>(null);
   const [confirmRegeneration, setConfirmRegeneration] = useState(false);
+  const [actionError, setActionError] = useState("");
   const activeRequest = useRef<AbortController | null>(null);
   const recipeById = useMemo(
     () => new Map(recipes.map((recipe) => [recipe.id, recipe])),
@@ -85,6 +81,9 @@ export function WeekPage({
       const nextPlan = await client.getWeek(targetWeek, controller.signal);
       setPlan(nextPlan);
       setWeekStart(targetWeek);
+      const nextSearchParams = new URLSearchParams(searchParams);
+      nextSearchParams.set("week", targetWeek);
+      setSearchParams(nextSearchParams, { replace: true });
       setState("ready");
     } catch (error) {
       if ((error as Error).name !== "AbortError") setState("error");
@@ -140,6 +139,7 @@ export function WeekPage({
     if (!replacementItem) return;
     const controller = nextController();
     setBusy(true);
+    setActionError("");
     try {
       const nextPlan = await client.replaceItem(
         weekStart,
@@ -149,6 +149,10 @@ export function WeekPage({
       );
       setPlan(nextPlan);
       setReplacementItem(null);
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") {
+        setActionError("No pudimos cambiar la receta. Inténtalo de nuevo.");
+      }
     } finally {
       setBusy(false);
     }
@@ -271,6 +275,10 @@ export function WeekPage({
         </aside>
       ) : null}
 
+      {actionError ? (
+        <p className="planner-error" role="alert">{actionError}</p>
+      ) : null}
+
       <div className="week-days">
         {dates.map((date) => {
           const items = plan?.items.filter((item) => item.date === date) ?? [];
@@ -283,7 +291,10 @@ export function WeekPage({
                     key={item.id}
                     item={item}
                     recipe={recipeById.get(item.recipeId)}
-                    onReplace={() => setReplacementItem(item)}
+                    onReplace={() => {
+                      setActionError("");
+                      setReplacementItem(item);
+                    }}
                   />
                 ))}
                 {items.length === 0 ? <p className="planner-muted">Sin comidas disponibles para este día.</p> : null}

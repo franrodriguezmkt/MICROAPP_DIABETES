@@ -98,6 +98,15 @@ describe("PlannerService", () => {
     ).resolves.toMatchObject({ plan: second });
   });
 
+  it("does not create a default week when shopping is opened before onboarding", async () => {
+    await expect(
+      service.getShoppingList("preview-user", "2026-10-19"),
+    ).resolves.toEqual([]);
+    await expect(
+      repository.getWeek("preview-user", "2026-10-19"),
+    ).resolves.toBeNull();
+  });
+
   it("requires confirmation to regenerate an existing week", async () => {
     await service.updatePreferences("preview-user", preferences);
     const first = await service.getOrGenerateWeek(

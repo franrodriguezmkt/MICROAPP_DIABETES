@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 import { AppIcon, type AppIconName } from "./AppIcon";
 import { BrandMark } from "./BrandMark";
@@ -16,6 +16,9 @@ const navigation = [
 }>;
 
 export function AppShell() {
+  const location = useLocation();
+  const week = new URLSearchParams(location.search).get("week");
+
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -34,7 +37,11 @@ export function AppShell() {
           {navigation.map((item) => (
             <NavLink
               key={item.to}
-              to={item.to}
+              to={
+                week && (item.to === "/semana" || item.to === "/compras")
+                  ? `${item.to}?week=${encodeURIComponent(week)}`
+                  : item.to
+              }
               className={({ isActive }) =>
                 `nav-item${isActive ? " nav-item--active" : ""}`
               }

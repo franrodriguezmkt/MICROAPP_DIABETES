@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 
 import { WeekPage } from "../../src/client/features/planner/WeekPage";
@@ -75,11 +76,17 @@ function createClient(overrides: Partial<PlannerClient> = {}): PlannerClient {
   };
 }
 
+function renderWeek(page: React.ReactNode, initialEntry = "/semana") {
+  return render(
+    <MemoryRouter initialEntries={[initialEntry]}>{page}</MemoryRouter>,
+  );
+}
+
 describe("WeekPage", () => {
   it("shows onboarding and generates the first week", async () => {
     const user = userEvent.setup();
     const client = createClient();
-    render(
+    renderWeek(
       <WeekPage
         client={client}
         recipes={recipes}
@@ -110,7 +117,7 @@ describe("WeekPage", () => {
       getMe: vi.fn().mockResolvedValue({ preferences, preview: true }),
       replaceItem: vi.fn().mockResolvedValue(replacedPlan),
     });
-    render(
+    renderWeek(
       <WeekPage
         client={client}
         recipes={recipes}
@@ -144,7 +151,7 @@ describe("WeekPage", () => {
         .mockRejectedValueOnce(new Error("offline"))
         .mockResolvedValue(plan),
     });
-    render(
+    renderWeek(
       <WeekPage
         client={client}
         recipes={recipes}
@@ -164,5 +171,84 @@ describe("WeekPage", () => {
       true,
       expect.any(AbortSignal),
     );
+  });
+
+  it("loads and advances the week selected in the address", async () => {
+    const user = userEvent.setup();
+    const client = createClient({
+      getMe: vi.fn().mockResolvedValue({ preferences, preview: true }),
+    });
+    renderWeek(
+      <WeekPage
+        client={client}
+        recipes={recipes}
+        ingredientCatalog={ingredients}
+        initialWeekStart="2026-10-19"
+      />,
+      "/semana?week=2026-10-26",
+    );
+
+    expect(await screen.findByRole("heading", { name: /tu semana/i })).toBeInTheDocument();
+    expect(client.getWeek).toHaveBeenCalledWith(
+      "2026-10-26",
+      expect.any(AbortSignal),
+    );
+
+    await user.click(screen.getByRole("button", { name: /semana siguiente/i }));
+    expect(client.getWeek).toHaveBeenLastCalledWith(
+      "2026-11-02",
+      expect.any(AbortSignal),
+    );
+  });
+
+  it("shows a recoverable message when recipe replacement fails", async () => {
+    const user = userEvent.setup();
+    const client = createClient({
+      getMe: vi.fn().mockResolvedValue({ preferences, preview: true }),
+      replaceItem: vi.fn().mockRejectedValue(new Error("offline")),
+    });
+    renderWeek(
+      <WeekPage
+        client={client}
+        recipes={recipes}
+        ingredientCatalog={ingredients}
+        initialWeekStart="2026-10-19"
+      />,
+    );
+
+    await user.click((await screen.findAllByRole("button", { name: /cambiar receta/i }))[0]!);
+    await user.click(screen.getByRole("button", { name: /elegir avena suave/i }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      /no pudimos cambiar la receta/i,
+    );
+    expect(screen.getByRole("dialog", { name: /cambiar desayuno/i })).toBeInTheDocument();
+  });
+
+  it("moves focus into the replacement dialog, traps it, closes with Escape and restores it", async () => {
+    const user = userEvent.setup();
+    const client = createClient({
+      getMe: vi.fn().mockResolvedValue({ preferences, preview: true }),
+    });
+    renderWeek(
+      <WeekPage
+        client={client}
+        recipes={recipes}
+        ingredientCatalog={ingredients}
+        initialWeekStart="2026-10-19"
+      />,
+    );
+
+    const trigger = (await screen.findAllByRole("button", { name: /cambiar receta/i }))[0]!;
+    await user.click(trigger);
+    const close = screen.getByRole("button", { name: /cerrar opciones/i });
+    expect(close).toHaveFocus();
+
+    await user.tab({ shift: true });
+    expect(screen.getByRole("button", { name: /elegir avena suave/i })).toHaveFocus();
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog", { name: /cambiar desayuno/i })).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
   });
 });

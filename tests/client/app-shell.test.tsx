@@ -56,4 +56,17 @@ describe("app shell", () => {
       expect(icon).toHaveAttribute("focusable", "false");
     });
   });
+
+  it("keeps the selected week when moving between Semana and Compras", () => {
+    renderShell("/semana?week=2026-10-26");
+
+    expect(screen.getByRole("link", { name: "Semana" })).toHaveAttribute(
+      "href",
+      "/semana?week=2026-10-26",
+    );
+    expect(screen.getByRole("link", { name: "Compras" })).toHaveAttribute(
+      "href",
+      "/compras?week=2026-10-26",
+    );
+  });
 });

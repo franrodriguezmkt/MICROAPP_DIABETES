@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 
 import { ShoppingPage } from "../../src/client/features/shopping/ShoppingPage";
@@ -62,9 +63,18 @@ function createClient(overrides: Partial<PlannerClient> = {}): PlannerClient {
   };
 }
 
+function renderShopping(
+  page: React.ReactNode,
+  initialEntry = "/compras",
+) {
+  return render(
+    <MemoryRouter initialEntries={[initialEntry]}>{page}</MemoryRouter>,
+  );
+}
+
 describe("ShoppingPage", () => {
   it("renders generated and manual items in ordered groups with readable quantities", async () => {
-    render(
+    renderShopping(
       <ShoppingPage client={createClient()} initialWeekStart="2026-10-19" />,
     );
 
@@ -81,7 +91,7 @@ describe("ShoppingPage", () => {
     const client = createClient({
       patchShoppingItem: vi.fn().mockRejectedValue(new Error("offline")),
     });
-    render(
+    renderShopping(
       <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
     );
     const checkbox = await screen.findByRole("checkbox", { name: /tomate/i });
@@ -94,7 +104,7 @@ describe("ShoppingPage", () => {
   it("adds and deletes manual items", async () => {
     const user = userEvent.setup();
     const client = createClient();
-    render(
+    renderShopping(
       <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
     );
 
@@ -121,7 +131,7 @@ describe("ShoppingPage", () => {
   it("edits only the allowed fields of a manual item", async () => {
     const user = userEvent.setup();
     const client = createClient();
-    render(
+    renderShopping(
       <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
     );
 
@@ -149,13 +159,61 @@ describe("ShoppingPage", () => {
         .mockRejectedValueOnce(new Error("offline"))
         .mockResolvedValue([]),
     });
-    render(
+    renderShopping(
       <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
     );
 
     expect(await screen.findByRole("alert")).toHaveTextContent(/no pudimos cargar/i);
     await user.click(screen.getByRole("button", { name: /reintentar/i }));
     expect(await screen.findByText(/organiza primero tu semana/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /ir a semana/i })).toHaveAttribute("href", "/semana");
+    expect(screen.getByRole("link", { name: /ir a semana/i })).toHaveAttribute(
+      "href",
+      "/semana?week=2026-10-19",
+    );
+  });
+
+  it("loads the week selected in the address", async () => {
+    const client = createClient();
+    renderShopping(
+      <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
+      "/compras?week=2026-10-26",
+    );
+
+    await screen.findByText("Tomate");
+    expect(client.getShoppingList).toHaveBeenCalledWith(
+      "2026-10-26",
+      expect.any(AbortSignal),
+    );
+  });
+
+  it("keeps independent quick checks instead of aborting the first one", async () => {
+    const user = userEvent.setup();
+    const pending = new Map<
+      string,
+      (item: ShoppingListItem) => void
+    >();
+    const client = createClient({
+      patchShoppingItem: vi.fn().mockImplementation(
+        (_weekStart: string, itemId: string) =>
+          new Promise<ShoppingListItem>((resolve) => pending.set(itemId, resolve)),
+      ),
+    });
+    renderShopping(
+      <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
+    );
+
+    const tomato = await screen.findByRole("checkbox", { name: /tomate/i });
+    const salt = screen.getByRole("checkbox", { name: /sal/i });
+    await user.click(tomato);
+    await user.click(salt);
+
+    const firstSignal = vi.mocked(client.patchShoppingItem).mock.calls[0]?.[3];
+    expect(firstSignal?.aborted).toBe(false);
+
+    pending.get(generated[0]!.id)?.({ ...generated[0]!, checked: true });
+    pending.get(generated[1]!.id)?.({ ...generated[1]!, checked: true });
+
+    expect(await screen.findByRole("checkbox", { name: /tomate/i })).toBeChecked();
+    expect(screen.getByRole("checkbox", { name: /sal/i })).toBeChecked();
   });
 });
