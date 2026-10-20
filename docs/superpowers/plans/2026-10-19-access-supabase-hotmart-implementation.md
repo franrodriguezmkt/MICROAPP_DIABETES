@@ -72,6 +72,8 @@ Run: `npx --yes supabase test db`
 
 Expected: PASS with cross-user access denied and idempotency assertions green.
 
+Pending: the local machine has no available Docker daemon. Run this gate against the linked development project before real activation.
+
 - [x] **Step 6: Commit the database boundary**
 
 ```bash
@@ -347,25 +349,25 @@ git commit -m "feat: process Hotmart entitlement events"
 - Produces: a fake external-services harness for browser CI and a manual checklist for one real Supabase/Hotmart sandbox verification.
 - Produces: documented Worker secrets `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `HOTMART_HOTTOK`, `HOTMART_PRODUCT_UCODE`, and `ACCESS_RATE_LIMIT_PEPPER`; browser variables contain only the URL and publishable key.
 
-- [ ] **Step 1: Write the failing browser journey**
+- [x] **Step 1: Write the failing browser journey**
 
 At 375x667, request access with purchase email, enter OTP, complete preferences, generate a week, replace one recipe, check and add shopping items, reload, verify persistence, open Cuenta and sign out. Add anonymous direct-route redirect and revoked-entitlement cases. Run against deterministic fake adapters; do not label it a real Hotmart/Supabase test.
 
-- [ ] **Step 2: Run the journey and verify failure**
+- [x] **Step 2: Run the journey and verify failure**
 
 Run: `pnpm playwright test e2e/access-planner-journey.spec.ts`
 
 Expected: FAIL on the first missing integration behavior.
 
-- [ ] **Step 3: Complete only wiring exposed by the journey**
+- [x] **Step 3: Complete only wiring exposed by the journey**
 
 Fix session, route, request or responsive integration defects without adding landing, resources, analytics or unrelated launch work.
 
-- [ ] **Step 4: Document external setup and rollback**
+- [x] **Step 4: Document external setup and rollback**
 
 Document migration application, Auth email OTP template, allowed redirect URLs, Worker/public variables, Hotmart Webhook 2.0 URL/events, product code, secret rotation, entitlement audit, webhook replay and rollback. State explicitly that real activation requires credentials and a test purchase/refund.
 
-- [ ] **Step 5: Run the complete automated gate**
+- [x] **Step 5: Run the complete automated gate**
 
 Run: `pnpm test`
 
@@ -387,7 +389,7 @@ Expected: all browser journeys PASS.
 
 Apply migrations to the development Supabase project; configure Worker secrets; send one signed Hotmart test event; request and verify a real OTP; persist a week; send a duplicate event; then refund/revoke and verify `403`. Capture identifiers and timestamps but no secrets or complete buyer data.
 
-- [ ] **Step 7: Mark verified steps and commit**
+- [x] **Step 7: Mark verified steps and commit**
 
 Only mark the real-integration step complete after the external evidence exists; automated fake-adapter success must not substitute for it.
 

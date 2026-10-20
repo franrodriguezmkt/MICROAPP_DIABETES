@@ -1,0 +1,8 @@
+# Copia este archivo como .dev.vars para ejecutar el Worker local.
+# Nunca confirmes .dev.vars ni reemplaces estos valores dentro del código.
+SUPABASE_URL=https://your-project-ref.supabase.co
+SUPABASE_PUBLISHABLE_KEY=sb_publishable_replace_me
+SUPABASE_SERVICE_ROLE_KEY=replace_with_service_role_secret
+HOTMART_HOTTOK=replace_with_hotmart_hottok
+HOTMART_PRODUCT_UCODE=replace_with_hotmart_product_ucode
+ACCESS_RATE_LIMIT_PEPPER=replace_with_a_long_random_value

@@ -1,5 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { seedPreviewSession } from "./support/preview-auth";
+
 async function expectNoHorizontalOverflow(page: Page) {
   expect(
     await page.evaluate(
@@ -13,6 +15,7 @@ test("keeps recipe navigation usable across compact accessibility layouts", asyn
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 375, height: 667 });
+  await seedPreviewSession(page);
   await page.goto("/recetas");
 
   await expect(

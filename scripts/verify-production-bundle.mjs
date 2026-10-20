@@ -23,8 +23,31 @@ const publicAssets = collectFiles(assetRoot)
   .join("\n");
 const leakedSlug = draftSlugs.find((slug) => publicAssets.includes(slug));
 
+const serverOnlySecretNames = [
+  "SUPABASE_SERVICE_ROLE_KEY",
+  "HOTMART_HOTTOK",
+  "ACCESS_RATE_LIMIT_PEPPER",
+];
+const configuredSecretValues = serverOnlySecretNames
+  .map((name) => process.env[name])
+  .filter((value) => typeof value === "string" && value.length >= 8);
+const leakedSecretName = serverOnlySecretNames.find((name) =>
+  publicAssets.includes(name),
+);
+const leakedSecretValue = configuredSecretValues.some((value) =>
+  publicAssets.includes(value),
+);
+
 if (leakedSlug) {
   throw new Error(`El bundle de producción contiene una receta no aprobada: ${leakedSlug}`);
 }
 
-console.log(`Bundle editorial verificado: ${draftSlugs.length} recetas no aprobadas excluidas.`);
+if (leakedSecretName || leakedSecretValue) {
+  throw new Error(
+    "El bundle del navegador contiene una referencia o valor reservado al servidor.",
+  );
+}
+
+console.log(
+  `Bundle verificado: ${draftSlugs.length} recetas no aprobadas excluidas y secretos del servidor ausentes.`,
+);

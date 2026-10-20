@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+import { seedPreviewSession } from "./support/preview-auth";
+
 test("finds and opens a recipe from a direct mobile route", async ({ page }) => {
+  await seedPreviewSession(page);
   await page.goto("/recetas?q=pudin");
 
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute(

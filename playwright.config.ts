@@ -18,6 +18,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     env: {
       VITE_CONTENT_PREVIEW: "true",
+      VITE_AUTH_PREVIEW: "true",
     },
   },
 });

@@ -15,7 +15,7 @@ type VerifyAccessPageProps = {
 export function VerifyAccessPage({ client }: VerifyAccessPageProps) {
   const navigate = useNavigate();
   const auth = client ?? getBrowserAuthClient();
-  const email = auth.getPendingEmail();
+  const [email] = useState(() => auth.getPendingEmail());
   const [token, setToken] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [resending, setResending] = useState(false);

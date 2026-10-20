@@ -1,5 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { seedPreviewSession } from "./support/preview-auth";
+
 async function expectNoHorizontalOverflow(page: Page) {
   expect(
     await page.evaluate(
@@ -40,6 +42,7 @@ test("plans a mobile week and preserves shopping progress during the preview ses
   page,
 }) => {
   await page.setViewportSize({ width: 375, height: 667 });
+  await seedPreviewSession(page);
   await page.goto("/semana");
   await ensurePlannerConfigured(page);
 
