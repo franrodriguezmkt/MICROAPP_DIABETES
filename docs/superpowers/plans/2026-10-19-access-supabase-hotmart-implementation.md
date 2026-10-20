@@ -48,21 +48,21 @@
 - Produces: RPCs `save_planner_week_snapshot`, `get_planner_week_snapshot`, `list_planner_week_snapshots`, `claim_active_entitlement`, `process_hotmart_event`, and `consume_access_attempt`.
 - Produces: generated-style `Database` TypeScript type consumed only by Supabase adapters.
 
-- [ ] **Step 1: Write failing database tests**
+- [x] **Step 1: Write failing database tests**
 
 Add pgTAP assertions that anonymous access is denied; an authenticated user can select only their own profile, preferences, weeks and shopping rows; cross-user inserts/updates fail; duplicate Hotmart event ids do not duplicate entitlements; and an older event cannot replace a newer entitlement state.
 
-- [ ] **Step 2: Run the database tests and verify failure**
+- [x] **Step 2: Run the database tests and verify failure**
 
 Run: `npx --yes supabase test db`
 
 Expected: FAIL because the migration and policies do not exist. If Docker/local Supabase is unavailable, record that limitation and run this gate against the linked development project before production activation.
 
-- [ ] **Step 3: Implement the migration**
+- [x] **Step 3: Implement the migration**
 
 Use UUID user keys referencing `auth.users`, normalized lower-case email checks, unique provider transaction ids, event timestamps, foreign keys with deliberate delete behavior, indexes for user/week and email/status lookups, and RLS on every user-owned table. Make the snapshot RPC replace a week's generated items transactionally while preserving the supplied manual shopping items and stable checked keys.
 
-- [ ] **Step 4: Generate or align the TypeScript database contract**
+- [x] **Step 4: Generate or align the TypeScript database contract**
 
 Expose only the rows and RPC argument/result shapes needed by the application. Keep database names snake_case in the adapter and domain names camelCase outside it.
 
@@ -72,7 +72,7 @@ Run: `npx --yes supabase test db`
 
 Expected: PASS with cross-user access denied and idempotency assertions green.
 
-- [ ] **Step 6: Commit the database boundary**
+- [x] **Step 6: Commit the database boundary**
 
 ```bash
 git add supabase package.json pnpm-lock.yaml .gitignore src/infrastructure/supabase/database.types.ts

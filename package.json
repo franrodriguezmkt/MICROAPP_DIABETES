@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest run",
+    "test:db": "supabase test db",
     "typecheck": "tsc --noEmit",
     "build": "vite build && node scripts/verify-production-bundle.mjs",
     "preview": "vite preview",
