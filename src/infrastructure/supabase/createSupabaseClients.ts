@@ -3,6 +3,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import {
   AccessGatewayError,
   type AccessGateway,
+  type AccessRequestGateway,
 } from "../../application/access/AccessGateway";
 import type { Database } from "./database.types";
 
@@ -28,6 +29,15 @@ export function createAdminSupabaseClient(
   serviceRoleKey: string,
 ): SupabaseClient<Database> {
   return createClient<Database>(url, serviceRoleKey, {
+    auth: workerAuthOptions,
+  });
+}
+
+export function createPublicSupabaseClient(
+  url: string,
+  publishableKey: string,
+): SupabaseClient<Database> {
+  return createClient<Database>(url, publishableKey, {
     auth: workerAuthOptions,
   });
 }
@@ -102,6 +112,51 @@ export function createSupabaseAccessGateway(config: {
           503,
         );
       }
+    },
+  };
+}
+
+export function createSupabaseAccessRequestGateway(config: {
+  url: string;
+  publishableKey: string;
+  serviceRoleKey: string;
+}): AccessRequestGateway {
+  const admin = createAdminSupabaseClient(config.url, config.serviceRoleKey);
+  const publicClient = createPublicSupabaseClient(
+    config.url,
+    config.publishableKey,
+  );
+
+  return {
+    async consumeAttempt(subjectHash, originHash) {
+      const { data, error } = await admin.rpc("consume_access_attempt", {
+        p_subject_hash: subjectHash,
+        p_origin_hash: originHash,
+        p_max_attempts: 5,
+        p_window_seconds: 600,
+      });
+      if (error) throw new Error("Access rate limit failed");
+      return data;
+    },
+
+    async hasActiveEntitlement(email) {
+      const { data, error } = await admin
+        .from("entitlements")
+        .select("id")
+        .eq("buyer_email", normalizedEmail(email))
+        .eq("status", "active")
+        .limit(1)
+        .maybeSingle();
+      if (error) throw new Error("Entitlement lookup failed");
+      return data !== null;
+    },
+
+    async sendOtp(email) {
+      const { error } = await publicClient.auth.signInWithOtp({
+        email: normalizedEmail(email),
+        options: { shouldCreateUser: true },
+      });
+      if (error) throw new Error("OTP delivery failed");
     },
   };
 }

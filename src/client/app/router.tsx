@@ -6,6 +6,8 @@ import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
 import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
 import { WeekPage } from "../features/planner/WeekPage";
 import { ShoppingPage } from "../features/shopping/ShoppingPage";
+import { AccessPage } from "../features/access/AccessPage";
+import { VerifyAccessPage } from "../features/access/VerifyAccessPage";
 
 function ComingSoon({ title }: { title: string }) {
   return (
@@ -20,6 +22,8 @@ function ComingSoon({ title }: { title: string }) {
 }
 
 export const router = createBrowserRouter([
+  { path: "/activar", element: <AccessPage /> },
+  { path: "/verificar", element: <VerifyAccessPage /> },
   {
     path: "/",
     element: <AppShell />,

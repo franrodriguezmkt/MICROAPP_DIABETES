@@ -150,35 +150,35 @@ git commit -m "feat: require entitled Supabase users"
 - Produces: `AuthClient.requestOtp(email)`, `AuthClient.verifyOtp(email, token)`, `AuthClient.getSession()`, `AuthClient.onAuthStateChange(listener)`, and `AuthClient.signOut()`.
 - Produces: public routes `/activar` and `/verificar`.
 
-- [ ] **Step 1: Write failing access-route tests**
+- [x] **Step 1: Write failing access-route tests**
 
 Cover normalized eligible email, ineligible email with identical public response, malformed email, rate limit by hashed email plus origin, and an upstream email-send failure that is logged internally but not exposed. The fake gateway returns outcomes; assertions target HTTP status/body and emitted safe audit fields.
 
-- [ ] **Step 2: Run the access-route test and verify failure**
+- [x] **Step 2: Run the access-route test and verify failure**
 
 Run: `pnpm vitest run tests/worker/access-routes.test.ts`
 
 Expected: FAIL because `/api/access/request` does not exist.
 
-- [ ] **Step 3: Implement the access endpoint**
+- [x] **Step 3: Implement the access endpoint**
 
 Normalize email, hash email/origin with `ACCESS_RATE_LIMIT_PEPPER`, call `consume_access_attempt`, check an active entitlement, and only then call Supabase `signInWithOtp` with user creation allowed. Return generic success for eligible and ineligible emails; return `429` with neutral copy only after the rate limit is exceeded.
 
-- [ ] **Step 4: Write failing client access tests**
+- [x] **Step 4: Write failing client access tests**
 
 Cover email submission, six-digit OTP validation, verification error, successful session redirect to `/semana`, expired OTP retry, refresh-restored session and sign-out. Assert accessible labels, focus movement, disabled/loading state and the exact absence of any transaction-code field.
 
-- [ ] **Step 5: Run the client access test and verify failure**
+- [x] **Step 5: Run the client access test and verify failure**
 
 Run: `pnpm vitest run tests/client/access-flow.test.tsx`
 
 Expected: FAIL because the auth client and screens do not exist.
 
-- [ ] **Step 6: Implement browser session and screens**
+- [x] **Step 6: Implement browser session and screens**
 
 Use the public Supabase URL and publishable key to verify the email OTP with type `email`, persist/refresh the session through Supabase Auth, and retain only the pending normalized email in session storage until verification. Preserve the established cream/teal/terracotta design and 44-pixel targets.
 
-- [ ] **Step 7: Re-run focused tests and commit**
+- [x] **Step 7: Re-run focused tests and commit**
 
 Run: `pnpm vitest run tests/worker/access-routes.test.ts tests/client/access-flow.test.tsx`
 

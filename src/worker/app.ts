@@ -1,6 +1,9 @@
 import { Hono } from "hono";
 
-import type { AccessGateway } from "../application/access/AccessGateway";
+import type {
+  AccessGateway,
+  AccessRequestGateway,
+} from "../application/access/AccessGateway";
 import { PlannerService } from "../application/planner/PlannerService";
 import type { PlannerRepository } from "../application/planner/PlannerRepository";
 import type { IngredientCatalogEntry } from "../domain/ingredients/ingredientCatalog";
@@ -8,6 +11,7 @@ import type { Recipe } from "../domain/recipes/recipe";
 import { createJsonRecipeRepository } from "../infrastructure/recipes/jsonRecipeRepository";
 import { createPlannerRoutes } from "./plannerRoutes";
 import { createAuthMiddleware, type WorkerEnv } from "./authMiddleware";
+import { createAccessRoutes, type AccessAuditEntry } from "./accessRoutes";
 
 export type WorkerAppDependencies = {
   plannerPreview?: boolean;
@@ -17,6 +21,9 @@ export type WorkerAppDependencies = {
   previewUserId?: string;
   idGenerator?: () => string;
   accessGateway?: AccessGateway;
+  accessRequestGateway?: AccessRequestGateway;
+  accessRateLimitPepper?: string;
+  accessAudit?: (entry: AccessAuditEntry) => void;
 };
 
 export function createWorkerApp(
@@ -26,6 +33,15 @@ export function createWorkerApp(
 
   app.get("/api/health", (context) =>
     context.json({ ok: true, service: "recipe-app" }),
+  );
+
+  app.route(
+    "/",
+    createAccessRoutes({
+      gateway: dependencies.accessRequestGateway,
+      rateLimitPepper: dependencies.accessRateLimitPepper,
+      audit: dependencies.accessAudit,
+    }),
   );
 
   if (dependencies.accessGateway) {

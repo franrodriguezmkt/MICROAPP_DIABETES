@@ -31,3 +31,9 @@ export class AccessGatewayError extends Error {
 export interface AccessGateway {
   resolveAuthorizedUser(accessToken: string): Promise<AuthorizedAccess>;
 }
+
+export interface AccessRequestGateway {
+  consumeAttempt(subjectHash: string, originHash: string): Promise<boolean>;
+  hasActiveEntitlement(email: string): Promise<boolean>;
+  sendOtp(email: string): Promise<void>;
+}
