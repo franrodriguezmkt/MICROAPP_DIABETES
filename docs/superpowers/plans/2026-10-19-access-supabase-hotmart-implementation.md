@@ -301,31 +301,31 @@ git commit -m "feat: protect planner with Supabase sessions"
 - Produces: `POST /api/webhooks/hotmart` for Webhook 2.0 purchase events.
 - Produces: `HotmartEntitlementService.process(input)` mapping `PURCHASE_APPROVED`/`PURCHASE_COMPLETE` to `active` and `PURCHASE_REFUNDED`/`PURCHASE_CHARGEBACK` to `revoked`.
 
-- [ ] **Step 1: Write failing service and route tests**
+- [x] **Step 1: Write failing service and route tests**
 
 Cover valid activation, refund, chargeback, duplicate event, older event, wrong product, invalid/missing Hottok, malformed body and unsupported event. Compare the Hottok in constant time and assert only safe request/event identifiers are logged—never full payloads, tokens or buyer email.
 
-- [ ] **Step 2: Run the Hotmart tests and verify failure**
+- [x] **Step 2: Run the Hotmart tests and verify failure**
 
 Run: `pnpm vitest run tests/application/hotmart-entitlement-service.test.ts tests/worker/hotmart-routes.test.ts`
 
 Expected: FAIL because the webhook does not exist.
 
-- [ ] **Step 3: Implement schema validation and event mapping**
+- [x] **Step 3: Implement schema validation and event mapping**
 
 Parse only `id`, `creation_date`, `event`, `data.product.ucode`, `data.buyer.email` and `data.purchase.transaction`. Reject an unexpected product before persistence and normalize email at the boundary.
 
-- [ ] **Step 4: Persist through the idempotent database RPC**
+- [x] **Step 4: Persist through the idempotent database RPC**
 
 Call `process_hotmart_event` with the event id, event timestamp, provider transaction, product code, normalized email and mapped state. Return `204` for a processed or duplicate supported event so Hotmart retries do not create duplicate work.
 
-- [ ] **Step 5: Re-run Hotmart and auth tests**
+- [x] **Step 5: Re-run Hotmart and auth tests**
 
 Run: `pnpm vitest run tests/application/hotmart-entitlement-service.test.ts tests/worker/hotmart-routes.test.ts tests/worker/auth-middleware.test.ts tests/worker/access-routes.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit Hotmart entitlement processing**
+- [x] **Step 6: Commit Hotmart entitlement processing**
 
 ```bash
 git add src/application/access/HotmartEntitlementService.ts src/worker/hotmartRoutes.ts src/worker/app.ts worker-configuration.d.ts tests/application/hotmart-entitlement-service.test.ts tests/worker/hotmart-routes.test.ts

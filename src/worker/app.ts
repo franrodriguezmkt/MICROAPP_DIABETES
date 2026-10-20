@@ -14,6 +14,8 @@ import { createSupabaseAccessGateway } from "../infrastructure/supabase/createSu
 import { createPlannerRoutes } from "./plannerRoutes";
 import { createAuthMiddleware, type WorkerEnv } from "./authMiddleware";
 import { createAccessRoutes, type AccessAuditEntry } from "./accessRoutes";
+import type { HotmartEventGateway } from "../application/access/HotmartEntitlementService";
+import { createHotmartRoutes, type HotmartAuditEntry } from "./hotmartRoutes";
 
 export type WorkerAppDependencies = {
   plannerPreview?: boolean;
@@ -26,6 +28,10 @@ export type WorkerAppDependencies = {
   accessRequestGateway?: AccessRequestGateway;
   accessRateLimitPepper?: string;
   accessAudit?: (entry: AccessAuditEntry) => void;
+  hotmartEventGateway?: HotmartEventGateway;
+  hotmartHottok?: string;
+  hotmartProductUcode?: string;
+  hotmartAudit?: (entry: HotmartAuditEntry) => void;
 };
 
 export function createWorkerApp(
@@ -43,6 +49,16 @@ export function createWorkerApp(
       gateway: dependencies.accessRequestGateway,
       rateLimitPepper: dependencies.accessRateLimitPepper,
       audit: dependencies.accessAudit,
+    }),
+  );
+
+  app.route(
+    "/",
+    createHotmartRoutes({
+      gateway: dependencies.hotmartEventGateway,
+      hottok: dependencies.hotmartHottok,
+      productUcode: dependencies.hotmartProductUcode,
+      audit: dependencies.hotmartAudit,
     }),
   );
 

@@ -6,6 +6,8 @@ interface __BaseEnv_WorkerBindings {
 	SUPABASE_PUBLISHABLE_KEY: string;
 	SUPABASE_SERVICE_ROLE_KEY: string;
 	ACCESS_RATE_LIMIT_PEPPER: string;
+	HOTMART_HOTTOK: string;
+	HOTMART_PRODUCT_UCODE: string;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {

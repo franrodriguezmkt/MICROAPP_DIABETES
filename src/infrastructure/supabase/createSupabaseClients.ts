@@ -6,6 +6,10 @@ import {
   type AccessRequestGateway,
 } from "../../application/access/AccessGateway";
 import type { Database } from "./database.types";
+import type {
+  HotmartEventGateway,
+  PersistedHotmartEvent,
+} from "../../application/access/HotmartEntitlementService";
 
 const workerAuthOptions = {
   persistSession: false,
@@ -157,6 +161,26 @@ export function createSupabaseAccessRequestGateway(config: {
         options: { shouldCreateUser: true },
       });
       if (error) throw new Error("OTP delivery failed");
+    },
+  };
+}
+
+export function createSupabaseHotmartEventGateway(
+  client: SupabaseClient<Database>,
+): HotmartEventGateway {
+  return {
+    async persist(input: PersistedHotmartEvent) {
+      const { data, error } = await client.rpc("process_hotmart_event", {
+        p_event_id: input.eventId,
+        p_event_created_at: input.eventCreatedAt,
+        p_event_type: input.eventType,
+        p_provider_transaction_id: input.providerTransactionId,
+        p_product_ucode: input.productUcode,
+        p_buyer_email: input.buyerEmail,
+        p_status: input.status,
+      });
+      if (error) throw new Error("Hotmart event persistence failed");
+      return data;
     },
   };
 }
