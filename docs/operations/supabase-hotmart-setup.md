@@ -4,6 +4,14 @@
 
 El recorrido automatizado usa adaptadores deterministas y **no representa una compra real**. La activación real queda completa únicamente después de aplicar la migración a un proyecto Supabase de desarrollo, configurar los secretos del Worker y ensayar una compra aprobada y un reembolso desde Hotmart.
 
+Estado verificado el 20 de octubre de 2026:
+
+- La migración versionada está aplicada en Supabase y las 17 comprobaciones RLS pasan contra la base remota.
+- El Worker está desplegado en `https://mi-semana-de-recetas.franrodriguezmkt.workers.dev`.
+- `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY` y `ACCESS_RATE_LIMIT_PEPPER` están guardados como secretos cifrados de producción en Cloudflare.
+- El endpoint real de solicitud de acceso responde `202` y consulta Supabase sin revelar si un correo tiene una compra.
+- Quedan pendientes `HOTMART_HOTTOK`, `HOTMART_PRODUCT_UCODE`, el SMTP de producción y el ensayo real de compra, OTP y reembolso.
+
 ## 1. Preparar Supabase
 
 1. Crear un proyecto de desarrollo en Supabase.
@@ -22,7 +30,7 @@ El recorrido automatizado usa adaptadores deterministas y **no representa una co
 6. En URL Configuration, establecer como Site URL la URL pública del Worker y permitir, como mínimo:
 
    - `http://127.0.0.1:4173/**` para desarrollo local.
-   - `https://<worker>.workers.dev/**` para el primer despliegue.
+   - `https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/**` para el despliegue actual.
    - `https://<dominio-propio>/**` cuando se conecte el dominio final.
 
 La migración versionada es `supabase/migrations/202610190001_access_planner_schema.sql`. Para probarla localmente hace falta Docker activo y se ejecuta `pnpm test:db`. No ejecutar `db reset --linked` contra producción.
@@ -69,8 +77,9 @@ Los eventos aprobados/completados activan el correo de compra; reembolso y contr
 
 Registrar identificadores y horas, nunca secretos ni el correo completo del comprador.
 
-- [ ] Aplicar la migración al Supabase de desarrollo y confirmar las políticas RLS.
-- [ ] Desplegar el Worker con los seis secretos.
+- [x] Aplicar la migración al Supabase de desarrollo y confirmar las políticas RLS.
+- [x] Desplegar el Worker con los secretos base de Supabase y el pepper de rate limit.
+- [ ] Configurar `HOTMART_HOTTOK` y `HOTMART_PRODUCT_UCODE` en el Worker.
 - [ ] Enviar una compra de prueba firmada desde Hotmart y comprobar respuesta `204`.
 - [ ] Solicitar el código usando el mismo correo de compra y verificar el OTP real.
 - [ ] Crear preferencias, generar una semana, cambiar una receta y marcar/agregar una compra.
