@@ -98,31 +98,31 @@ git commit -m "feat: add Supabase access and planner schema"
 - Produces: `resolveAuthorizedUser(request): Promise<{ userId: string; email: string }>`.
 - Produces: Hono variables `authorizedUser` and `userSupabase` for private routes.
 
-- [ ] **Step 1: Write failing authentication middleware tests**
+- [x] **Step 1: Write failing authentication middleware tests**
 
 Cover missing bearer token (`401`), invalid token (`401`), valid user without active entitlement (`403`), valid entitled user injection, expired/revoked entitlement, and a generic safe error when Supabase is unavailable. Assert behavior through real Hono requests using a narrow fake `AccessGateway`, not mock call counts.
 
-- [ ] **Step 2: Run the middleware test and verify failure**
+- [x] **Step 2: Run the middleware test and verify failure**
 
 Run: `pnpm vitest run tests/worker/auth-middleware.test.ts`
 
 Expected: FAIL because the access boundary does not exist.
 
-- [ ] **Step 3: Implement the Supabase factories and access interface**
+- [x] **Step 3: Implement the Supabase factories and access interface**
 
 Use current `@supabase/supabase-js` APIs with `persistSession: false`, `autoRefreshToken: false`, and bearer-scoped global headers in the Worker. Keep the service-role factory in a server-only module.
 
-- [ ] **Step 4: Implement the Hono middleware**
+- [x] **Step 4: Implement the Hono middleware**
 
 Validate the bearer JWT with Supabase Auth, normalize the verified email, bind an unclaimed active entitlement to that user atomically, then require an active entitlement. Return stable `{ code, message, requestId }` responses without leaking eligibility details.
 
-- [ ] **Step 5: Run focused and existing Worker tests**
+- [x] **Step 5: Run focused and existing Worker tests**
 
 Run: `pnpm vitest run tests/worker/auth-middleware.test.ts tests/worker/health.test.ts tests/worker/planner-routes.test.ts`
 
 Expected: PASS; health stays public and preview dependencies remain injectable for local tests.
 
-- [ ] **Step 6: Commit the authentication boundary**
+- [x] **Step 6: Commit the authentication boundary**
 
 ```bash
 git add package.json pnpm-lock.yaml wrangler.jsonc worker-configuration.d.ts src/application/access src/infrastructure/supabase src/worker tests/worker/auth-middleware.test.ts

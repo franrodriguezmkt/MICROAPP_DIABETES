@@ -6,6 +6,7 @@ import {
   PlannerServiceError,
 } from "../application/planner/PlannerService";
 import { plannerPreferencesSchema } from "../domain/planner/planner";
+import type { WorkerEnv } from "./authMiddleware";
 
 export type PlannerRouteDependencies = {
   plannerPreview: boolean;
@@ -57,12 +58,12 @@ function requestId() {
   return crypto.randomUUID();
 }
 
-async function parseJson(context: Context<WorkerBindings>) {
+async function parseJson(context: Context<WorkerEnv>) {
   return context.req.json().catch(() => null);
 }
 
 async function respond(
-  context: Context<WorkerBindings>,
+  context: Context<WorkerEnv>,
   action: () => Promise<Record<string, unknown>>,
 ) {
   try {
@@ -105,7 +106,7 @@ export function createPlannerRoutes({
   plannerService,
   previewUserId,
 }: PlannerRouteDependencies) {
-  const app = new Hono<WorkerBindings>();
+  const app = new Hono<WorkerEnv>();
 
   app.use("/api/*", async (context, next) => {
     if (!plannerPreview || !plannerService || !previewUserId) {
