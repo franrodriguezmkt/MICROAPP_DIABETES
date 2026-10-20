@@ -66,13 +66,13 @@ Use UUID user keys referencing `auth.users`, normalized lower-case email checks,
 
 Expose only the rows and RPC argument/result shapes needed by the application. Keep database names snake_case in the adapter and domain names camelCase outside it.
 
-- [ ] **Step 5: Re-run database tests**
+- [x] **Step 5: Re-run database tests**
 
 Run: `npx --yes supabase test db`
 
 Expected: PASS with cross-user access denied and idempotency assertions green.
 
-Pending: the local machine has no available Docker daemon. Run this gate against the linked development project before real activation.
+Verified in the development Supabase project on 2026-10-20: all 17 pgTAP assertions completed without failures.
 
 - [x] **Step 6: Commit the database boundary**
 

@@ -145,6 +145,7 @@ grant select, insert, update, delete on public.user_preferences to authenticated
 grant select, insert, update, delete on public.weekly_plans to authenticated;
 grant select, insert, update, delete on public.weekly_plan_items to authenticated;
 grant select, insert, update, delete on public.shopping_list_items to authenticated;
+grant select on public.entitlements to service_role;
 
 create policy profiles_select_own on public.profiles
   for select to authenticated using (user_id = (select auth.uid()));
