@@ -30,6 +30,7 @@ export interface BrowserAuthPort {
     type: "email";
   }): Promise<AuthResult>;
   getSession(): Promise<AuthResult>;
+  refreshSession(): Promise<AuthResult>;
   onAuthStateChange(
     listener: (session: Session | null) => void,
   ): { data: { subscription: { unsubscribe(): void } } };
@@ -40,6 +41,7 @@ export interface AuthClient {
   requestOtp(email: string): Promise<void>;
   verifyOtp(email: string, token: string): Promise<Session>;
   getSession(): Promise<Session | null>;
+  refreshSession(): Promise<Session | null>;
   onAuthStateChange(listener: (session: Session | null) => void): () => void;
   signOut(): Promise<void>;
   getPendingEmail(): string | null;
@@ -101,6 +103,17 @@ export function createAuthClient({
       return data.session;
     },
 
+    async refreshSession() {
+      const { data, error } = await auth.refreshSession();
+      if (error) {
+        throw new AuthClientError(
+          "SESSION_UNAVAILABLE",
+          "Session refresh failed",
+        );
+      }
+      return data.session;
+    },
+
     onAuthStateChange(listener) {
       const { data } = auth.onAuthStateChange(listener);
       return () => data.subscription.unsubscribe();
@@ -144,6 +157,7 @@ export function getBrowserAuthClient(): AuthClient {
   const auth: BrowserAuthPort = {
     verifyOtp: (input) => supabase.auth.verifyOtp(input),
     getSession: () => supabase.auth.getSession(),
+    refreshSession: () => supabase.auth.refreshSession(),
     onAuthStateChange(listener) {
       return supabase.auth.onAuthStateChange((_event, session) =>
         listener(session),

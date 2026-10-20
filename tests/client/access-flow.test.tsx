@@ -41,6 +41,9 @@ function fakeClient(options: {
     async getSession() {
       return null;
     },
+    async refreshSession() {
+      return null;
+    },
     onAuthStateChange() {
       return () => undefined;
     },
@@ -162,6 +165,9 @@ describe("email OTP access flow", () => {
         return { data: { session }, error: null };
       },
       async getSession() {
+        return { data: { session }, error: null };
+      },
+      async refreshSession() {
         return { data: { session }, error: null };
       },
       onAuthStateChange() {

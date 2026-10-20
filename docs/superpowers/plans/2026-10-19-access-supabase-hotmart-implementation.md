@@ -254,31 +254,31 @@ git commit -m "feat: persist planner data in Supabase"
 - Changes: `createHttpPlannerClient` requests a current access token and sets `Authorization: Bearer <token>` for every private call.
 - Produces: `/cuenta` with purchase email, active-access state and sign-out.
 
-- [ ] **Step 1: Write failing private-route tests**
+- [x] **Step 1: Write failing private-route tests**
 
 Cover loading session, anonymous redirect preserving destination, authenticated/entitled render, authenticated but revoked access redirect, token attached to planner calls, token refresh, and sign-out clearing private UI.
 
-- [ ] **Step 2: Run the route test and verify failure**
+- [x] **Step 2: Run the route test and verify failure**
 
 Run: `pnpm vitest run tests/client/private-route.test.tsx`
 
 Expected: FAIL because the auth provider and guard do not exist.
 
-- [ ] **Step 3: Implement provider, guard and authenticated API client**
+- [x] **Step 3: Implement provider, guard and authenticated API client**
 
 Restore the session before rendering private routes, subscribe to auth changes, get the freshest token per API request, and send anonymous users to `/activar`. On `401`, refresh once before signing out; on `403`, show the safe inactive-access state without deleting local session data first.
 
-- [ ] **Step 4: Implement Cuenta and protect the app shell**
+- [x] **Step 4: Implement Cuenta and protect the app shell**
 
 Make Semana, Compras, Recetas, Recursos and Cuenta private while keeping Activar/Verificar outside the shell. Cuenta exposes only verified email, access status and sign-out; it must not expose Hotmart transaction data.
 
-- [ ] **Step 5: Run client and existing planner tests**
+- [x] **Step 5: Run client and existing planner tests**
 
 Run: `pnpm vitest run tests/client/private-route.test.tsx tests/client/access-flow.test.tsx tests/client/week-page.test.tsx tests/client/shopping-page.test.tsx`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit the private application shell**
+- [x] **Step 6: Commit the private application shell**
 
 ```bash
 git add src/client/features/access src/client/features/account src/client/lib/plannerClient.ts src/client/app/router.tsx src/client/components/AppShell.tsx tests/client/private-route.test.tsx

@@ -8,6 +8,9 @@ import { WeekPage } from "../features/planner/WeekPage";
 import { ShoppingPage } from "../features/shopping/ShoppingPage";
 import { AccessPage } from "../features/access/AccessPage";
 import { VerifyAccessPage } from "../features/access/VerifyAccessPage";
+import { AuthProvider } from "../features/access/AuthProvider";
+import { PrivateRoute } from "../features/access/PrivateRoute";
+import { AccountPage } from "../features/account/AccountPage";
 
 function ComingSoon({ title }: { title: string }) {
   return (
@@ -25,16 +28,26 @@ export const router = createBrowserRouter([
   { path: "/activar", element: <AccessPage /> },
   { path: "/verificar", element: <VerifyAccessPage /> },
   {
-    path: "/",
-    element: <AppShell />,
+    element: <AuthProvider />,
     children: [
-      { index: true, element: <Navigate to="/semana" replace /> },
-      { path: "recetas", element: <RecipeCatalogPage /> },
-      { path: "recetas/:slug", element: <RecipeDetailPage /> },
-      { path: "semana", element: <WeekPage /> },
-      { path: "compras", element: <ShoppingPage /> },
-      { path: "recursos", element: <ComingSoon title="Recursos" /> },
-      { path: "cuenta", element: <ComingSoon title="Tu cuenta" /> },
+      {
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: "/",
+            element: <AppShell />,
+            children: [
+              { index: true, element: <Navigate to="/semana" replace /> },
+              { path: "recetas", element: <RecipeCatalogPage /> },
+              { path: "recetas/:slug", element: <RecipeDetailPage /> },
+              { path: "semana", element: <WeekPage /> },
+              { path: "compras", element: <ShoppingPage /> },
+              { path: "recursos", element: <ComingSoon title="Recursos" /> },
+              { path: "cuenta", element: <AccountPage /> },
+            ],
+          },
+        ],
+      },
     ],
   },
 ]);

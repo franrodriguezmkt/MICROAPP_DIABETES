@@ -9,6 +9,7 @@ import {
   type ShoppingListItem,
   type WeeklyPlan,
 } from "../../domain/planner/planner";
+import { getBrowserAuthClient, type AuthClient } from "./authClient";
 
 const errorSchema = z.object({
   code: z.string(),
@@ -93,18 +94,38 @@ export class PlannerClientError extends Error {
 
 export function createHttpPlannerClient(
   fetcher: typeof fetch = fetch,
+  authClient?: Pick<AuthClient, "getSession" | "refreshSession" | "signOut">,
 ): PlannerClient {
   async function request<T>(
     path: string,
     schema: z.ZodType<T>,
     options: RequestInit = {},
   ): Promise<T> {
-    const response = await fetcher(path, {
-      ...options,
-      headers: options.body
-        ? { "content-type": "application/json", ...options.headers }
-        : options.headers,
-    });
+    const auth = authClient ?? getBrowserAuthClient();
+    const initialSession = await auth.getSession();
+    if (!initialSession) {
+      throw new PlannerClientError(
+        "AUTH_REQUIRED",
+        "Inicia sesión para continuar.",
+        "client",
+        401,
+      );
+    }
+
+    async function send(accessToken: string, retried: boolean): Promise<T> {
+      const headers = new Headers(options.headers);
+      headers.set("authorization", `Bearer ${accessToken}`);
+      if (options.body) headers.set("content-type", "application/json");
+
+      const response = await fetcher(path, { ...options, headers });
+      if (response.status === 401 && !retried) {
+        const refreshed = await auth.refreshSession().catch(() => null);
+        if (refreshed) return send(refreshed.access_token, true);
+        await auth.signOut().catch(() => undefined);
+      } else if (response.status === 401) {
+        await auth.signOut().catch(() => undefined);
+      }
+
     const payload: unknown = await response.json();
 
     if (!response.ok) {
@@ -125,7 +146,10 @@ export function createHttpPlannerClient(
       );
     }
 
-    return z.object({ data: schema }).parse(payload).data;
+      return z.object({ data: schema }).parse(payload).data;
+    }
+
+    return send(initialSession.access_token, false);
   }
 
   return {
