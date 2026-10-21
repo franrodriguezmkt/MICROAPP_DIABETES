@@ -1,11 +1,9 @@
-import rawResources from "../../../../content/resources/resources.json" with { type: "json" };
-
+import type { EducationalResource } from "../../../domain/resources/resource";
+import { educationalResources } from "../../lib/resources";
 import {
-  parseEducationalResources,
-  type EducationalResource,
-} from "../../../domain/resources/resource";
-
-const defaultResources = parseEducationalResources(rawResources);
+  ResourceDownloadButton,
+  type ResourceDownloader,
+} from "./ResourceDownloadButton";
 
 const kindLabels: Record<EducationalResource["kind"], string> = {
   guide: "Guía educativa",
@@ -14,9 +12,13 @@ const kindLabels: Record<EducationalResource["kind"], string> = {
 
 type ResourcesPageProps = {
   resources?: ReadonlyArray<EducationalResource>;
+  downloadResource?: ResourceDownloader;
 };
 
-export function ResourcesPage({ resources = defaultResources }: ResourcesPageProps) {
+export function ResourcesPage({
+  resources = educationalResources,
+  downloadResource,
+}: ResourcesPageProps) {
   return (
     <section className="page-section resources-page" aria-labelledby="resources-title">
       <header className="resources-header">
@@ -39,13 +41,10 @@ export function ResourcesPage({ resources = defaultResources }: ResourcesPagePro
             <h2>{resource.title}</h2>
             <p className="resource-card__summary">{resource.summary}</p>
             {resource.publicationStatus === "approved" ? (
-              <a
-                className="resource-card__action"
-                href={resource.downloadPath}
-                download
-              >
-                Descargar {resource.title}
-              </a>
+              <ResourceDownloadButton
+                resource={resource}
+                downloadResource={downloadResource}
+              />
             ) : (
               <p className="resource-card__status">
                 En revisión profesional

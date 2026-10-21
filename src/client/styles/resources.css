@@ -94,15 +94,38 @@
   text-align: center;
 }
 
+.resource-card__download {
+  display: grid;
+  gap: var(--space-2);
+}
+
 .resource-card__status {
   color: var(--color-muted);
   background: var(--color-surface-muted);
 }
 
 .resource-card__action {
+  width: 100%;
+  border: 0;
   color: white;
   background: var(--color-primary);
+  cursor: pointer;
   text-decoration: none;
+}
+
+.resource-card__action:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.resource-card__feedback {
+  margin: 0;
+  color: var(--color-primary-strong);
+  font-size: 0.875rem;
+}
+
+.resource-card__feedback--error {
+  color: #7f2d1c;
 }
 
 .resources-disclaimer {

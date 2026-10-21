@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 
@@ -36,10 +37,13 @@ const pendingResources: EducationalResource[] = [
   },
 ];
 
-function renderResources(resources: EducationalResource[] = pendingResources) {
+function renderResources(
+  resources: EducationalResource[] = pendingResources,
+  downloadResource?: (path: string, fileName: string) => Promise<void>,
+) {
   return render(
     <MemoryRouter>
-      <ResourcesPage resources={resources} />
+      <ResourcesPage resources={resources} downloadResource={downloadResource} />
     </MemoryRouter>,
   );
 }
@@ -64,7 +68,8 @@ describe("educational resources library", () => {
     expect(screen.queryByRole("link", { name: /descargar/i })).not.toBeInTheDocument();
   });
 
-  it("exposes_only_an_approved_local_pdf", () => {
+  it("exposes_only_an_approved_local_pdf", async () => {
+    const user = userEvent.setup();
     renderResources([
       ...pendingResources.slice(1),
       {
@@ -72,16 +77,44 @@ describe("educational resources library", () => {
         publicationStatus: "approved",
         downloadPath: "/resources/manual-intercambio-alimentos.pdf",
       },
-    ]);
+    ], async () => undefined);
 
-    const download = screen.getByRole("link", {
+    const download = screen.getByRole("button", {
       name: /descargar manual de intercambio de alimentos/i,
     });
-    expect(download).toHaveAttribute(
-      "href",
-      "/resources/manual-intercambio-alimentos.pdf",
+    await user.click(download);
+    expect(await screen.findByRole("status")).toHaveTextContent(
+      /descarga iniciada/i,
     );
-    expect(download).toHaveAttribute("download");
-    expect(screen.getAllByRole("link", { name: /descargar/i })).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: /descargar/i })).toHaveLength(1);
+  });
+
+  it("explains_a_failed_download_and_allows_retry", async () => {
+    let attempt = 0;
+    const user = userEvent.setup();
+    renderResources(
+      [
+        {
+          ...pendingResources[0],
+          publicationStatus: "approved",
+          downloadPath: "/resources/manual-intercambio-alimentos.pdf",
+        },
+      ],
+      async () => {
+        attempt += 1;
+        if (attempt === 1) throw new Error("network unavailable");
+      },
+    );
+
+    await user.click(screen.getByRole("button", { name: /descargar manual/i }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      /no pudimos descargar/i,
+    );
+
+    await user.click(screen.getByRole("button", { name: /reintentar descarga/i }));
+    expect(await screen.findByRole("status")).toHaveTextContent(
+      /descarga iniciada/i,
+    );
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 });
