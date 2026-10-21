@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { AppShell } from "../components/AppShell";
-import { EmptyState } from "../components/EmptyState";
 import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
 import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
 import { WeekPage } from "../features/planner/WeekPage";
@@ -12,18 +11,7 @@ import { AuthProvider } from "../features/access/AuthProvider";
 import { PrivateRoute } from "../features/access/PrivateRoute";
 import { AccountPage } from "../features/account/AccountPage";
 import { LandingPage } from "../features/landing/LandingPage";
-
-function ComingSoon({ title }: { title: string }) {
-  return (
-    <section className="page-section" aria-labelledby="coming-soon-title">
-      <EmptyState
-        title={`${title} está en preparación`}
-        description="Esta sección se habilitará en el siguiente incremento del producto."
-        headingId="coming-soon-title"
-      />
-    </section>
-  );
-}
+import { ResourcesPage } from "../features/resources/ResourcesPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
@@ -42,7 +30,7 @@ export const router = createBrowserRouter([
               { path: "recetas/:slug", element: <RecipeDetailPage /> },
               { path: "semana", element: <WeekPage /> },
               { path: "compras", element: <ShoppingPage /> },
-              { path: "recursos", element: <ComingSoon title="Recursos" /> },
+              { path: "recursos", element: <ResourcesPage /> },
               { path: "cuenta", element: <AccountPage /> },
             ],
           },

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "manual-intercambio-alimentos",
+    "title": "Manual de intercambio de alimentos",
+    "summary": "Material educativo para comprender opciones de intercambio y conversar sobre ellas con tu profesional de salud.",
+    "kind": "guide",
+    "publicationStatus": "pending"
+  },
+  {
+    "id": "planeadores-menu-actividad",
+    "title": "Planeadores de menú y actividad",
+    "summary": "Hojas prácticas para organizar comidas, compras y actividades de forma sencilla.",
+    "kind": "planner",
+    "publicationStatus": "pending"
+  },
+  {
+    "id": "guia-ejercicios",
+    "title": "Guía de ejercicios",
+    "summary": "Orientación educativa general que debe adaptarse a las indicaciones de profesionales que conocen tu situación.",
+    "kind": "guide",
+    "publicationStatus": "pending"
+  },
+  {
+    "id": "prevencion-pie-diabetico",
+    "title": "Prevención del pie diabético",
+    "summary": "Material educativo de autocuidado general y señales que conviene consultar con un profesional.",
+    "kind": "guide",
+    "publicationStatus": "pending"
+  }
+]
