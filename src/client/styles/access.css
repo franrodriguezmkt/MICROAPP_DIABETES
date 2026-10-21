@@ -1,0 +1,133 @@
+.access-page {
+  display: grid;
+  min-height: 100dvh;
+  padding: var(--space-5);
+  place-items: center;
+}
+
+.access-card {
+  width: min(100%, 31rem);
+  padding: clamp(1.5rem, 6vw, 2.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: rgb(255 255 255 / 92%);
+  box-shadow: var(--shadow-elevated);
+}
+
+.access-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.access-card__mark {
+  width: 3.5rem;
+  flex: 0 0 auto;
+}
+
+.access-card h1 {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 7vw, 2.15rem);
+  line-height: 1.12;
+}
+
+.access-card__intro {
+  margin: var(--space-5) 0;
+  color: var(--color-muted);
+}
+
+.access-form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.access-form label {
+  font-weight: 750;
+}
+
+.access-form input {
+  min-height: 3rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+.access-form__otp {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 750;
+  letter-spacing: 0.28em;
+  text-align: center;
+}
+
+.access-button {
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: white;
+  background: var(--color-primary);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.access-button--secondary {
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-primary);
+  background: transparent;
+}
+
+.access-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.access-message {
+  margin: 0;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+.access-message--error {
+  color: #7f2d1c;
+  background: var(--color-accent-soft);
+}
+
+.access-message--success {
+  color: var(--color-primary-strong);
+  background: var(--color-mint);
+}
+
+.access-card__privacy {
+  margin: var(--space-5) 0 0;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.account-page {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.account-page h1 {
+  margin: var(--space-1) 0 var(--space-5);
+  font-family: var(--font-display);
+}
+
+.account-card {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.account-card p {
+  margin: 0;
+}

@@ -33,6 +33,15 @@ export function createJsonRecipeRepository(
       );
     },
 
+    async getById(id, options = {}) {
+      return (
+        recipes.find(
+          (recipe) =>
+            recipe.id === id && isVisible(recipe, options.includeDrafts),
+        ) ?? null
+      );
+    },
+
     async getBySlug(slug, options = {}) {
       return (
         recipes.find(

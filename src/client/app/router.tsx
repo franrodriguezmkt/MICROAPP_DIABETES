@@ -1,34 +1,45 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import { AppShell } from "../components/AppShell";
-import { EmptyState } from "../components/EmptyState";
 import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
 import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
-
-function ComingSoon({ title }: { title: string }) {
-  return (
-    <section className="page-section" aria-labelledby="coming-soon-title">
-      <EmptyState
-        title={`${title} está en preparación`}
-        description="Esta sección se habilitará en el siguiente incremento del producto."
-        headingId="coming-soon-title"
-      />
-    </section>
-  );
-}
+import { WeekPage } from "../features/planner/WeekPage";
+import { ShoppingPage } from "../features/shopping/ShoppingPage";
+import { AccessPage } from "../features/access/AccessPage";
+import { VerifyAccessPage } from "../features/access/VerifyAccessPage";
+import { AuthProvider } from "../features/access/AuthProvider";
+import { PrivateRoute } from "../features/access/PrivateRoute";
+import { AccountPage } from "../features/account/AccountPage";
+import { LandingPage } from "../features/landing/LandingPage";
+import { ResourcesPage } from "../features/resources/ResourcesPage";
+import { LegalPage } from "../features/legal/LegalPage";
 
 export const router = createBrowserRouter([
+  { path: "/", element: <LandingPage /> },
+  { path: "/activar", element: <AccessPage /> },
+  { path: "/verificar", element: <VerifyAccessPage /> },
+  { path: "/privacidad", element: <LegalPage type="privacy" /> },
+  { path: "/terminos", element: <LegalPage type="terms" /> },
+  { path: "/aviso-educativo", element: <LegalPage type="educational" /> },
   {
-    path: "/",
-    element: <AppShell />,
+    element: <AuthProvider />,
     children: [
-      { index: true, element: <Navigate to="/recetas" replace /> },
-      { path: "recetas", element: <RecipeCatalogPage /> },
-      { path: "recetas/:slug", element: <RecipeDetailPage /> },
-      { path: "semana", element: <ComingSoon title="Tu semana" /> },
-      { path: "compras", element: <ComingSoon title="Lista de compras" /> },
-      { path: "recursos", element: <ComingSoon title="Recursos" /> },
-      { path: "cuenta", element: <ComingSoon title="Tu cuenta" /> },
+      {
+        element: <PrivateRoute />,
+        children: [
+          {
+            element: <AppShell />,
+            children: [
+              { path: "recetas", element: <RecipeCatalogPage /> },
+              { path: "recetas/:slug", element: <RecipeDetailPage /> },
+              { path: "semana", element: <WeekPage /> },
+              { path: "compras", element: <ShoppingPage /> },
+              { path: "recursos", element: <ResourcesPage /> },
+              { path: "cuenta", element: <AccountPage /> },
+            ],
+          },
+        ],
+      },
     ],
   },
 ]);

@@ -46,6 +46,24 @@ describe("recipe schema", () => {
     });
   });
 
+  it.each([
+    "/recipes/avena-canela-manzana.webp",
+    "/recipes/avena-canela-manzana.avif",
+  ])("accepts_a_local_optimized_recipe_image_path: %s", (imagePath) => {
+    expect(recipeSchema.parse({ ...validRecipe, imagePath })).toMatchObject({
+      imagePath,
+    });
+  });
+
+  it.each([
+    "https://images.example.com/avena.webp",
+    "../recipes/avena.webp",
+    "/recipes/avena.png",
+    "/recipes/avena con canela.webp",
+  ])("rejects_remote_or_unversioned_recipe_image_paths: %s", (imagePath) => {
+    expect(() => recipeSchema.parse({ ...validRecipe, imagePath })).toThrow();
+  });
+
   it.each(["", "../escape", "Con Espacios"])(
     "rejects invalid slug %s",
     (slug) => {

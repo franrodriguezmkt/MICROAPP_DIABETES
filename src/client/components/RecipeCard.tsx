@@ -1,30 +1,18 @@
 import { Link } from "react-router-dom";
 
 import type { Recipe } from "../../domain/recipes/recipe";
-
-const categoryLabels = {
-  breakfast: "Desayuno",
-  lunch: "Almuerzo",
-  dinner: "Cena",
-  snack: "Snack",
-  dessert: "Postre",
-} as const;
+import { formatRecipeCategory } from "../features/recipes/recipeViewModel";
+import { RecipeVisual } from "./RecipeVisual";
 
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
   const totalMinutes = recipe.prepMinutes + recipe.cookMinutes;
 
   return (
     <article className="recipe-card">
-      <div
-        className={`recipe-card__visual recipe-card__visual--${recipe.category}`}
-        aria-hidden="true"
-      >
-        <span className="plate-motif" />
-        <span className="leaf-motif" />
-      </div>
+      <RecipeVisual recipe={recipe} variant="card" />
       <div className="recipe-card__body">
         <p className="recipe-card__category">
-          {categoryLabels[recipe.category]}
+          {formatRecipeCategory(recipe.category)}
         </p>
         <h2>
           <Link to={`/recetas/${recipe.slug}`}>{recipe.title}</Link>
