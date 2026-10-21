@@ -8,9 +8,10 @@ Estado verificado el 20 de octubre de 2026:
 
 - La migración versionada está aplicada en Supabase y las 17 comprobaciones RLS pasan contra la base remota.
 - El Worker está desplegado en `https://mi-semana-de-recetas.franrodriguezmkt.workers.dev`.
-- `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY` y `ACCESS_RATE_LIMIT_PEPPER` están guardados como secretos cifrados de producción en Cloudflare.
+- `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ACCESS_RATE_LIMIT_PEPPER`, `HOTMART_HOTTOK` y `HOTMART_PRODUCT_UCODE` están guardados como secretos cifrados de producción en Cloudflare.
 - El endpoint real de solicitud de acceso responde `202` y consulta Supabase sin revelar si un correo tiene una compra.
-- Quedan pendientes `HOTMART_HOTTOK`, `HOTMART_PRODUCT_UCODE`, el SMTP de producción y el ensayo real de compra, OTP y reembolso.
+- La prueba firmada de configuración de Hotmart respondió `204`: aprobación creó un acceso `active` y reembolso lo cambió a `revoked`, verificado con consultas de solo lectura en Supabase.
+- Quedan pendientes el SMTP de producción, la plantilla con `{{ .Token }}` y el ensayo con una compra real, OTP, persistencia del plan y reembolso real.
 
 ## 1. Preparar Supabase
 
@@ -79,8 +80,8 @@ Registrar identificadores y horas, nunca secretos ni el correo completo del comp
 
 - [x] Aplicar la migración al Supabase de desarrollo y confirmar las políticas RLS.
 - [x] Desplegar el Worker con los secretos base de Supabase y el pepper de rate limit.
-- [ ] Configurar `HOTMART_HOTTOK` y `HOTMART_PRODUCT_UCODE` en el Worker.
-- [ ] Enviar una compra de prueba firmada desde Hotmart y comprobar respuesta `204`.
+- [x] Configurar `HOTMART_HOTTOK` y `HOTMART_PRODUCT_UCODE` en el Worker.
+- [x] Enviar una compra de configuración firmada desde Hotmart y comprobar respuesta `204`.
 - [ ] Solicitar el código usando el mismo correo de compra y verificar el OTP real.
 - [ ] Crear preferencias, generar una semana, cambiar una receta y marcar/agregar una compra.
 - [ ] Recargar y confirmar que semana y compras persisten.
