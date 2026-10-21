@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { ResourcesPage } from "../../src/client/features/resources/ResourcesPage";
+import { downloadResourceFile } from "../../src/client/features/resources/ResourceDownloadButton";
 import type { EducationalResource } from "../../src/domain/resources/resource";
 
 const pendingResources: EducationalResource[] = [
@@ -49,6 +50,10 @@ function renderResources(
 }
 
 describe("educational resources library", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it("shows_all_four_resources_with_educational_context", () => {
     renderResources();
 
@@ -116,5 +121,40 @@ describe("educational resources library", () => {
       /descarga iniciada/i,
     );
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("rejects_an_unsuccessful_pdf_response", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 404 }));
+
+    await expect(
+      downloadResourceFile("/resources/missing.pdf", "missing.pdf"),
+    ).rejects.toThrow(/resource download failed/i);
+  });
+
+  it("downloads_the_real_pdf_response_and_releases_its_temporary_url", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response("pdf contents", { status: 200 }),
+    );
+    const createObjectUrl = vi
+      .spyOn(URL, "createObjectURL")
+      .mockReturnValue("blob:resource");
+    const revokeObjectUrl = vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => undefined);
+    const click = vi
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => undefined);
+
+    await downloadResourceFile(
+      "/resources/manual-intercambio-alimentos.pdf",
+      "manual-intercambio-alimentos.pdf",
+    );
+
+    expect(globalThis.fetch).toHaveBeenCalledWith(
+      "/resources/manual-intercambio-alimentos.pdf",
+      { credentials: "same-origin" },
+    );
+    expect(createObjectUrl).toHaveBeenCalledOnce();
+    expect(click).toHaveBeenCalledOnce();
+    expect(revokeObjectUrl).toHaveBeenCalledWith("blob:resource");
+    expect(document.querySelector('a[download="manual-intercambio-alimentos.pdf"]')).toBeNull();
   });
 });
