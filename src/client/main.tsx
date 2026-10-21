@@ -10,6 +10,7 @@ import "./styles/shell.css";
 import "./styles/recipes.css";
 import "./styles/planner.css";
 import "./styles/access.css";
+import "./styles/landing.css";
 
 const rootElement = document.getElementById("root");
 
