@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { BrandMark } from "../../components/BrandMark";
 import {
@@ -79,6 +79,11 @@ export function AccessPage({ client }: AccessPageProps) {
           Por seguridad, el mensaje será el mismo aunque el correo no tenga una
           compra activa.
         </p>
+        <nav className="access-legal" aria-label="Información legal">
+          <Link to="/privacidad">Privacidad</Link>
+          <Link to="/terminos">Términos</Link>
+          <Link to="/aviso-educativo">Aviso educativo</Link>
+        </nav>
       </section>
     </main>
   );

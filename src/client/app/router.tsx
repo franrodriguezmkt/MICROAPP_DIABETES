@@ -12,11 +12,15 @@ import { PrivateRoute } from "../features/access/PrivateRoute";
 import { AccountPage } from "../features/account/AccountPage";
 import { LandingPage } from "../features/landing/LandingPage";
 import { ResourcesPage } from "../features/resources/ResourcesPage";
+import { LegalPage } from "../features/legal/LegalPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
   { path: "/activar", element: <AccessPage /> },
   { path: "/verificar", element: <VerifyAccessPage /> },
+  { path: "/privacidad", element: <LegalPage type="privacy" /> },
+  { path: "/terminos", element: <LegalPage type="terms" /> },
+  { path: "/aviso-educativo", element: <LegalPage type="educational" /> },
   {
     element: <AuthProvider />,
     children: [

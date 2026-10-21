@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../access/AuthProvider";
 
@@ -52,6 +52,11 @@ export function AccountPage() {
         >
           {submitting ? "Cerrando…" : "Cerrar sesión"}
         </button>
+        <nav className="account-legal" aria-label="Información legal">
+          <Link to="/privacidad">Privacidad</Link>
+          <Link to="/terminos">Términos</Link>
+          <Link to="/aviso-educativo">Aviso educativo</Link>
+        </nav>
       </div>
     </section>
   );

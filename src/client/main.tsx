@@ -12,6 +12,7 @@ import "./styles/planner.css";
 import "./styles/access.css";
 import "./styles/landing.css";
 import "./styles/resources.css";
+import "./styles/legal.css";
 
 const rootElement = document.getElementById("root");
 
