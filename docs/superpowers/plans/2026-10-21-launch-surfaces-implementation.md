@@ -47,25 +47,25 @@
 - Produces: `LandingPage({ checkoutUrl? }: { checkoutUrl?: string | null }): JSX.Element`; omission reads `VITE_HOTMART_CHECKOUT_URL` through the safe parser.
 - Changes: `/` becomes public; authenticated application URLs remain unchanged.
 
-- [ ] **Step 1: Write failing landing tests**
+- [x] **Step 1: Write failing landing tests**
 
 Add tests named `renders_the_complete_product_story_for_public_visitors`, `uses_only_a_valid_https_hotmart_checkout`, `keeps_purchase_unavailable_without_a_safe_checkout`, and `keeps_activation_as_a_separate_existing_buyer_action`. Assert the product value, week/shopping/recipe demonstrations, inclusion list, process, educational notice, FAQ, valid CTA, invalid URL rejection and `/activar` link.
 
-- [ ] **Step 2: Run the landing test and verify failure**
+- [x] **Step 2: Run the landing test and verify failure**
 
 Run: `pnpm vitest run tests/client/landing-page.test.tsx`
 
 Expected: FAIL because the landing and checkout parser do not exist.
 
-- [ ] **Step 3: Implement the safe checkout parser and landing**
+- [x] **Step 3: Implement the safe checkout parser and landing**
 
 Accept only `https:` URLs whose hostname is `hotmart.com` or ends in `.hotmart.com`. Compose the landing from semantic sections, one `h1`, descriptive CTA copy and the existing `BrandMark`; when configuration is absent or invalid, render a status message instead of an anchor.
 
-- [ ] **Step 4: Expose the public route and responsive styles**
+- [x] **Step 4: Expose the public route and responsive styles**
 
 Move the private index redirect under the protected shell and register `/` before `AuthProvider`. Import `landing.css` after shared styles and document `VITE_HOTMART_CHECKOUT_URL` as public configuration, never a secret.
 
-- [ ] **Step 5: Run focused tests and commit**
+- [x] **Step 5: Run focused tests and commit**
 
 Run: `pnpm vitest run tests/client/landing-page.test.tsx tests/client/private-route.test.tsx`
 
@@ -95,35 +95,35 @@ git commit -m "feat: add public Hotmart landing"
 - Produces: `parseEducationalResources(input: unknown): EducationalResource[]`; approved resources require `/resources/<slug>.pdf`, pending resources must not contain a path.
 - Produces: `ResourcesPage({ resources? }: { resources?: EducationalResource[] }): JSX.Element` using versioned metadata by default.
 
-- [ ] **Step 1: Write failing resource schema tests**
+- [x] **Step 1: Write failing resource schema tests**
 
 Add tests that accept the four known resource records as pending, accept an approved local PDF, reject remote/traversal/non-PDF paths, reject approved entries without a path and reject pending entries with a path.
 
-- [ ] **Step 2: Run the schema test and verify failure**
+- [x] **Step 2: Run the schema test and verify failure**
 
 Run: `pnpm vitest run tests/domain/resource-schema.test.ts`
 
 Expected: FAIL because the resource contract does not exist.
 
-- [ ] **Step 3: Implement metadata and schema**
+- [x] **Step 3: Implement metadata and schema**
 
 Create pending records for Manual de intercambio de alimentos, Planeadores, Guía de ejercicios and Prevención del pie diabético. Validate the discriminated publication contract with Zod and expose parsed read-only content.
 
-- [ ] **Step 4: Write failing resource-library tests**
+- [x] **Step 4: Write failing resource-library tests**
 
 Add `shows_all_four_resources_with_educational_context`, `prevents_pending_resource_downloads`, and `exposes_only_an_approved_local_pdf`. Assert headings, kind labels, review state, no pending anchors and `download` for the approved fixture.
 
-- [ ] **Step 5: Run the page test and verify failure**
+- [x] **Step 5: Run the page test and verify failure**
 
 Run: `pnpm vitest run tests/client/resources-page.test.tsx`
 
 Expected: FAIL because the route still renders the placeholder.
 
-- [ ] **Step 6: Implement the resource library and route**
+- [x] **Step 6: Implement the resource library and route**
 
 Replace the `/recursos` placeholder with responsive cards. Use plain educational copy, explicit professional-review status and no medical promises. Import focused styles in `main.tsx`.
 
-- [ ] **Step 7: Run focused tests and commit**
+- [x] **Step 7: Run focused tests and commit**
 
 Run: `pnpm vitest run tests/domain/resource-schema.test.ts tests/client/resources-page.test.tsx`
 
@@ -151,21 +151,21 @@ git commit -m "feat: add guarded educational resources"
 - Produces: `LegalPage({ type }: { type: "privacy" | "terms" | "educational" }): JSX.Element`.
 - Produces public routes `/privacidad`, `/terminos` and `/aviso-educativo`.
 
-- [ ] **Step 1: Write failing legal-route tests**
+- [x] **Step 1: Write failing legal-route tests**
 
 Cover public rendering without auth, product/data boundaries in privacy, acceptable-use/refund-platform boundaries in terms, and the exact educational distinction that the app does not replace professional medical advice. Assert Cuenta and Activar expose reachable legal links.
 
-- [ ] **Step 2: Run the legal test and verify failure**
+- [x] **Step 2: Run the legal test and verify failure**
 
 Run: `pnpm vitest run tests/client/legal-pages.test.tsx`
 
 Expected: FAIL because the legal pages and links do not exist.
 
-- [ ] **Step 3: Implement the pages and links**
+- [x] **Step 3: Implement the pages and links**
 
 Use Spanish, dated, readable sections with no invented company registration, address, phone or medical credentials. State which services process data (Cloudflare, Supabase, Hotmart and the configured transactional mail provider) without embedding secret configuration.
 
-- [ ] **Step 4: Run focused tests and commit**
+- [x] **Step 4: Run focused tests and commit**
 
 Run: `pnpm vitest run tests/client/legal-pages.test.tsx tests/client/access-flow.test.tsx tests/client/private-route.test.tsx`
 
@@ -190,25 +190,25 @@ git commit -m "feat: publish legal and educational notices"
 - Produces: an operational checklist for domain authentication, Brevo SMTP relay, Supabase custom SMTP, OTP template and rollback.
 - Produces: a public browser journey covering landing, safe purchase state, public legal pages and private resource access.
 
-- [ ] **Step 1: Write the failing browser journey**
+- [x] **Step 1: Write the failing browser journey**
 
 At 375 by 667 and desktop, assert public landing access, complete section landmarks, valid configured checkout behavior in the test server, legal navigation, anonymous `/recursos` redirect, authenticated resource cards, 44-pixel actions and no horizontal overflow at 125 percent text.
 
-- [ ] **Step 2: Run the journey and verify failure**
+- [x] **Step 2: Run the journey and verify failure**
 
 Run: `pnpm playwright test e2e/launch-surfaces-journey.spec.ts`
 
 Expected: FAIL on the first missing launch-surface behavior.
 
-- [ ] **Step 3: Complete only integration issues exposed by the journey**
+- [x] **Step 3: Complete only integration issues exposed by the journey**
 
 Correct routing, accessibility or responsive behavior without weakening assertions or publishing pending resources.
 
-- [ ] **Step 4: Document Brevo and the remaining external gates**
+- [x] **Step 4: Document Brevo and the remaining external gates**
 
 Record that Brevo is the preferred SMTP relay, Supabase remains responsible for OTP generation, the sender domain must be authenticated, the template must include `{{ .Token }}`, secrets live only in Supabase/Brevo, and launch still requires one real OTP plus purchase/refund journey. Do not claim current plan limits as guaranteed; link the official Brevo limit page.
 
-- [ ] **Step 5: Run the complete verification suite**
+- [x] **Step 5: Run the complete verification suite**
 
 Run: `pnpm test`
 
@@ -226,7 +226,7 @@ Run: `pnpm playwright test`
 
 Expected: all browser journeys PASS.
 
-- [ ] **Step 6: Mark verified steps and commit**
+- [x] **Step 6: Mark verified steps and commit**
 
 ```bash
 git add docs/operations docs/superpowers/plans/2026-10-21-launch-surfaces-implementation.md e2e/launch-surfaces-journey.spec.ts

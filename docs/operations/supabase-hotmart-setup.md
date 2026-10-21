@@ -11,7 +11,7 @@ Estado verificado el 20 de octubre de 2026:
 - `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ACCESS_RATE_LIMIT_PEPPER`, `HOTMART_HOTTOK` y `HOTMART_PRODUCT_UCODE` están guardados como secretos cifrados de producción en Cloudflare.
 - El endpoint real de solicitud de acceso responde `202` y consulta Supabase sin revelar si un correo tiene una compra.
 - La prueba firmada de configuración de Hotmart respondió `204`: aprobación creó un acceso `active` y reembolso lo cambió a `revoked`, verificado con consultas de solo lectura en Supabase.
-- Quedan pendientes el SMTP de producción, la plantilla con `{{ .Token }}` y el ensayo con una compra real, OTP, persistencia del plan y reembolso real.
+- Quedan pendientes Brevo como SMTP de producción, la plantilla con `{{ .Token }}` y el ensayo con una compra real, OTP, persistencia del plan y reembolso real. La guía exacta está en `docs/operations/brevo-supabase-smtp.md`.
 
 ## 1. Preparar Supabase
 
@@ -28,6 +28,7 @@ Estado verificado el 20 de octubre de 2026:
 
 4. En Authentication, mantener habilitado el acceso por correo.
 5. En la plantilla **Magic Link / OTP**, mostrar el código con `{{ .Token }}`. Esta app espera seis dígitos en `/verificar`; no usa enlaces mágicos ni pide el código de transacción al comprador.
+   Antes de compradores reales, conectar Brevo siguiendo `docs/operations/brevo-supabase-smtp.md`; el SMTP predeterminado de Supabase solo sirve para pruebas limitadas del equipo.
 6. En URL Configuration, establecer como Site URL la URL pública del Worker y permitir, como mínimo:
 
    - `http://127.0.0.1:4173/**` para desarrollo local.

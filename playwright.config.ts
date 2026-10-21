@@ -19,6 +19,7 @@ export default defineConfig({
     env: {
       VITE_CONTENT_PREVIEW: "true",
       VITE_AUTH_PREVIEW: "true",
+      VITE_HOTMART_CHECKOUT_URL: "https://pay.hotmart.com/TESTE2E",
     },
   },
 });
