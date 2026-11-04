@@ -79,7 +79,7 @@ describe("email OTP access flow", () => {
       screen.getByRole("textbox", { name: /correo usado en hotmart/i }),
       "Buyer@Example.com",
     );
-    await user.click(screen.getByRole("button", { name: /enviar código/i }));
+    await user.click(screen.getByRole("button", { name: /enviar acceso/i }));
 
     expect(
       await screen.findByRole("heading", { name: /revisa tu correo/i }),
@@ -98,7 +98,7 @@ describe("email OTP access flow", () => {
       screen.getByRole("textbox", { name: /correo usado en hotmart/i }),
       "buyer@example.com",
     );
-    await user.click(screen.getByRole("button", { name: /enviar código/i }));
+    await user.click(screen.getByRole("button", { name: /enviar acceso/i }));
     expect(
       screen.getByRole("button", { name: /enviando/i }),
     ).toBeDisabled();

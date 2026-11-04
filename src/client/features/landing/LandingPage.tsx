@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { BrandMark } from "../../components/BrandMark";
 import { parseHotmartCheckoutUrl } from "../../lib/checkout";
+import {
+  getBrowserAuthClient,
+  type AuthClient,
+} from "../../lib/authClient";
 
 type LandingPageProps = {
   checkoutUrl?: string | null;
+  client?: AuthClient;
 };
 
 const benefits = [
@@ -23,7 +29,7 @@ const questions = [
   {
     question: "¿Cómo recibo el acceso?",
     answer:
-      "Después de comprar, usas el mismo correo de Hotmart. Te enviamos un código temporal y no necesitas buscar ningún código de transacción.",
+      "Después de comprar, usas el mismo correo de Hotmart. Te enviamos un acceso seguro y no necesitas buscar ningún código de transacción.",
   },
   {
     question: "¿Puedo cambiar una receta?",
@@ -58,7 +64,64 @@ function PurchaseAction({ checkoutUrl }: { checkoutUrl: string | null }) {
   );
 }
 
-export function LandingPage({ checkoutUrl }: LandingPageProps) {
+function isSupabaseAuthReturn(hash: string) {
+  const params = new URLSearchParams(hash.replace(/^#/, ""));
+  return params.has("access_token") || params.has("error");
+}
+
+export function LandingPage({ checkoutUrl, client }: LandingPageProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [resolvingAccess, setResolvingAccess] = useState(() =>
+    isSupabaseAuthReturn(location.hash),
+  );
+
+  useEffect(() => {
+    if (!isSupabaseAuthReturn(location.hash)) return;
+
+    const auth = client ?? getBrowserAuthClient();
+    const callbackParams = new URLSearchParams(location.hash.replace(/^#/, ""));
+    let active = true;
+
+    function applySession(session: Awaited<ReturnType<AuthClient["getSession"]>>) {
+      if (!active) return;
+      if (session) {
+        navigate("/semana", { replace: true });
+        return;
+      }
+      if (callbackParams.has("error")) {
+        navigate("/activar?estado=enlace-vencido", { replace: true });
+        return;
+      }
+      setResolvingAccess(false);
+    }
+
+    const unsubscribe = auth.onAuthStateChange(applySession);
+    void auth
+      .getSession()
+      .then(applySession)
+      .catch(() =>
+        active
+          ? navigate("/activar?estado=error-de-acceso", { replace: true })
+          : undefined,
+      );
+
+    return () => {
+      active = false;
+      unsubscribe();
+    };
+  }, [client, location.hash, navigate]);
+
+  if (resolvingAccess) {
+    return (
+      <main className="access-page">
+        <p className="access-message access-message--success" role="status">
+          Activando tu acceso…
+        </p>
+      </main>
+    );
+  }
+
   const configuredCheckout = parseHotmartCheckoutUrl(
     checkoutUrl === undefined
       ? import.meta.env.VITE_HOTMART_CHECKOUT_URL
@@ -178,7 +241,7 @@ export function LandingPage({ checkoutUrl }: LandingPageProps) {
           <h2 id="how-title">Cómo funciona</h2>
           <ol className="landing-steps">
             <li><strong>Compra en Hotmart.</strong><span>Tu correo recibe el permiso de acceso.</span></li>
-            <li><strong>Activa tu cuenta.</strong><span>Escribe ese correo y confirma el código temporal.</span></li>
+            <li><strong>Activa tu cuenta.</strong><span>Escribe ese correo y confirma el acceso recibido.</span></li>
             <li><strong>Organiza tu semana.</strong><span>Selecciona tus preferencias y genera tu primera lista.</span></li>
           </ol>
         </section>

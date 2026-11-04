@@ -239,7 +239,7 @@ export function getBrowserAuthClient(): AuthClient {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      detectSessionInUrl: false,
+      detectSessionInUrl: true,
     },
   });
   const auth: BrowserAuthPort = {

@@ -1,8 +1,11 @@
 import { render, screen, within } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import type { ComponentType } from "react";
+import type { Session } from "@supabase/supabase-js";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 
 import { LandingPage } from "../../src/client/features/landing/LandingPage";
+import type { AuthClient } from "../../src/client/lib/authClient";
 
 function renderLanding(checkoutUrl?: string | null) {
   return render(
@@ -13,6 +16,52 @@ function renderLanding(checkoutUrl?: string | null) {
 }
 
 describe("public product landing", () => {
+  it("opens the private app after Supabase returns an authenticated magic link", async () => {
+    const session = {
+      access_token: "access-token",
+      refresh_token: "refresh-token",
+      expires_in: 3600,
+      expires_at: 1_900_000_000,
+      token_type: "bearer",
+      user: { id: "owner", email: "owner@example.com" },
+    } as Session;
+    const client: AuthClient = {
+      async requestOtp() {},
+      async verifyOtp() {
+        return session;
+      },
+      async getSession() {
+        return session;
+      },
+      async refreshSession() {
+        return session;
+      },
+      onAuthStateChange() {
+        return () => undefined;
+      },
+      async signOut() {},
+      getPendingEmail() {
+        return null;
+      },
+    };
+    const CallbackLanding = LandingPage as ComponentType<{
+      client: AuthClient;
+    }>;
+
+    render(
+      <MemoryRouter initialEntries={["/#access_token=magic-link-token"]}>
+        <Routes>
+          <Route path="/" element={<CallbackLanding client={client} />} />
+          <Route path="/semana" element={<h1>Tu semana privada</h1>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(
+      await screen.findByRole("heading", { name: "Tu semana privada" }),
+    ).toBeInTheDocument();
+  });
+
   it("renders_the_complete_product_story_for_public_visitors", () => {
     renderLanding(null);
 

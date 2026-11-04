@@ -50,7 +50,7 @@ export function AccessPage({ client }: AccessPageProps) {
 
         <p className="access-card__intro">
           Escribe el mismo correo que utilizaste al comprar en Hotmart. Te
-          enviaremos un código temporal para comprobar que el correo es tuyo.
+          enviaremos un acceso seguro para comprobar que el correo es tuyo.
         </p>
 
         <form className="access-form" onSubmit={submit}>
@@ -71,7 +71,7 @@ export function AccessPage({ client }: AccessPageProps) {
             </p>
           ) : null}
           <button className="access-button" type="submit" disabled={submitting}>
-            {submitting ? "Enviando…" : "Enviar código"}
+            {submitting ? "Enviando…" : "Enviar acceso"}
           </button>
         </form>
 

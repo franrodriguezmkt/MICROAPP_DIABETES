@@ -79,7 +79,8 @@ export function VerifyAccessPage({ client }: VerifyAccessPageProps) {
         </header>
 
         <p className="access-card__intro">
-          Escribe el código de seis dígitos enviado a <strong>{email}</strong>.
+          Abre el enlace seguro enviado a <strong>{email}</strong>. Si el correo
+          incluye un código de seis dígitos, también puedes escribirlo aquí.
         </p>
 
         <form className="access-form" onSubmit={submit}>
