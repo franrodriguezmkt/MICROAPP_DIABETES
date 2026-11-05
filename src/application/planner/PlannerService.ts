@@ -1,6 +1,9 @@
 import type { IngredientCatalogEntry } from "../../domain/ingredients/ingredientCatalog";
 import { buildShoppingList } from "../../domain/planner/buildShoppingList";
-import { generateWeeklyPlan } from "../../domain/planner/generateWeeklyPlan";
+import {
+  GENERATOR_VERSION,
+  generateWeeklyPlan,
+} from "../../domain/planner/generateWeeklyPlan";
 import {
   plannerPreferencesSchema,
   shoppingListItemSchema,
@@ -124,7 +127,9 @@ export class PlannerService {
 
   async getOrGenerateWeek(userId: string, weekStart: string) {
     const existing = await this.dependencies.repository.getWeek(userId, weekStart);
-    if (existing) return existing.plan;
+    if (existing?.plan.generatorVersion === GENERATOR_VERSION) {
+      return existing.plan;
+    }
 
     const preferences =
       (await this.dependencies.repository.getPreferences(userId)) ??
@@ -136,7 +141,12 @@ export class PlannerService {
       recipes,
       preferences,
     });
-    await this.savePlanWithShopping(userId, plan, recipes, []);
+    await this.savePlanWithShopping(
+      userId,
+      plan,
+      recipes,
+      existing?.shoppingItems ?? [],
+    );
     return plan;
   }
 

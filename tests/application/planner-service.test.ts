@@ -98,6 +98,53 @@ describe("PlannerService", () => {
     ).resolves.toMatchObject({ plan: second });
   });
 
+  it("rebuilds a legacy empty week and synchronizes its shopping list", async () => {
+    await repository.savePreferences("preview-user", preferences);
+    await repository.saveWeek("preview-user", {
+      plan: {
+        id: "week:2026-10-19:legacy",
+        weekStart: "2026-10-19",
+        people: 2,
+        generatorVersion: "planner-v1",
+        items: [],
+        notices: ["Sin recetas disponibles."],
+      },
+      shoppingItems: [
+        {
+          source: "manual",
+          id: "manual:servilletas",
+          label: "Servilletas",
+          category: "other",
+          checked: false,
+        },
+      ],
+    });
+
+    const repaired = await service.getOrGenerateWeek(
+      "preview-user",
+      "2026-10-19",
+    );
+    const shopping = await service.getShoppingList(
+      "preview-user",
+      "2026-10-19",
+    );
+    const repeatedRead = await service.getOrGenerateWeek(
+      "preview-user",
+      "2026-10-19",
+    );
+
+    expect(repaired.generatorVersion).not.toBe("planner-v1");
+    expect(repaired.items).toHaveLength(28);
+    expect(shopping.some((item) => item.source === "generated")).toBe(true);
+    expect(shopping).toContainEqual(
+      expect.objectContaining({
+        source: "manual",
+        id: "manual:servilletas",
+      }),
+    );
+    expect(repeatedRead).toEqual(repaired);
+  });
+
   it("does not create a default week when shopping is opened before onboarding", async () => {
     await expect(
       service.getShoppingList("preview-user", "2026-10-19"),
