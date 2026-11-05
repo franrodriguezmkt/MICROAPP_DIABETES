@@ -120,11 +120,11 @@ describe("PlannerService", () => {
       ],
     });
 
-    const repaired = await service.getOrGenerateWeek(
+    const shopping = await service.getShoppingList(
       "preview-user",
       "2026-10-19",
     );
-    const shopping = await service.getShoppingList(
+    const repaired = await service.getOrGenerateWeek(
       "preview-user",
       "2026-10-19",
     );

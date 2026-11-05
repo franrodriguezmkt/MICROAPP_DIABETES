@@ -239,7 +239,16 @@ export class PlannerService {
 
   async getShoppingList(userId: string, weekStart: string) {
     const stored = await this.dependencies.repository.getWeek(userId, weekStart);
-    return stored?.shoppingItems ?? [];
+    if (!stored) return [];
+
+    if (stored.plan.generatorVersion !== GENERATOR_VERSION) {
+      await this.getOrGenerateWeek(userId, weekStart);
+      return (
+        await this.dependencies.repository.getWeek(userId, weekStart)
+      )?.shoppingItems ?? [];
+    }
+
+    return stored.shoppingItems;
   }
 
   async patchShoppingItem(
