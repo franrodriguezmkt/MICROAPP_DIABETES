@@ -1,6 +1,6 @@
 # Mis Semanas Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Añadir una biblioteca privada donde cada usuario guarda, abre, renombra y elimina semanas completas, y puede crear la siguiente semana sin modificar las anteriores.
 
@@ -46,17 +46,17 @@
 - Produces: `SavedWeekSummary`, `savedWeekSummarySchema`, `PlannerRepository.listSavedWeeks`, `saveWeekToLibrary`, `renameSavedWeek`, `deleteSavedWeek`.
 - Preserves: `PlannerRepository.saveWeek` mantiene metadatos de biblioteca en un snapshot existente.
 
-- [ ] **Step 1: Escribir pruebas fallidas de esquema y repositorio**
+- [x] **Step 1: Escribir pruebas fallidas de esquema y repositorio**
 
 Probar validación de título, orden por `savedAt`, borradores excluidos, persistencia de renombrado/eliminación y conservación de metadatos al guardar un snapshot.
 
-- [ ] **Step 2: Ejecutar pruebas y confirmar RED**
+- [x] **Step 2: Ejecutar pruebas y confirmar RED**
 
 Run: `pnpm test tests/domain/saved-weeks.test.ts tests/infrastructure/supabase-planner-repository.test.ts`
 
 Expected: FAIL porque el contrato de semanas guardadas aún no existe.
 
-- [ ] **Step 3: Implementar dominio, repositorios y migración**
+- [x] **Step 3: Implementar dominio, repositorios y migración**
 
 Firmas:
 
@@ -78,13 +78,13 @@ deleteSavedWeek(userId: string, weekStart: string): Promise<boolean>;
 
 La migración añade `title`, `saved_at`, restricciones, índice parcial y RPC. Redefine `save_planner_week_snapshot` para preservar los metadatos.
 
-- [ ] **Step 4: Ejecutar pruebas enfocadas y confirmar GREEN**
+- [x] **Step 4: Ejecutar pruebas enfocadas y confirmar GREEN**
 
 Run: `pnpm test tests/domain/saved-weeks.test.ts tests/infrastructure/supabase-planner-repository.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src tests supabase
@@ -105,27 +105,27 @@ git commit -m "feat: persist saved weeks"
 - Consumes: contratos de Task 1.
 - Produces: `GET /api/saved-weeks`, `POST /api/weeks/:weekStart/save`, `PATCH /api/saved-weeks/:weekStart`, `DELETE /api/saved-weeks/:weekStart` y métodos equivalentes en `PlannerClient`.
 
-- [ ] **Step 1: Escribir pruebas fallidas de servicio, rutas y cliente**
+- [x] **Step 1: Escribir pruebas fallidas de servicio, rutas y cliente**
 
 Probar éxito, título inválido, semana inexistente, aislamiento por usuario y `404` sin revelar datos ajenos.
 
-- [ ] **Step 2: Ejecutar pruebas y confirmar RED**
+- [x] **Step 2: Ejecutar pruebas y confirmar RED**
 
 Run: `pnpm test tests/application/planner-service.test.ts tests/worker/planner-routes.test.ts tests/client/planner-client.test.ts`
 
 Expected: FAIL por métodos y rutas ausentes.
 
-- [ ] **Step 3: Implementar servicio, esquemas de entrada, rutas y cliente**
+- [x] **Step 3: Implementar servicio, esquemas de entrada, rutas y cliente**
 
 Los endpoints devuelven `SavedWeekSummary`; `DELETE` devuelve `204` y `404` cuando no existe o no pertenece al usuario.
 
-- [ ] **Step 4: Ejecutar pruebas enfocadas y confirmar GREEN**
+- [x] **Step 4: Ejecutar pruebas enfocadas y confirmar GREEN**
 
 Run: `pnpm test tests/application/planner-service.test.ts tests/worker/planner-routes.test.ts tests/client/planner-client.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src tests
@@ -149,27 +149,27 @@ git commit -m "feat: expose saved weeks API"
 - Consumes: `PlannerClient` de Task 2 y `SavedWeekSummary` de Task 1.
 - Produces: ruta `/mis-semanas`, guardado desde `/semana` y función pura `nextAvailableWeekStart(currentWeek, savedWeeks)`.
 
-- [ ] **Step 1: Escribir pruebas fallidas de UI y fecha siguiente**
+- [x] **Step 1: Escribir pruebas fallidas de UI y fecha siguiente**
 
 Probar estado vacío, listado, abrir, guardar, renombrar, confirmación de borrado, receta faltante y salto de fechas ya guardadas.
 
-- [ ] **Step 2: Ejecutar pruebas y confirmar RED**
+- [x] **Step 2: Ejecutar pruebas y confirmar RED**
 
 Run: `pnpm test tests/client/saved-weeks-page.test.tsx tests/client/week-page.test.tsx`
 
 Expected: FAIL porque las pantallas y acciones no existen.
 
-- [ ] **Step 3: Implementar UI accesible y responsive**
+- [x] **Step 3: Implementar UI accesible y responsive**
 
 Mantener cinco destinos principales. Añadir navegación secundaria con enlaces `Crear semana` y `Mis Semanas`, diálogos etiquetados, confirmación destructiva y estados de carga/error/éxito con `aria-live`.
 
-- [ ] **Step 4: Ejecutar pruebas enfocadas y confirmar GREEN**
+- [x] **Step 4: Ejecutar pruebas enfocadas y confirmar GREEN**
 
 Run: `pnpm test tests/client/saved-weeks-page.test.tsx tests/client/week-page.test.tsx`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src tests
@@ -186,27 +186,27 @@ git commit -m "feat: add Mis Semanas experience"
 - Consumes: flujo completo de Tasks 1–3.
 - Produces: evidencia E2E, migración aplicada y despliegue verificado.
 
-- [ ] **Step 1: Extender E2E y confirmar RED**
+- [x] **Step 1: Extender E2E y confirmar RED**
 
 Recorrido móvil: crear semana → guardar con nombre → editar compra → abrir desde Mis Semanas → conservar compra → renombrar → crear otra → eliminar con confirmación.
 
-- [ ] **Step 2: Ejecutar E2E y corregir solo fallos reales del flujo**
+- [x] **Step 2: Ejecutar E2E y corregir solo fallos reales del flujo**
 
 Run: `pnpm exec playwright test e2e/planner-shopping-journey.spec.ts`
 
 Expected: PASS.
 
-- [ ] **Step 3: Verificación completa**
+- [x] **Step 3: Verificación completa**
 
 Run: `pnpm test && pnpm typecheck && pnpm build && pnpm exec playwright test e2e/access-planner-journey.spec.ts e2e/planner-shopping-journey.spec.ts`
 
 Expected: todas las pruebas pasan; bundle con 45 recetas y sin secretos.
 
-- [ ] **Step 4: Aplicar migración aditiva y verificar columnas/RPC**
+- [x] **Step 4: Aplicar migración aditiva y verificar columnas/RPC**
 
 Aplicar `202611050002_saved_weeks.sql` al proyecto Supabase existente, sin reset. Verificar `title`, `saved_at` y las cuatro RPC mediante consultas de solo lectura.
 
-- [ ] **Step 5: Commit, push, deploy y smoke tests**
+- [x] **Step 5: Commit, push, deploy y smoke tests**
 
 ```bash
 git add e2e docs
@@ -216,4 +216,3 @@ pnpm deploy
 ```
 
 Verificar `/api/health`, `/mis-semanas`, guardar/listar/renombrar/eliminar con la sesión de prueba y vista móvil de 375 px.
-

@@ -34,7 +34,12 @@ export function nextAvailableWeekStart(
   savedWeeks: ReadonlyArray<Pick<SavedWeekSummary, "weekStart">>,
 ) {
   const occupied = new Set(savedWeeks.map((week) => week.weekStart));
-  let candidate = addDays(currentWeekStart, 7);
+  const latestWeekStart = savedWeeks.reduce(
+    (latest, week) =>
+      week.weekStart.localeCompare(latest) > 0 ? week.weekStart : latest,
+    currentWeekStart,
+  );
+  let candidate = addDays(latestWeekStart, 7);
   while (occupied.has(candidate)) candidate = addDays(candidate, 7);
   return candidate;
 }

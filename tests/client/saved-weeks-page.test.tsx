@@ -162,4 +162,12 @@ describe("nextAvailableWeekStart", () => {
       ]),
     ).toBe("2026-11-23");
   });
+
+  it("starts after the latest saved week even when earlier dates are free", () => {
+    expect(
+      nextAvailableWeekStart("2026-11-02", [
+        { ...savedWeek, weekStart: "2026-12-07" },
+      ]),
+    ).toBe("2026-12-14");
+  });
 });

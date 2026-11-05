@@ -41,9 +41,11 @@ async function ensurePlannerConfigured(page: Page) {
 test("plans a mobile week and preserves shopping progress during the preview session", async ({
   page,
 }) => {
+  const testWeekStart = "2026-12-07";
   await page.setViewportSize({ width: 375, height: 667 });
   await seedPreviewSession(page);
-  await page.goto("/semana");
+  await page.request.delete(`/api/saved-weeks/${testWeekStart}`);
+  await page.goto(`/semana?week=${testWeekStart}`);
   await ensurePlannerConfigured(page);
 
   await expect(page.locator(".week-day > h2")).toHaveCount(7);
@@ -56,6 +58,12 @@ test("plans a mobile week and preserves shopping progress during the preview ses
   const replacementDialog = page.getByRole("dialog", { name: /cambiar/i });
   await replacementDialog.getByRole("button", { name: /elegir/i }).first().click();
   await expect(firstCard.getByRole("heading", { level: 3 })).not.toHaveText(originalRecipe ?? "");
+
+  await page.getByRole("button", { name: /^guardar en mis semanas$/i }).click();
+  const savedWeekName = page.getByRole("textbox", { name: /nombre de la semana/i });
+  await savedWeekName.fill("Semana E2E");
+  await page.getByRole("button", { name: /^guardar semana$/i }).click();
+  await expect(page.getByText(/semana guardada en mis semanas/i)).toBeVisible();
 
   await page.getByRole("link", { name: "Compras" }).click();
   await expect(page.getByRole("heading", { name: /lista de compras/i })).toBeVisible();
@@ -73,8 +81,9 @@ test("plans a mobile week and preserves shopping progress during the preview ses
   const restoredFirstRow = page.locator(".shopping-item").filter({
     has: page.getByText(firstGeneratedLabel ?? "", { exact: true }),
   }).first();
-  const checkedLabel = await restoredFirstRow.getByRole("checkbox").getAttribute("aria-label");
-  expect(checkedLabel).toMatch(/Aprox\. 2/i);
+  const restoredFirstCheck = restoredFirstRow.getByRole("checkbox");
+  await expect(restoredFirstCheck).toHaveAttribute("aria-label", /Aprox\. 2/i);
+  const checkedLabel = await restoredFirstCheck.getAttribute("aria-label");
 
   const removableRow = generatedRows.nth(1);
   const removableLabel = await removableRow.locator("strong").textContent();
@@ -90,6 +99,34 @@ test("plans a mobile week and preserves shopping progress during the preview ses
   await expect(page.getByText("Papel aluminio E2E")).toBeVisible();
   await expect(page.getByRole("checkbox", { name: checkedLabel ?? "" })).toBeChecked();
   await expect(page.getByText(removableLabel ?? "", { exact: true })).toHaveCount(0);
+
+  await page.getByRole("link", { name: "Semana", exact: true }).click();
+  await page.getByRole("link", { name: "Mis Semanas", exact: true }).click();
+  const savedCard = page.getByRole("article", { name: "Semana E2E" });
+  await expect(savedCard).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+
+  await savedCard.getByRole("link", { name: /abrir semana/i }).click();
+  await expect(page).toHaveURL(new RegExp(`/semana\\?week=${testWeekStart}$`));
+  await page.getByRole("link", { name: "Compras", exact: true }).click();
+  await expect(page.getByText("Papel aluminio E2E")).toBeVisible();
+  await expect(page.getByRole("checkbox", { name: checkedLabel ?? "" })).toBeChecked();
+
+  await page.getByRole("link", { name: "Semana", exact: true }).click();
+  await page.getByRole("link", { name: "Mis Semanas", exact: true }).click();
+  await page.getByRole("article", { name: "Semana E2E" }).getByRole("button", { name: /renombrar/i }).click();
+  await page.getByRole("textbox", { name: /nombre de la semana/i }).fill("Semana E2E renovada");
+  await page.getByRole("button", { name: /^guardar nombre$/i }).click();
+  await expect(page.getByRole("article", { name: "Semana E2E renovada" })).toBeVisible();
+
+  await page.getByRole("button", { name: /crear otra semana/i }).click();
+  await expect(page).toHaveURL(/\/semana\?week=2026-12-14$/);
+  await expect(page.getByRole("heading", { name: "Tu semana" })).toBeVisible();
+  await page.getByRole("link", { name: "Mis Semanas", exact: true }).click();
+  const renamedCard = page.getByRole("article", { name: "Semana E2E renovada" });
+  await renamedCard.getByRole("button", { name: /eliminar/i }).click();
+  await page.getByRole("button", { name: /^sí, eliminar$/i }).click();
+  await expect(page.getByText(/todavía no guardaste semanas/i)).toBeVisible();
 
   await page.evaluate(() => {
     document.documentElement.style.fontSize = "125%";

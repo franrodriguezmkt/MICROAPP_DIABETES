@@ -62,7 +62,7 @@ test("public landing connects the product story to the safe Hotmart checkout", a
   await expect(page.getByRole("link", { name: /ya compré: activar acceso/i })).toBeVisible();
 });
 
-test("resources remain private and pending documents cannot be downloaded", async ({
+test("resources remain private and approved documents can be downloaded", async ({
   page,
 }) => {
   await page.goto("/recursos");
@@ -77,7 +77,7 @@ test("resources remain private and pending documents cannot be downloaded", asyn
     }),
   ).toBeVisible();
   await expect(page.locator(".resource-card")).toHaveCount(4);
-  await expect(page.getByText(/en revisión profesional/i)).toHaveCount(4);
-  await expect(page.getByRole("link", { name: /descargar/i })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /descargar/i })).toHaveCount(4);
+  await expect(page.getByText(/en revisión profesional/i)).toHaveCount(0);
   await expectNoHorizontalOverflow(page);
 });
