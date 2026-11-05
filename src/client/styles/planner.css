@@ -72,6 +72,12 @@
   background: white;
 }
 
+.planner-button--danger {
+  border: 1px solid var(--color-accent-strong);
+  color: var(--color-accent-strong);
+  background: white;
+}
+
 .planner-icon-button {
   border-radius: 50%;
   font-size: 1.5rem;
@@ -81,6 +87,124 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+.week-section-nav {
+  display: inline-flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-5);
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 86%);
+}
+
+.week-section-nav__link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-4);
+  border-radius: 999px;
+  color: var(--color-primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.week-section-nav__link--active {
+  color: white;
+  background: var(--color-primary);
+}
+
+.planner-save-status {
+  margin: 0 0 var(--space-4);
+  color: var(--color-primary);
+  font-weight: 750;
+}
+
+.planner-dialog__field {
+  display: grid;
+  gap: var(--space-2);
+  margin-block: var(--space-4);
+  color: var(--color-primary-strong);
+  font-weight: 750;
+}
+
+.saved-weeks-hero {
+  display: flex;
+  max-width: none;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.saved-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-4);
+}
+
+.saved-week-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-card);
+}
+
+.saved-week-card .recipe-visual,
+.saved-week-card__placeholder {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+}
+
+.saved-week-card__placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  background: var(--color-mint);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.saved-week-card__body {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.saved-week-card__body h2,
+.saved-weeks-empty h2 {
+  margin: 0;
+  color: var(--color-primary-strong);
+  font-family: var(--font-display);
+}
+
+.saved-week-card__body > p:not(.eyebrow),
+.saved-weeks-empty p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.saved-week-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.saved-weeks-empty {
+  max-width: 36rem;
+  padding: var(--space-6);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: rgb(255 255 255 / 82%);
+  text-align: center;
+}
+
+.saved-weeks-empty .planner-button {
+  margin-top: var(--space-4);
 }
 
 .preferences-form,
@@ -352,9 +476,24 @@
 
 @media (max-width: 40rem) {
   .planner-hero--week,
+  .saved-weeks-hero,
   .replacement-option {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .week-section-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .week-section-nav__link {
+    padding-inline: var(--space-2);
+  }
+
+  .saved-week-card__actions > * {
+    flex: 1 1 100%;
   }
 
   .planner-actions > *,

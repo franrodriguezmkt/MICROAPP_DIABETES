@@ -107,6 +107,48 @@ describe("WeekPage", () => {
     expect(await screen.findByRole("heading", { name: /tu semana/i })).toBeInTheDocument();
   });
 
+  it("saves the current menu in Mis Semanas with an editable name", async () => {
+    const user = userEvent.setup();
+    const saveWeekToLibrary = vi.fn().mockResolvedValue({
+      weekStart: "2026-10-19",
+      title: "Semana familiar",
+      savedAt: "2026-11-05T20:00:00.000Z",
+      people: 2,
+      mealCount: 7,
+      previewRecipeId: "breakfast-one",
+    });
+    const plannerClient = createClient({
+      getMe: vi.fn().mockResolvedValue({ preferences, preview: true }),
+      listSavedWeeks: vi.fn().mockResolvedValue([]),
+      saveWeekToLibrary,
+    });
+    renderWeek(
+      <WeekPage
+        client={plannerClient}
+        recipes={recipes}
+        ingredientCatalog={ingredients}
+        initialWeekStart="2026-10-19"
+      />,
+    );
+
+    await user.click(
+      await screen.findByRole("button", { name: /guardar en mis semanas/i }),
+    );
+    const input = screen.getByRole("textbox", { name: /nombre de la semana/i });
+    await user.clear(input);
+    await user.type(input, "Semana familiar");
+    await user.click(screen.getByRole("button", { name: /^guardar semana$/i }));
+
+    expect(saveWeekToLibrary).toHaveBeenCalledWith(
+      "2026-10-19",
+      "Semana familiar",
+      expect.any(AbortSignal),
+    );
+    expect(
+      await screen.findByText(/semana guardada en mis semanas/i),
+    ).toBeInTheDocument();
+  });
+
   it("renders seven days, notices, navigation and a single-card replacement", async () => {
     const user = userEvent.setup();
     const replacedPlan = {

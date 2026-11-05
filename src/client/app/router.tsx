@@ -4,6 +4,7 @@ import { AppShell } from "../components/AppShell";
 import { RecipeCatalogPage } from "../features/recipes/RecipeCatalogPage";
 import { RecipeDetailPage } from "../features/recipes/RecipeDetailPage";
 import { WeekPage } from "../features/planner/WeekPage";
+import { SavedWeeksPage } from "../features/planner/SavedWeeksPage";
 import { ShoppingPage } from "../features/shopping/ShoppingPage";
 import { AccessPage } from "../features/access/AccessPage";
 import { VerifyAccessPage } from "../features/access/VerifyAccessPage";
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
               { path: "recetas", element: <RecipeCatalogPage /> },
               { path: "recetas/:slug", element: <RecipeDetailPage /> },
               { path: "semana", element: <WeekPage /> },
+              { path: "mis-semanas", element: <SavedWeeksPage /> },
               { path: "compras", element: <ShoppingPage /> },
               { path: "recursos", element: <ResourcesPage /> },
               { path: "cuenta", element: <AccountPage /> },

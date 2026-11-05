@@ -9,6 +9,7 @@ import {
 } from "../../../domain/ingredients/ingredientCatalog";
 import type {
   PlannerPreferences,
+  SavedWeekSummary,
   WeeklyPlan,
   WeeklyPlanItem,
 } from "../../../domain/planner/planner";
@@ -18,6 +19,8 @@ import { mondayFor, weekStartFromSearch } from "../../lib/weekStart";
 import { PreferencesForm } from "./PreferencesForm";
 import { RecipeReplacementDialog } from "./RecipeReplacementDialog";
 import { WeekMealCard } from "./WeekMealCard";
+import { defaultSavedWeekTitle } from "./savedWeekViewModel";
+import { WeekSectionNav } from "./WeekSectionNav";
 
 type WeekPageProps = {
   client?: PlannerClient;
@@ -61,6 +64,10 @@ export function WeekPage({
   const [replacementItem, setReplacementItem] = useState<WeeklyPlanItem | null>(null);
   const [confirmRegeneration, setConfirmRegeneration] = useState(false);
   const [actionError, setActionError] = useState("");
+  const [savedWeek, setSavedWeek] = useState<SavedWeekSummary | null>(null);
+  const [saveDialogOpen, setSaveDialogOpen] = useState(false);
+  const [saveTitle, setSaveTitle] = useState("");
+  const [saveStatus, setSaveStatus] = useState("");
   const activeRequest = useRef<AbortController | null>(null);
   const recipeById = useMemo(
     () => new Map(recipes.map((recipe) => [recipe.id, recipe])),
@@ -78,8 +85,12 @@ export function WeekPage({
     const controller = nextController();
     setState("loading");
     try {
-      const nextPlan = await client.getWeek(targetWeek, controller.signal);
+      const [nextPlan, savedWeeks] = await Promise.all([
+        client.getWeek(targetWeek, controller.signal),
+        client.listSavedWeeks(controller.signal),
+      ]);
       setPlan(nextPlan);
+      setSavedWeek(savedWeeks.find((week) => week.weekStart === targetWeek) ?? null);
       setWeekStart(targetWeek);
       const nextSearchParams = new URLSearchParams(searchParams);
       nextSearchParams.set("week", targetWeek);
@@ -100,8 +111,12 @@ export function WeekPage({
         setState("onboarding");
         return;
       }
-      const nextPlan = await client.getWeek(weekStart, controller.signal);
+      const [nextPlan, savedWeeks] = await Promise.all([
+        client.getWeek(weekStart, controller.signal),
+        client.listSavedWeeks(controller.signal),
+      ]);
       setPlan(nextPlan);
+      setSavedWeek(savedWeeks.find((week) => week.weekStart === weekStart) ?? null);
       setState("ready");
     } catch (error) {
       if ((error as Error).name !== "AbortError") setState("error");
@@ -188,6 +203,35 @@ export function WeekPage({
     }
   }
 
+  function beginSaveWeek() {
+    setSaveTitle(defaultSavedWeekTitle(weekStart));
+    setSaveStatus("");
+    setSaveDialogOpen(true);
+  }
+
+  async function saveWeek() {
+    if (!saveTitle.trim()) return;
+    const controller = nextController();
+    setBusy(true);
+    setActionError("");
+    try {
+      const saved = await client.saveWeekToLibrary(
+        weekStart,
+        saveTitle.trim(),
+        controller.signal,
+      );
+      setSavedWeek(saved);
+      setSaveDialogOpen(false);
+      setSaveStatus("Semana guardada en Mis Semanas.");
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") {
+        setActionError("No pudimos guardar la semana. Inténtalo de nuevo.");
+      }
+    } finally {
+      setBusy(false);
+    }
+  }
+
   if (state === "loading") {
     return <section className="planner-state" aria-live="polite">Preparando tu semana…</section>;
   }
@@ -207,6 +251,7 @@ export function WeekPage({
   if (state === "onboarding" || !preferences) {
     return (
       <section className="planner-page planner-onboarding" aria-labelledby="planner-onboarding-title">
+        <WeekSectionNav />
         <header className="planner-hero">
           <p className="eyebrow">Tu menú, sin empezar de cero</p>
           <h1 id="planner-onboarding-title">Organiza tu semana</h1>
@@ -236,6 +281,7 @@ export function WeekPage({
 
   return (
     <section className="planner-page" aria-labelledby="week-title">
+      <WeekSectionNav />
       <header className="planner-hero planner-hero--week">
         <div>
           <p className="eyebrow">Menú semanal</p>
@@ -243,10 +289,19 @@ export function WeekPage({
           <p>{preferences.people} {preferences.people === 1 ? "persona" : "personas"} · desde {dayLabel(weekStart)}</p>
         </div>
         <div className="planner-actions">
+          {savedWeek ? (
+            <button className="planner-button planner-button--quiet planner-control" type="button" disabled>
+              Guardada en Mis Semanas
+            </button>
+          ) : (
+            <button className="planner-button planner-control" type="button" onClick={beginSaveWeek}>
+              Guardar en Mis Semanas
+            </button>
+          )}
           <button className="planner-button planner-button--quiet planner-control" type="button" onClick={() => setEditingPreferences((value) => !value)}>
             Editar preferencias
           </button>
-          <button className="planner-button planner-control" type="button" onClick={() => setConfirmRegeneration(true)}>
+          <button className="planner-button planner-button--quiet planner-control" type="button" onClick={() => setConfirmRegeneration(true)}>
             Reorganizar semana
           </button>
         </div>
@@ -277,6 +332,10 @@ export function WeekPage({
 
       {actionError ? (
         <p className="planner-error" role="alert">{actionError}</p>
+      ) : null}
+
+      {saveStatus ? (
+        <p className="planner-save-status" aria-live="polite">{saveStatus}</p>
       ) : null}
 
       <div className="week-days">
@@ -322,6 +381,23 @@ export function WeekPage({
             <div className="planner-actions">
               <button className="planner-button planner-button--quiet planner-control" type="button" onClick={() => setConfirmRegeneration(false)}>Cancelar</button>
               <button className="planner-button planner-control" type="button" disabled={busy} onClick={() => void regenerate()}>Sí, reorganizar</button>
+            </div>
+          </section>
+        </div>
+      ) : null}
+
+      {saveDialogOpen ? (
+        <div className="planner-dialog-backdrop">
+          <section className="planner-dialog planner-dialog--compact" role="dialog" aria-modal="true" aria-labelledby="save-week-title">
+            <h2 id="save-week-title">Guardar semana</h2>
+            <p>Podrás abrir este menú después junto con su lista de compras.</p>
+            <label className="planner-dialog__field" htmlFor="week-library-name">
+              Nombre de la semana
+              <input id="week-library-name" className="planner-input" maxLength={60} value={saveTitle} onChange={(event) => setSaveTitle(event.target.value)} />
+            </label>
+            <div className="planner-actions">
+              <button className="planner-button planner-button--quiet planner-control" type="button" onClick={() => setSaveDialogOpen(false)}>Cancelar</button>
+              <button className="planner-button planner-control" type="button" disabled={busy || !saveTitle.trim()} onClick={() => void saveWeek()}>Guardar semana</button>
             </div>
           </section>
         </div>
