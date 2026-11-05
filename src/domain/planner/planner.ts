@@ -81,6 +81,9 @@ const generatedShoppingListItemSchema = shoppingItemBaseSchema
     ingredientId: identifierSchema,
     quantity: z.number().positive().nullable(),
     unit: z.enum(ingredientUnits),
+    customized: z.boolean().default(false),
+    hidden: z.boolean().default(false),
+    includesToTaste: z.boolean().default(false),
   })
   .superRefine((item, context) => {
     const isToTaste = item.unit === "to_taste";

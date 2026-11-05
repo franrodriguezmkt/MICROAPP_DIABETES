@@ -25,9 +25,10 @@ export function ResourcesPage({
         <p className="eyebrow">Biblioteca educativa</p>
         <h1 id="resources-title">Recursos para acompañar tu organización</h1>
         <p>
-          Aquí encontrarás materiales complementarios para leer y conversar con
-          profesionales. Son contenidos educativos generales: no sustituyen una
-          indicación médica, nutricional o de actividad física personalizada.
+          Descarga los materiales originales incluidos con tu acceso. Úsalos
+          como apoyo para organizarte y conversar con profesionales: no
+          sustituyen una indicación médica, nutricional o de actividad física
+          personalizada.
         </p>
       </header>
 
@@ -59,6 +60,8 @@ export function ResourcesPage({
         <p>
           Considera tus indicaciones personales, tus medicamentos, tus
           condiciones y cualquier restricción indicada por tu equipo de salud.
+          Si observas una lesión, infección, dolor u otra señal de alarma, busca
+          atención profesional y no dependas únicamente de estos documentos.
         </p>
       </aside>
     </section>

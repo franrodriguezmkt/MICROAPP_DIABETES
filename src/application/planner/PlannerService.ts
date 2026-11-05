@@ -8,6 +8,7 @@ import {
   plannerPreferencesSchema,
   shoppingListItemSchema,
   type PlannerPreferences,
+  type IngredientUnit,
   type ShoppingCategory,
   type ShoppingListItem,
   type WeeklyPlan,
@@ -51,7 +52,8 @@ export type ManualShoppingItemInput = {
 export type ShoppingItemPatch = {
   checked?: boolean;
   label?: string;
-  quantity?: number;
+  quantity?: number | null;
+  unit?: IngredientUnit;
   unitLabel?: string;
   category?: ShoppingCategory;
 };
@@ -243,12 +245,17 @@ export class PlannerService {
 
     if (stored.plan.generatorVersion !== GENERATOR_VERSION) {
       await this.getOrGenerateWeek(userId, weekStart);
-      return (
+      const rebuilt = (
         await this.dependencies.repository.getWeek(userId, weekStart)
       )?.shoppingItems ?? [];
+      return rebuilt.filter(
+        (item) => item.source === "manual" || !item.hidden,
+      );
     }
 
-    return stored.shoppingItems;
+    return stored.shoppingItems.filter(
+      (item) => item.source === "manual" || !item.hidden,
+    );
   }
 
   async patchShoppingItem(
@@ -268,13 +275,22 @@ export class PlannerService {
     }
 
     const current = stored.shoppingItems[index]!;
-    const next =
-      current.source === "generated"
-        ? shoppingListItemSchema.parse({
-            ...current,
-            checked: patch.checked ?? current.checked,
-          })
-        : shoppingListItemSchema.parse({ ...current, ...patch });
+    const next = current.source === "generated"
+      ? shoppingListItemSchema.parse({
+          ...current,
+          ...(patch.checked === undefined ? {} : { checked: patch.checked }),
+          ...(patch.label === undefined ? {} : { label: patch.label }),
+          ...(patch.quantity === undefined ? {} : { quantity: patch.quantity }),
+          ...(patch.unit === undefined ? {} : { unit: patch.unit }),
+          ...(patch.category === undefined ? {} : { category: patch.category }),
+          customized:
+            current.customized ||
+            patch.label !== undefined ||
+            patch.quantity !== undefined ||
+            patch.unit !== undefined ||
+            patch.category !== undefined,
+        })
+      : shoppingListItemSchema.parse({ ...current, ...patch });
     stored.shoppingItems[index] = next;
     await this.dependencies.repository.saveWeek(userId, stored);
     return next;
@@ -297,7 +313,7 @@ export class PlannerService {
     return item;
   }
 
-  async deleteManualShoppingItem(
+  async deleteShoppingItem(
     userId: string,
     weekStart: string,
     itemId: string,
@@ -311,16 +327,15 @@ export class PlannerService {
         404,
       );
     }
-    if (item.source !== "manual") {
-      throw new PlannerServiceError(
-        "GENERATED_ITEM_READ_ONLY",
-        "Los ingredientes de las recetas no se pueden eliminar.",
-        422,
+    if (item.source === "generated") {
+      stored.shoppingItems = stored.shoppingItems.map((candidate) =>
+        candidate.id === itemId ? { ...candidate, hidden: true } : candidate,
+      );
+    } else {
+      stored.shoppingItems = stored.shoppingItems.filter(
+        (candidate) => candidate.id !== itemId,
       );
     }
-    stored.shoppingItems = stored.shoppingItems.filter(
-      (candidate) => candidate.id !== itemId,
-    );
     await this.dependencies.repository.saveWeek(userId, stored);
   }
 

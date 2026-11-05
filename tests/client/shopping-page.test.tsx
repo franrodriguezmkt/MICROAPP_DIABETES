@@ -17,6 +17,9 @@ const generated: ShoppingListItem[] = [
     unit: "g",
     category: "produce",
     checked: false,
+    customized: false,
+    hidden: false,
+    includesToTaste: false,
   },
   {
     source: "generated",
@@ -27,6 +30,9 @@ const generated: ShoppingListItem[] = [
     unit: "to_taste",
     category: "pantry",
     checked: false,
+    customized: false,
+    hidden: false,
+    includesToTaste: false,
   },
 ];
 const manual: ShoppingListItem = {
@@ -58,7 +64,7 @@ function createClient(overrides: Partial<PlannerClient> = {}): PlannerClient {
       category: "other",
       checked: false,
     }),
-    deleteManualShoppingItem: vi.fn().mockResolvedValue(undefined),
+    deleteShoppingItem: vi.fn().mockResolvedValue(undefined),
     ...overrides,
   };
 }
@@ -79,10 +85,10 @@ describe("ShoppingPage", () => {
     );
 
     expect(await screen.findByRole("heading", { name: "Frutas y verduras" })).toBeInTheDocument();
-    expect(screen.getByText("250 g")).toBeInTheDocument();
+    expect(screen.getByText("Aprox. 250 g")).toBeInTheDocument();
     expect(screen.getByText("Al gusto")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Otros" })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /eliminar tomate/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /quitar tomate/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /eliminar servilletas/i })).toBeInTheDocument();
   });
 
@@ -120,12 +126,41 @@ describe("ShoppingPage", () => {
 
     const otherGroup = screen.getByRole("region", { name: "Otros" });
     await user.click(within(otherGroup).getByRole("button", { name: /eliminar servilletas/i }));
-    expect(client.deleteManualShoppingItem).toHaveBeenCalledWith(
+    expect(client.deleteShoppingItem).toHaveBeenCalledWith(
       "2026-10-19",
       "manual:one",
       expect.any(AbortSignal),
     );
     expect(screen.queryByText("Servilletas")).not.toBeInTheDocument();
+  });
+
+  it("edits the calculated quantity and removes a generated item", async () => {
+    const user = userEvent.setup();
+    const client = createClient();
+    renderShopping(
+      <ShoppingPage client={client} initialWeekStart="2026-10-19" />,
+    );
+
+    await user.click(await screen.findByRole("button", { name: /editar tomate/i }));
+    const quantity = screen.getByRole("spinbutton", { name: /cantidad de tomate/i });
+    await user.clear(quantity);
+    await user.type(quantity, "300");
+    await user.click(screen.getByRole("button", { name: /guardar tomate/i }));
+
+    expect(client.patchShoppingItem).toHaveBeenCalledWith(
+      "2026-10-19",
+      generated[0]!.id,
+      expect.objectContaining({ quantity: 300, unit: "g" }),
+      expect.any(AbortSignal),
+    );
+
+    await user.click(screen.getByRole("button", { name: /quitar tomate/i }));
+    expect(client.deleteShoppingItem).toHaveBeenCalledWith(
+      "2026-10-19",
+      generated[0]!.id,
+      expect.any(AbortSignal),
+    );
+    expect(screen.queryByText("Tomate")).not.toBeInTheDocument();
   });
 
   it("edits only the allowed fields of a manual item", async () => {

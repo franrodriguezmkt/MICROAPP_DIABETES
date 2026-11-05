@@ -8,7 +8,7 @@ import {
   type WeeklyPlan,
 } from "./planner";
 
-export const GENERATOR_VERSION = "planner-v2";
+export const GENERATOR_VERSION = "planner-v3";
 
 export type GenerateWeeklyPlanInput = {
   weekStart: string;

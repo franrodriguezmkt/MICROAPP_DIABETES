@@ -93,6 +93,9 @@ export type Database = {
           | "frozen"
           | "other";
         checked: boolean;
+        customized: boolean;
+        hidden: boolean;
+        includes_to_taste: boolean;
         ingredient_id: string | null;
         quantity: number | null;
         unit: string | null;

@@ -59,10 +59,27 @@ test("plans a mobile week and preserves shopping progress during the preview ses
 
   await page.getByRole("link", { name: "Compras" }).click();
   await expect(page.getByRole("heading", { name: /lista de compras/i })).toBeVisible();
-  const firstGeneratedCheck = page.locator(".shopping-item").filter({ hasNot: page.getByRole("button", { name: /eliminar/i }) }).getByRole("checkbox").first();
-  const checkedLabel = await firstGeneratedCheck.getAttribute("aria-label");
+  const generatedRows = page.locator(".shopping-item").filter({
+    has: page.getByRole("button", { name: /quitar/i }),
+  });
+  const firstGeneratedRow = generatedRows.first();
+  const firstGeneratedCheck = firstGeneratedRow.getByRole("checkbox");
+  const firstGeneratedLabel = await firstGeneratedRow.locator("strong").textContent();
   await firstGeneratedCheck.check();
   await expect(firstGeneratedCheck).toBeChecked();
+  await firstGeneratedRow.getByRole("button", { name: /editar/i }).click();
+  await page.getByRole("spinbutton", { name: /cantidad/i }).fill("2");
+  await page.getByRole("button", { name: /guardar/i }).click();
+  const restoredFirstRow = page.locator(".shopping-item").filter({
+    has: page.getByText(firstGeneratedLabel ?? "", { exact: true }),
+  }).first();
+  const checkedLabel = await restoredFirstRow.getByRole("checkbox").getAttribute("aria-label");
+  expect(checkedLabel).toMatch(/Aprox\. 2/i);
+
+  const removableRow = generatedRows.nth(1);
+  const removableLabel = await removableRow.locator("strong").textContent();
+  await removableRow.getByRole("button", { name: /quitar/i }).click();
+  await expect(page.getByText(removableLabel ?? "", { exact: true })).toHaveCount(0);
 
   await page.getByRole("textbox", { name: /nuevo producto/i }).fill("Papel aluminio E2E");
   await page.getByRole("button", { name: /agregar producto/i }).click();
@@ -72,6 +89,7 @@ test("plans a mobile week and preserves shopping progress during the preview ses
   await page.reload();
   await expect(page.getByText("Papel aluminio E2E")).toBeVisible();
   await expect(page.getByRole("checkbox", { name: checkedLabel ?? "" })).toBeChecked();
+  await expect(page.getByText(removableLabel ?? "", { exact: true })).toHaveCount(0);
 
   await page.evaluate(() => {
     document.documentElement.style.fontSize = "125%";

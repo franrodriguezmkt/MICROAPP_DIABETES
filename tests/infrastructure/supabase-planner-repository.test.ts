@@ -41,6 +41,9 @@ const firstWeek = {
       unit: "g" as const,
       category: "pantry" as const,
       checked: true,
+      customized: false,
+      hidden: false,
+      includesToTaste: false,
     },
     {
       source: "manual" as const,

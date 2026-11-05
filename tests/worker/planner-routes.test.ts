@@ -154,6 +154,22 @@ describe("preview planner routes", () => {
       data: { item: { ...generated, checked: true } },
     });
 
+    const removeGeneratedResponse = await app.request(
+      `http://local.test/api/weeks/2026-10-19/shopping-list/${encodeURIComponent(generated.id)}`,
+      { method: "DELETE" },
+    );
+    expect(removeGeneratedResponse.status).toBe(200);
+    const afterRemoval = await app.request(
+      "http://local.test/api/weeks/2026-10-19/shopping-list",
+    );
+    await expect(afterRemoval.json()).resolves.not.toEqual(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          items: expect.arrayContaining([expect.objectContaining({ id: generated.id })]),
+        }),
+      }),
+    );
+
     const manualResponse = await app.request(
       "http://local.test/api/weeks/2026-10-19/shopping-list",
       jsonRequest("POST", { label: "Servilletas", category: "other" }),

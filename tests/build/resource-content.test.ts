@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { prepareResourceContent } from "../../build/resourceContent";
+import rawResources from "../../content/resources/resources.json";
 
 const approvedResource = {
   id: "manual-intercambio-alimentos",
@@ -12,6 +13,23 @@ const approvedResource = {
 } as const;
 
 describe("production educational resource content", () => {
+  it("publishes the four supplied educational PDFs", () => {
+    const paths = [
+      "/resources/manual-intercambio-alimentos.pdf",
+      "/resources/planeadores-menu-actividad.pdf",
+      "/resources/guia-ejercicios-diabetes.pdf",
+      "/resources/prevencion-pie-diabetico.pdf",
+    ];
+
+    expect(prepareResourceContent(rawResources, paths)).toHaveLength(4);
+    expect(rawResources).toEqual(
+      expect.arrayContaining(
+        paths.map((downloadPath) =>
+          expect.objectContaining({ publicationStatus: "approved", downloadPath }),
+        ),
+      ),
+    );
+  });
   it("rejects_approved_metadata_when_the_local_pdf_does_not_exist", () => {
     expect(() => prepareResourceContent([approvedResource], [])).toThrow(
       /no existe en public\/resources/i,

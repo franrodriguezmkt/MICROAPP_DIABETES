@@ -8,6 +8,7 @@ import {
   type ShoppingCategory,
   type ShoppingListItem,
   type WeeklyPlan,
+  type IngredientUnit,
 } from "../../domain/planner/planner";
 import { getBrowserAuthClient, type AuthClient } from "./authClient";
 
@@ -29,12 +30,14 @@ export type ManualShoppingItemInput = {
   category: ShoppingCategory;
 };
 
-export type ShoppingItemPatch = Partial<
-  Pick<
-    Extract<ShoppingListItem, { source: "manual" }>,
-    "checked" | "label" | "quantity" | "unitLabel" | "category"
-  >
->;
+export type ShoppingItemPatch = {
+  checked?: boolean;
+  label?: string;
+  quantity?: number | null;
+  unit?: IngredientUnit;
+  unitLabel?: string;
+  category?: ShoppingCategory;
+};
 
 export interface PlannerClient {
   getMe(signal?: AbortSignal): Promise<{
@@ -73,7 +76,7 @@ export interface PlannerClient {
     input: ManualShoppingItemInput,
     signal?: AbortSignal,
   ): Promise<ShoppingListItem>;
-  deleteManualShoppingItem(
+  deleteShoppingItem(
     weekStart: string,
     itemId: string,
     signal?: AbortSignal,
@@ -240,7 +243,7 @@ export function createHttpPlannerClient(
       return data.item;
     },
 
-    async deleteManualShoppingItem(weekStart, itemId, signal) {
+    async deleteShoppingItem(weekStart, itemId, signal) {
       await request(
         `/api/weeks/${encodeURIComponent(weekStart)}/shopping-list/${encodeURIComponent(itemId)}`,
         z.object({ deleted: z.literal(true) }),

@@ -13,6 +13,34 @@ const catalog: IngredientCatalogEntry[] = [
   { ingredientId: "tomato", label: "Tomate", category: "produce" },
   { ingredientId: "plant-milk", label: "Leche vegetal", category: "dairy" },
   { ingredientId: "salt", label: "Sal", category: "pantry" },
+  {
+    ingredientId: "spinach",
+    label: "Espinaca",
+    category: "produce",
+    shoppingGroupId: "leafy-greens",
+    shoppingLabel: "Hojas verdes",
+  },
+  {
+    ingredientId: "mixed-greens",
+    label: "Hojas verdes mixtas",
+    category: "produce",
+    shoppingGroupId: "leafy-greens",
+    shoppingLabel: "Hojas verdes",
+  },
+  {
+    ingredientId: "olive-oil",
+    label: "Aceite de oliva",
+    category: "pantry",
+    shoppingGroupId: "cooking-oil",
+    shoppingLabel: "Aceite para cocinar",
+  },
+  {
+    ingredientId: "sesame-or-olive-oil",
+    label: "Aceite de sésamo o de oliva",
+    category: "pantry",
+    shoppingGroupId: "cooking-oil",
+    shoppingLabel: "Aceite para cocinar",
+  },
 ];
 
 function recipe(
@@ -114,51 +142,39 @@ describe("shopping-list consolidation", () => {
     });
 
     expect(items).toEqual([
-      {
+      expect.objectContaining({
         source: "generated",
-        id: "generated:tomato:g",
+        id: "generated:tomato:count",
         ingredientId: "tomato",
-        label: "Tomate",
-        quantity: 250,
-        unit: "g",
-        category: "produce",
-        checked: false,
-      },
-      {
-        source: "generated",
-        id: "generated:tomato:unit",
-        ingredientId: "tomato",
-        label: "Tomate",
         quantity: 0.5,
         unit: "unit",
-        category: "produce",
-        checked: false,
-      },
-      {
+      }),
+      expect.objectContaining({
         source: "generated",
-        id: "generated:plant-milk:cup",
+        id: "generated:tomato:mass",
+        ingredientId: "tomato",
+        quantity: 250,
+        unit: "g",
+      }),
+      expect.objectContaining({
+        source: "generated",
+        id: "generated:plant-milk:culinary-volume",
         ingredientId: "plant-milk",
-        label: "Leche vegetal",
         quantity: 0.75,
         unit: "cup",
-        category: "dairy",
-        checked: false,
-      },
-      {
+      }),
+      expect.objectContaining({
         source: "generated",
-        id: "generated:salt:to_taste",
+        id: "generated:salt:taste",
         ingredientId: "salt",
-        label: "Sal",
         quantity: null,
         unit: "to_taste",
-        category: "pantry",
-        checked: false,
-      },
+      }),
     ]);
   });
 
   it("uses stable keys and formats decimals for display without changing totals", () => {
-    expect(shoppingLineKey("tomato", "g")).toBe("generated:tomato:g");
+    expect(shoppingLineKey("tomato", "g")).toBe("generated:tomato:mass");
     expect(formatShoppingQuantity(2 / 3)).toBe("0,67");
 
     const items = buildShoppingList({
@@ -170,9 +186,79 @@ describe("shopping-list consolidation", () => {
       ingredientCatalog: catalog,
     });
 
-    expect(items.find((item) => item.id === "generated:tomato:g")).toMatchObject(
+    expect(items.find((item) => item.id === "generated:tomato:mass")).toMatchObject(
       { quantity: 50 },
     );
+  });
+
+  it("merges equivalent ingredients, compatible cooking measures and al gusto", () => {
+    const greenRecipe = recipe("greens", 2, [
+      {
+        ingredientId: "spinach",
+        displayName: "espinaca",
+        quantity: 1,
+        unit: "cup",
+        preparationNote: null,
+      },
+      {
+        ingredientId: "mixed-greens",
+        displayName: "hojas verdes mixtas",
+        quantity: 2,
+        unit: "cup",
+        preparationNote: null,
+      },
+      {
+        ingredientId: "spinach",
+        displayName: "espinaca",
+        quantity: null,
+        unit: "to_taste",
+        preparationNote: null,
+      },
+      {
+        ingredientId: "olive-oil",
+        displayName: "aceite de oliva",
+        quantity: 2,
+        unit: "tsp",
+        preparationNote: null,
+      },
+      {
+        ingredientId: "sesame-or-olive-oil",
+        displayName: "aceite de sésamo o de oliva",
+        quantity: 1,
+        unit: "tbsp",
+        preparationNote: null,
+      },
+    ]);
+    const items = buildShoppingList({
+      plan: {
+        ...plan,
+        items: [{ ...plan.items[0]!, recipeId: greenRecipe.id, servings: 2 }],
+      },
+      recipes: [greenRecipe],
+      ingredientCatalog: catalog,
+    });
+
+    expect(items).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: "generated:leafy-greens:culinary-volume",
+          ingredientId: "leafy-greens",
+          label: "Hojas verdes",
+          quantity: 3,
+          unit: "cup",
+          includesToTaste: true,
+        }),
+        expect.objectContaining({
+          id: "generated:cooking-oil:culinary-volume",
+          ingredientId: "cooking-oil",
+          label: "Aceite para cocinar",
+          quantity: 1.67,
+          unit: "tbsp",
+        }),
+      ]),
+    );
+    expect(items.filter((item) => item.label === "Hojas verdes")).toHaveLength(1);
+    expect(items.filter((item) => item.label === "Aceite para cocinar")).toHaveLength(1);
   });
 
   it("retains matching checkmarks and untouched manual lines after a plan change", () => {
@@ -188,13 +274,16 @@ describe("shopping-list consolidation", () => {
     const previousItems = [
       {
         source: "generated" as const,
-        id: "generated:tomato:g",
+        id: "generated:tomato:mass",
         ingredientId: "tomato",
         label: "Tomate",
         quantity: 999,
         unit: "g" as const,
         category: "produce" as const,
         checked: true,
+        customized: false,
+        hidden: false,
+        includesToTaste: false,
       },
       manualItem,
     ];
@@ -205,7 +294,7 @@ describe("shopping-list consolidation", () => {
       previousItems,
     });
 
-    expect(items.find((item) => item.id === "generated:tomato:g")).toMatchObject(
+    expect(items.find((item) => item.id === "generated:tomato:mass")).toMatchObject(
       { quantity: 100, checked: true },
     );
     expect(items.at(-1)).toEqual(manualItem);

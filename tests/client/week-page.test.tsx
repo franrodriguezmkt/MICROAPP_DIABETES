@@ -71,7 +71,7 @@ function createClient(overrides: Partial<PlannerClient> = {}): PlannerClient {
     getShoppingList: vi.fn().mockResolvedValue([]),
     patchShoppingItem: vi.fn(),
     addManualShoppingItem: vi.fn(),
-    deleteManualShoppingItem: vi.fn(),
+    deleteShoppingItem: vi.fn(),
     ...overrides,
   };
 }

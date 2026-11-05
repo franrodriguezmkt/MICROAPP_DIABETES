@@ -12,14 +12,30 @@ export const shoppingCategories = [
 
 export const shoppingCategorySchema = z.enum(shoppingCategories);
 
-export const ingredientCatalogEntrySchema = z.object({
-  ingredientId: z
-    .string()
-    .min(1)
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  label: z.string().trim().min(2),
-  category: shoppingCategorySchema,
-});
+export const ingredientCatalogEntrySchema = z
+  .object({
+    ingredientId: z
+      .string()
+      .min(1)
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    label: z.string().trim().min(2),
+    category: shoppingCategorySchema,
+    shoppingGroupId: z
+      .string()
+      .min(1)
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+      .optional(),
+    shoppingLabel: z.string().trim().min(2).optional(),
+  })
+  .superRefine((entry, context) => {
+    if (Boolean(entry.shoppingGroupId) !== Boolean(entry.shoppingLabel)) {
+      context.addIssue({
+        code: "custom",
+        message: "El grupo de compra y su etiqueta deben definirse juntos.",
+        path: [entry.shoppingGroupId ? "shoppingLabel" : "shoppingGroupId"],
+      });
+    }
+  });
 
 export const ingredientCatalogSchema = z
   .array(ingredientCatalogEntrySchema)

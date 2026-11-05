@@ -14,7 +14,7 @@ async function expectNoHorizontalOverflow(page: Page) {
 async function activatePreviewAccess(page: Page, email = previewBuyer) {
   await page.goto("/activar");
   await page.getByRole("textbox", { name: /correo usado en hotmart/i }).fill(email);
-  await page.getByRole("button", { name: /enviar código/i }).click();
+  await page.getByRole("button", { name: /enviar acceso/i }).click();
   await expect(page).toHaveURL(/\/verificar$/);
   await page.getByRole("textbox", { name: /código de seis dígitos/i }).fill(previewOtp);
   await page.getByRole("button", { name: /confirmar acceso/i }).click();

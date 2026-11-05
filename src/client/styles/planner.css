@@ -112,6 +112,16 @@
   background: white;
 }
 
+.planner-select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  background: white;
+  font: inherit;
+}
+
 .preferences-form__fieldset {
   min-width: 0;
   margin: 0;
@@ -466,30 +476,46 @@
   text-decoration: line-through;
 }
 
-.shopping-item__delete {
+.shopping-item__action {
+  min-width: 2.75rem;
   padding-inline: var(--space-2);
   border: 0;
-  color: var(--color-accent-strong);
+  color: var(--color-primary);
   background: transparent;
   font-weight: 750;
   cursor: pointer;
 }
 
+.shopping-item__action--danger {
+  color: var(--color-accent-strong);
+}
+
 .shopping-item__actions {
   display: flex;
   flex: 0 0 auto;
+  gap: var(--space-1);
 }
 
 .shopping-item__edit {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(11rem, 2fr) minmax(7rem, 0.8fr) minmax(9rem, 1fr) auto;
   width: 100%;
   align-items: end;
   gap: var(--space-2);
 }
 
-.shopping-item__edit label {
+.shopping-item__field {
+  display: grid;
+  gap: 0.25rem;
   min-width: 0;
-  flex: 1 1 auto;
+  color: var(--color-primary-strong);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.shopping-item__edit-actions {
+  display: flex;
+  gap: var(--space-2);
 }
 
 .visually-hidden {
@@ -520,5 +546,33 @@
   .manual-shopping-form {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .shopping-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .shopping-item__check {
+    flex-basis: 100%;
+  }
+
+  .shopping-item__actions {
+    width: 100%;
+    justify-content: flex-end;
+    padding-left: 2rem;
+  }
+
+  .shopping-item__edit {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shopping-item__field--name,
+  .shopping-item__edit-actions {
+    grid-column: 1 / -1;
+  }
+
+  .shopping-item__edit-actions > * {
+    flex: 1 1 0;
   }
 }

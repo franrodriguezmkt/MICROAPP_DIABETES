@@ -9,6 +9,7 @@ import {
   plannerClient,
   type ManualShoppingItemInput,
   type PlannerClient,
+  type ShoppingItemPatch,
 } from "../../lib/plannerClient";
 import { mondayFor, weekStartFromSearch } from "../../lib/weekStart";
 import { ManualShoppingItemForm } from "./ManualShoppingItemForm";
@@ -113,12 +114,10 @@ export function ShoppingPage({
     }
   }
 
-  async function deleteManual(
-    item: Extract<ShoppingListItem, { source: "manual" }>,
-  ) {
+  async function deleteItem(item: ShoppingListItem) {
     setMessage("");
     try {
-      await client.deleteManualShoppingItem(
+      await client.deleteShoppingItem(
         weekStart,
         item.id,
         new AbortController().signal,
@@ -127,20 +126,17 @@ export function ShoppingPage({
         current.filter((candidate) => candidate.id !== item.id),
       );
     } catch {
-      setMessage("No pudimos eliminar el producto. Inténtalo de nuevo.");
+      setMessage("No pudimos quitar el producto. Inténtalo de nuevo.");
     }
   }
 
-  async function editManual(
-    item: Extract<ShoppingListItem, { source: "manual" }>,
-    label: string,
-  ) {
+  async function editItem(item: ShoppingListItem, patch: ShoppingItemPatch) {
     setMessage("");
     try {
       const saved = await client.patchShoppingItem(
         weekStart,
         item.id,
-        { label },
+        patch,
         new AbortController().signal,
       );
       setItems((current) =>
@@ -174,7 +170,7 @@ export function ShoppingPage({
       <header className="planner-hero">
         <p className="eyebrow">Sale de tu menú semanal</p>
         <h1 id="shopping-title">Lista de compras</h1>
-        <p>Marca lo que ya tienes y agrega cualquier producto extra.</p>
+        <p>Edita cantidades aproximadas, quita lo que no necesitas y agrega extras.</p>
       </header>
 
       <ManualShoppingItemForm onAdd={addManual} busy={saving} />
@@ -199,8 +195,8 @@ export function ShoppingPage({
                 title={title}
                 items={groupItems}
                 onToggle={(item) => void toggle(item)}
-                onEdit={(item, label) => void editManual(item, label)}
-                onDelete={(item) => void deleteManual(item)}
+                onEdit={(item, patch) => void editItem(item, patch)}
+                onDelete={(item) => void deleteItem(item)}
               />
             ) : null;
           })}

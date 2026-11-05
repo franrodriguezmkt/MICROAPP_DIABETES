@@ -6,6 +6,7 @@ import {
   PlannerServiceError,
 } from "../application/planner/PlannerService";
 import { plannerPreferencesSchema } from "../domain/planner/planner";
+import { ingredientUnits } from "../domain/recipes/recipe";
 import type { WorkerEnv } from "./authMiddleware";
 
 export type PlannerRouteDependencies = {
@@ -29,7 +30,8 @@ const shoppingPatchSchema = z
   .object({
     checked: z.boolean().optional(),
     label: z.string().trim().min(1).optional(),
-    quantity: z.number().positive().optional(),
+    quantity: z.number().positive().nullable().optional(),
+    unit: z.enum(ingredientUnits).optional(),
     unitLabel: z.string().trim().min(1).optional(),
     category: z
       .enum([
@@ -250,7 +252,7 @@ export function createPlannerRoutes({
   app.delete("/api/weeks/:weekStart/shopping-list/:itemId", (context) =>
     respond(context, async () => {
       const request = requestPlanner(context)!;
-      await request.plannerService.deleteManualShoppingItem(
+      await request.plannerService.deleteShoppingItem(
         request.userId,
         context.req.param("weekStart"),
         context.req.param("itemId"),

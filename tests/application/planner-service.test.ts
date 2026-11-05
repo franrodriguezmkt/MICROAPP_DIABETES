@@ -263,6 +263,43 @@ describe("PlannerService", () => {
     ).toBe(true);
   });
 
+  it("persists edits and removals of generated shopping lines for the week", async () => {
+    await service.updatePreferences("preview-user", preferences);
+    await service.getOrGenerateWeek("preview-user", "2026-10-19");
+    const initial = await service.getShoppingList("preview-user", "2026-10-19");
+    const generated = initial.find((item) => item.source === "generated")!;
+
+    const edited = await service.patchShoppingItem(
+      "preview-user",
+      "2026-10-19",
+      generated.id,
+      { label: "Cantidad elegida", quantity: 9 },
+    );
+    expect(edited).toMatchObject({
+      label: "Cantidad elegida",
+      quantity: 9,
+      customized: true,
+    });
+
+    await service.deleteShoppingItem(
+      "preview-user",
+      "2026-10-19",
+      generated.id,
+    );
+    expect(
+      await service.getShoppingList("preview-user", "2026-10-19"),
+    ).not.toContainEqual(expect.objectContaining({ id: generated.id }));
+
+    await service.updatePreferences(
+      "preview-user",
+      { ...preferences, people: 3 },
+      { confirmed: true },
+    );
+    expect(
+      await service.getShoppingList("preview-user", "2026-10-19"),
+    ).not.toContainEqual(expect.objectContaining({ id: generated.id }));
+  });
+
   it("rejects a replacement from the wrong meal category", async () => {
     await service.updatePreferences("preview-user", preferences);
     const week = await service.getOrGenerateWeek(
