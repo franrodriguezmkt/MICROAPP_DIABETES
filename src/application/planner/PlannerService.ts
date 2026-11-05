@@ -6,6 +6,7 @@ import {
 } from "../../domain/planner/generateWeeklyPlan";
 import {
   plannerPreferencesSchema,
+  savedWeekTitleSchema,
   shoppingListItemSchema,
   type PlannerPreferences,
   type IngredientUnit,
@@ -74,6 +75,53 @@ export class PlannerService {
 
   async getPreferences(userId: string) {
     return this.dependencies.repository.getPreferences(userId);
+  }
+
+  async listSavedWeeks(userId: string) {
+    return this.dependencies.repository.listSavedWeeks(userId);
+  }
+
+  async saveWeekToLibrary(userId: string, weekStart: string, title: string) {
+    await this.requireWeek(userId, weekStart);
+    const saved = await this.dependencies.repository.saveWeekToLibrary(
+      userId,
+      weekStart,
+      savedWeekTitleSchema.parse(title),
+    );
+    if (!saved) {
+      throw new PlannerServiceError(
+        "WEEK_NOT_FOUND",
+        "Primero organiza esta semana.",
+        404,
+      );
+    }
+    return saved;
+  }
+
+  async renameSavedWeek(userId: string, weekStart: string, title: string) {
+    const saved = await this.dependencies.repository.renameSavedWeek(
+      userId,
+      weekStart,
+      savedWeekTitleSchema.parse(title),
+    );
+    if (!saved) {
+      throw new PlannerServiceError(
+        "SAVED_WEEK_NOT_FOUND",
+        "No encontramos esa semana guardada.",
+        404,
+      );
+    }
+    return saved;
+  }
+
+  async deleteSavedWeek(userId: string, weekStart: string) {
+    if (!(await this.dependencies.repository.deleteSavedWeek(userId, weekStart))) {
+      throw new PlannerServiceError(
+        "SAVED_WEEK_NOT_FOUND",
+        "No encontramos esa semana guardada.",
+        404,
+      );
+    }
   }
 
   async updatePreferences(

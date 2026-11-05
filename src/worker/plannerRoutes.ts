@@ -5,7 +5,10 @@ import {
   PlannerService,
   PlannerServiceError,
 } from "../application/planner/PlannerService";
-import { plannerPreferencesSchema } from "../domain/planner/planner";
+import {
+  plannerPreferencesSchema,
+  savedWeekTitleSchema,
+} from "../domain/planner/planner";
 import { ingredientUnits } from "../domain/recipes/recipe";
 import type { WorkerEnv } from "./authMiddleware";
 
@@ -26,6 +29,7 @@ const preferencesRequestSchema = z.object({
   confirmed: z.boolean().optional(),
 });
 const replacementSchema = z.object({ recipeId: z.string().trim().min(1) });
+const savedWeekRequestSchema = z.object({ title: savedWeekTitleSchema });
 const shoppingPatchSchema = z
   .object({
     checked: z.boolean().optional(),
@@ -75,6 +79,46 @@ async function respond(
 ) {
   try {
     return context.json({ data: await action() });
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return context.json(
+        {
+          code: "INVALID_REQUEST",
+          message: "Revisa los datos enviados.",
+          requestId: requestId(),
+        },
+        400,
+      );
+    }
+    if (error instanceof PlannerServiceError) {
+      return context.json(
+        {
+          code: error.code,
+          message: error.message,
+          requestId: requestId(),
+        },
+        error.status as 400,
+      );
+    }
+    console.error("Planner route failed", error);
+    return context.json(
+      {
+        code: "INTERNAL_ERROR",
+        message: "No pudimos completar la solicitud.",
+        requestId: requestId(),
+      },
+      500,
+    );
+  }
+}
+
+async function respondEmpty(
+  context: Context<WorkerEnv>,
+  action: () => Promise<void>,
+) {
+  try {
+    await action();
+    return context.body(null, 204);
   } catch (error) {
     if (error instanceof ZodError) {
       return context.json(
@@ -176,6 +220,53 @@ export function createPlannerRoutes({
           context.req.param("weekStart"),
         ),
       };
+    }),
+  );
+
+  app.get("/api/saved-weeks", (context) =>
+    respond(context, async () => {
+      const request = requestPlanner(context)!;
+      return {
+        weeks: await request.plannerService.listSavedWeeks(request.userId),
+      };
+    }),
+  );
+
+  app.post("/api/weeks/:weekStart/save", (context) =>
+    respond(context, async () => {
+      const request = requestPlanner(context)!;
+      const body = savedWeekRequestSchema.parse(await parseJson(context));
+      return {
+        week: await request.plannerService.saveWeekToLibrary(
+          request.userId,
+          context.req.param("weekStart"),
+          body.title,
+        ),
+      };
+    }),
+  );
+
+  app.patch("/api/saved-weeks/:weekStart", (context) =>
+    respond(context, async () => {
+      const request = requestPlanner(context)!;
+      const body = savedWeekRequestSchema.parse(await parseJson(context));
+      return {
+        week: await request.plannerService.renameSavedWeek(
+          request.userId,
+          context.req.param("weekStart"),
+          body.title,
+        ),
+      };
+    }),
+  );
+
+  app.delete("/api/saved-weeks/:weekStart", (context) =>
+    respondEmpty(context, async () => {
+      const request = requestPlanner(context)!;
+      await request.plannerService.deleteSavedWeek(
+        request.userId,
+        context.req.param("weekStart"),
+      );
     }),
   );
 

@@ -65,6 +65,10 @@ function createClient(overrides: Partial<PlannerClient> = {}): PlannerClient {
       checked: false,
     }),
     deleteShoppingItem: vi.fn().mockResolvedValue(undefined),
+    listSavedWeeks: vi.fn().mockResolvedValue([]),
+    saveWeekToLibrary: vi.fn(),
+    renameSavedWeek: vi.fn(),
+    deleteSavedWeek: vi.fn(),
     ...overrides,
   };
 }

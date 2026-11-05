@@ -72,6 +72,10 @@ function createClient(overrides: Partial<PlannerClient> = {}): PlannerClient {
     patchShoppingItem: vi.fn(),
     addManualShoppingItem: vi.fn(),
     deleteShoppingItem: vi.fn(),
+    listSavedWeeks: vi.fn().mockResolvedValue([]),
+    saveWeekToLibrary: vi.fn(),
+    renameSavedWeek: vi.fn(),
+    deleteSavedWeek: vi.fn(),
     ...overrides,
   };
 }

@@ -2,9 +2,11 @@ import { z } from "zod";
 
 import {
   plannerPreferencesSchema,
+  savedWeekSummarySchema,
   shoppingListItemSchema,
   weeklyPlanSchema,
   type PlannerPreferences,
+  type SavedWeekSummary,
   type ShoppingCategory,
   type ShoppingListItem,
   type WeeklyPlan,
@@ -81,6 +83,18 @@ export interface PlannerClient {
     itemId: string,
     signal?: AbortSignal,
   ): Promise<void>;
+  listSavedWeeks(signal?: AbortSignal): Promise<SavedWeekSummary[]>;
+  saveWeekToLibrary(
+    weekStart: string,
+    title: string,
+    signal?: AbortSignal,
+  ): Promise<SavedWeekSummary>;
+  renameSavedWeek(
+    weekStart: string,
+    title: string,
+    signal?: AbortSignal,
+  ): Promise<SavedWeekSummary>;
+  deleteSavedWeek(weekStart: string, signal?: AbortSignal): Promise<void>;
 }
 
 export class PlannerClientError extends Error {
@@ -129,9 +143,8 @@ export function createHttpPlannerClient(
         await auth.signOut().catch(() => undefined);
       }
 
-    const payload: unknown = await response.json();
-
     if (!response.ok) {
+      const payload: unknown = await response.json();
       const parsedError = errorSchema.safeParse(payload);
       if (parsedError.success) {
         throw new PlannerClientError(
@@ -148,6 +161,10 @@ export function createHttpPlannerClient(
         response.status,
       );
     }
+
+      if (response.status === 204) return schema.parse(undefined);
+
+      const payload: unknown = await response.json();
 
       return z.object({ data: schema }).parse(payload).data;
     }
@@ -247,6 +264,49 @@ export function createHttpPlannerClient(
       await request(
         `/api/weeks/${encodeURIComponent(weekStart)}/shopping-list/${encodeURIComponent(itemId)}`,
         z.object({ deleted: z.literal(true) }),
+        { method: "DELETE", signal },
+      );
+    },
+
+    async listSavedWeeks(signal) {
+      const data = await request(
+        "/api/saved-weeks",
+        z.object({ weeks: z.array(savedWeekSummarySchema) }),
+        { signal },
+      );
+      return data.weeks;
+    },
+
+    async saveWeekToLibrary(weekStart, title, signal) {
+      const data = await request(
+        `/api/weeks/${encodeURIComponent(weekStart)}/save`,
+        z.object({ week: savedWeekSummarySchema }),
+        {
+          method: "POST",
+          signal,
+          body: JSON.stringify({ title }),
+        },
+      );
+      return data.week;
+    },
+
+    async renameSavedWeek(weekStart, title, signal) {
+      const data = await request(
+        `/api/saved-weeks/${encodeURIComponent(weekStart)}`,
+        z.object({ week: savedWeekSummarySchema }),
+        {
+          method: "PATCH",
+          signal,
+          body: JSON.stringify({ title }),
+        },
+      );
+      return data.week;
+    },
+
+    async deleteSavedWeek(weekStart, signal) {
+      await request(
+        `/api/saved-weeks/${encodeURIComponent(weekStart)}`,
+        z.undefined(),
         { method: "DELETE", signal },
       );
     },

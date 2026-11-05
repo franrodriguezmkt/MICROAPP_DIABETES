@@ -187,6 +187,43 @@ describe("preview planner routes", () => {
     await expect(deleteResponse.json()).resolves.toEqual({
       data: { deleted: true },
     });
+
+    const saveWeekResponse = await app.request(
+      "http://local.test/api/weeks/2026-10-19/save",
+      jsonRequest("POST", { title: "Semana familiar" }),
+    );
+    expect(saveWeekResponse.status).toBe(200);
+    await expect(saveWeekResponse.json()).resolves.toMatchObject({
+      data: { week: { weekStart: "2026-10-19", title: "Semana familiar" } },
+    });
+
+    const savedWeeksResponse = await app.request(
+      "http://local.test/api/saved-weeks",
+    );
+    await expect(savedWeeksResponse.json()).resolves.toMatchObject({
+      data: { weeks: [{ title: "Semana familiar" }] },
+    });
+
+    const renameWeekResponse = await app.request(
+      "http://local.test/api/saved-weeks/2026-10-19",
+      jsonRequest("PATCH", { title: "Semana renovada" }),
+    );
+    await expect(renameWeekResponse.json()).resolves.toMatchObject({
+      data: { week: { title: "Semana renovada" } },
+    });
+
+    const deleteWeekResponse = await app.request(
+      "http://local.test/api/saved-weeks/2026-10-19",
+      { method: "DELETE" },
+    );
+    expect(deleteWeekResponse.status).toBe(204);
+
+    const afterDeleteResponse = await app.request(
+      "http://local.test/api/saved-weeks",
+    );
+    await expect(afterDeleteResponse.json()).resolves.toEqual({
+      data: { weeks: [] },
+    });
   });
 
   it("returns stable validation errors with a request id", async () => {
@@ -224,6 +261,10 @@ describe("preview planner routes", () => {
       ["PATCH", "/api/weeks/2026-10-19/shopping-list/item"],
       ["POST", "/api/weeks/2026-10-19/shopping-list"],
       ["DELETE", "/api/weeks/2026-10-19/shopping-list/item"],
+      ["GET", "/api/saved-weeks"],
+      ["POST", "/api/weeks/2026-10-19/save"],
+      ["PATCH", "/api/saved-weeks/2026-10-19"],
+      ["DELETE", "/api/saved-weeks/2026-10-19"],
     ];
 
     for (const [method, path] of routes) {

@@ -318,4 +318,47 @@ describe("PlannerService", () => {
       ),
     ).rejects.toMatchObject({ code: "INVALID_REPLACEMENT" });
   });
+
+  it("saves, lists, renames and deletes a private week library entry", async () => {
+    await service.updatePreferences("preview-user", preferences);
+    await service.getOrGenerateWeek("preview-user", "2026-10-19");
+
+    await expect(service.listSavedWeeks("preview-user")).resolves.toEqual([]);
+    await expect(
+      service.saveWeekToLibrary(
+        "preview-user",
+        "2026-10-19",
+        "  Semana familiar  ",
+      ),
+    ).resolves.toMatchObject({ title: "Semana familiar" });
+    await expect(service.listSavedWeeks("preview-user")).resolves.toHaveLength(1);
+    await expect(
+      service.renameSavedWeek(
+        "preview-user",
+        "2026-10-19",
+        "Semana renovada",
+      ),
+    ).resolves.toMatchObject({ title: "Semana renovada" });
+    await expect(
+      service.renameSavedWeek(
+        "another-user",
+        "2026-10-19",
+        "No permitida",
+      ),
+    ).rejects.toMatchObject({ code: "SAVED_WEEK_NOT_FOUND", status: 404 });
+    await expect(
+      service.deleteSavedWeek("preview-user", "2026-10-19"),
+    ).resolves.toBeUndefined();
+    await expect(service.listSavedWeeks("preview-user")).resolves.toEqual([]);
+  });
+
+  it("does not save a week that has not been created", async () => {
+    await expect(
+      service.saveWeekToLibrary(
+        "preview-user",
+        "2026-10-19",
+        "Semana inexistente",
+      ),
+    ).rejects.toMatchObject({ code: "WEEK_NOT_FOUND", status: 404 });
+  });
 });
