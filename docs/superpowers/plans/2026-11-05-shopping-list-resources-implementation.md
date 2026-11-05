@@ -35,5 +35,5 @@
 - [x] Ejecutar suite completa, typecheck y build.
 - [x] Ejecutar E2E móvil de Semana → Compras y acceso a Recursos.
 - [x] Aplicar la migración aditiva de Supabase sin reset.
-- [ ] Desplegar Cloudflare, verificar producción y enviar la rama al remoto.
+- [x] Desplegar Cloudflare, verificar producción y enviar la rama al remoto.
 
