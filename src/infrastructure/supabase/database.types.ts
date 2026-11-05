@@ -65,6 +65,8 @@ export type Database = {
         people: number;
         generator_version: string;
         notices: Json;
+        title: string | null;
+        saved_at: string | null;
         created_at: string;
         updated_at: string;
       }>;
@@ -115,6 +117,22 @@ export type Database = {
       list_planner_week_snapshots: {
         Args: { p_user_id: string };
         Returns: Json[];
+      };
+      list_saved_planner_weeks: {
+        Args: { p_user_id: string };
+        Returns: Json;
+      };
+      save_planner_week_to_library: {
+        Args: { p_user_id: string; p_week_start: string; p_title: string };
+        Returns: Json | null;
+      };
+      rename_saved_planner_week: {
+        Args: { p_user_id: string; p_week_start: string; p_title: string };
+        Returns: Json | null;
+      };
+      delete_saved_planner_week: {
+        Args: { p_user_id: string; p_week_start: string };
+        Returns: boolean;
       };
       claim_active_entitlement: {
         Args: { p_email: string };

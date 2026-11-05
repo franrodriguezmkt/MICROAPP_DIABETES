@@ -72,6 +72,10 @@ const secondWeek = {
 function createRpcFake() {
   const preferencesByUser = new Map<string, Record<string, unknown>>();
   const weeksByUser = new Map<string, Map<string, Json>>();
+  const savedByUser = new Map<
+    string,
+    Map<string, { title: string; savedAt: string }>
+  >();
 
   const client = {
     from(table: string) {
@@ -120,6 +124,72 @@ function createRpcFake() {
           data: [...(weeksByUser.get(userId)?.values() ?? [])],
           error: null,
         };
+      }
+      if (name === "list_saved_planner_weeks") {
+        const saved = savedByUser.get(userId) ?? new Map();
+        const weeks = weeksByUser.get(userId) ?? new Map();
+        return {
+          data: [...saved.entries()].map(([weekStart, metadata]) => {
+            const stored = weeks.get(weekStart) as {
+              plan: typeof firstWeek.plan;
+            };
+            return {
+              weekStart,
+              title: metadata.title,
+              savedAt: metadata.savedAt,
+              people: stored.plan.people,
+              mealCount: stored.plan.items.length,
+              previewRecipeId: stored.plan.items[0]?.recipeId ?? null,
+            };
+          }),
+          error: null,
+        };
+      }
+      if (name === "save_planner_week_to_library") {
+        const weekStart = String(args.p_week_start);
+        const stored = weeksByUser.get(userId)?.get(weekStart);
+        if (!stored) return { data: null, error: null };
+        const saved = savedByUser.get(userId) ?? new Map();
+        const current = saved.get(weekStart);
+        saved.set(weekStart, {
+          title: String(args.p_title),
+          savedAt: current?.savedAt ?? "2026-11-05T20:00:00.000Z",
+        });
+        savedByUser.set(userId, saved);
+        return {
+          data: {
+            weekStart,
+            title: String(args.p_title),
+            savedAt: saved.get(weekStart)!.savedAt,
+            people: firstWeek.plan.people,
+            mealCount: firstWeek.plan.items.length,
+            previewRecipeId: firstWeek.plan.items[0]!.recipeId,
+          },
+          error: null,
+        };
+      }
+      if (name === "rename_saved_planner_week") {
+        const weekStart = String(args.p_week_start);
+        const saved = savedByUser.get(userId)?.get(weekStart);
+        if (!saved) return { data: null, error: null };
+        saved.title = String(args.p_title);
+        return {
+          data: {
+            weekStart,
+            title: saved.title,
+            savedAt: saved.savedAt,
+            people: firstWeek.plan.people,
+            mealCount: firstWeek.plan.items.length,
+            previewRecipeId: firstWeek.plan.items[0]!.recipeId,
+          },
+          error: null,
+        };
+      }
+      if (name === "delete_saved_planner_week") {
+        const weekStart = String(args.p_week_start);
+        const deleted = savedByUser.get(userId)?.delete(weekStart) ?? false;
+        if (deleted) weeksByUser.get(userId)?.delete(weekStart);
+        return { data: deleted, error: null };
       }
       throw new Error(`Unexpected RPC ${name}`);
     },
@@ -170,6 +240,69 @@ describe.each(repositoryFactories)("%s planner repository contract", (_name, cre
     const repository = create();
     await repository.saveWeek("user-one", firstWeek);
     await expect(repository.getWeek("user-two", "2026-10-19")).resolves.toBeNull();
+  });
+
+  it("lists only intentionally saved weeks and preserves their metadata on snapshot updates", async () => {
+    const repository = create();
+    await repository.saveWeek("user-one", firstWeek);
+    await expect(repository.listSavedWeeks("user-one")).resolves.toEqual([]);
+
+    const saved = await repository.saveWeekToLibrary(
+      "user-one",
+      "2026-10-19",
+      "Semana familiar",
+    );
+    expect(saved).toMatchObject({
+      weekStart: "2026-10-19",
+      title: "Semana familiar",
+      people: 2,
+      mealCount: 1,
+      previewRecipeId: "oats-breakfast",
+    });
+
+    await repository.saveWeek("user-one", {
+      ...firstWeek,
+      shoppingItems: firstWeek.shoppingItems.map((item) => ({
+        ...item,
+        checked: false,
+      })),
+    });
+
+    await expect(repository.listSavedWeeks("user-one")).resolves.toEqual([
+      saved,
+    ]);
+  });
+
+  it("renames and deletes only the owner's saved week", async () => {
+    const repository = create();
+    await repository.saveWeek("user-one", firstWeek);
+    await repository.saveWeekToLibrary(
+      "user-one",
+      "2026-10-19",
+      "Semana original",
+    );
+
+    await expect(
+      repository.renameSavedWeek(
+        "user-one",
+        "2026-10-19",
+        "Semana nueva",
+      ),
+    ).resolves.toMatchObject({ title: "Semana nueva" });
+    await expect(
+      repository.renameSavedWeek(
+        "user-two",
+        "2026-10-19",
+        "No permitida",
+      ),
+    ).resolves.toBeNull();
+    await expect(
+      repository.deleteSavedWeek("user-two", "2026-10-19"),
+    ).resolves.toBe(false);
+    await expect(
+      repository.deleteSavedWeek("user-one", "2026-10-19"),
+    ).resolves.toBe(true);
+    await expect(repository.getWeek("user-one", "2026-10-19")).resolves.toBeNull();
   });
 });
 

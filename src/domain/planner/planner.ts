@@ -68,6 +68,17 @@ export const weeklyPlanSchema = z.object({
   notices: z.array(z.string().trim().min(1)),
 });
 
+export const savedWeekTitleSchema = z.string().trim().min(1).max(60);
+
+export const savedWeekSummarySchema = z.object({
+  weekStart: mondayDateSchema,
+  title: savedWeekTitleSchema,
+  savedAt: z.string().datetime({ offset: true }),
+  people: z.number().int().min(1).max(12),
+  mealCount: z.number().int().min(0),
+  previewRecipeId: identifierSchema.nullable(),
+});
+
 const shoppingItemBaseSchema = z.object({
   id: z.string().trim().min(1),
   label: z.string().trim().min(1),
@@ -113,5 +124,6 @@ export type PlannedMealType = (typeof plannedMealTypes)[number];
 export type PlannerPreferences = z.infer<typeof plannerPreferencesSchema>;
 export type WeeklyPlanItem = z.infer<typeof weeklyPlanItemSchema>;
 export type WeeklyPlan = z.infer<typeof weeklyPlanSchema>;
+export type SavedWeekSummary = z.infer<typeof savedWeekSummarySchema>;
 export type ShoppingListItem = z.infer<typeof shoppingListItemSchema>;
 export type { IngredientUnit, ShoppingCategory };

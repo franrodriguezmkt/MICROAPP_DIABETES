@@ -7,6 +7,8 @@ import type {
 } from "../../application/planner/PlannerRepository";
 import {
   plannerPreferencesSchema,
+  savedWeekSummarySchema,
+  savedWeekTitleSchema,
   shoppingListItemSchema,
   weeklyPlanSchema,
   type PlannerPreferences,
@@ -90,5 +92,49 @@ export class SupabasePlannerRepository implements PlannerRepository {
       p_shopping_items: parsed.shoppingItems as unknown as Json,
     });
     if (error) throw databaseError("save planner week", error);
+  }
+
+  async listSavedWeeks(userId: string) {
+    const { data, error } = await this.client.rpc(
+      "list_saved_planner_weeks",
+      { p_user_id: userId },
+    );
+    if (error) throw databaseError("list saved planner weeks", error);
+    return z.array(savedWeekSummarySchema).parse(data ?? []);
+  }
+
+  async saveWeekToLibrary(userId: string, weekStart: string, title: string) {
+    const { data, error } = await this.client.rpc(
+      "save_planner_week_to_library",
+      {
+        p_user_id: userId,
+        p_week_start: weekStart,
+        p_title: savedWeekTitleSchema.parse(title),
+      },
+    );
+    if (error) throw databaseError("save planner week to library", error);
+    return data === null ? null : savedWeekSummarySchema.parse(data);
+  }
+
+  async renameSavedWeek(userId: string, weekStart: string, title: string) {
+    const { data, error } = await this.client.rpc(
+      "rename_saved_planner_week",
+      {
+        p_user_id: userId,
+        p_week_start: weekStart,
+        p_title: savedWeekTitleSchema.parse(title),
+      },
+    );
+    if (error) throw databaseError("rename saved planner week", error);
+    return data === null ? null : savedWeekSummarySchema.parse(data);
+  }
+
+  async deleteSavedWeek(userId: string, weekStart: string) {
+    const { data, error } = await this.client.rpc(
+      "delete_saved_planner_week",
+      { p_user_id: userId, p_week_start: weekStart },
+    );
+    if (error) throw databaseError("delete saved planner week", error);
+    return data;
   }
 }
