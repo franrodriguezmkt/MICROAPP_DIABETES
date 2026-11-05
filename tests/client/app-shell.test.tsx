@@ -19,11 +19,12 @@ function renderShell(path = "/recetas") {
 
 describe("app shell", () => {
   it("uses the supplied transparent brand logo in the application header", () => {
-    renderShell();
+    const { container } = renderShell();
 
-    const logo = screen.getByRole("img", {
-      name: "Mi Semana de Recetas",
-    });
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    const logo = container.querySelector("img.brand-logo");
+    expect(logo).not.toBeNull();
+    expect(logo).toHaveAttribute("alt", "");
     expect(logo).toHaveAttribute(
       "src",
       "/brand/mi-semana-de-recetas-logo.png",

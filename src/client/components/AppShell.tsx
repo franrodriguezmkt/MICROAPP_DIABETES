@@ -28,7 +28,7 @@ export function AppShell() {
           <img
             className="brand-logo"
             src="/brand/mi-semana-de-recetas-logo.png"
-            alt="Mi Semana de Recetas"
+            alt=""
             width="192"
             height="192"
           />
