@@ -49,5 +49,5 @@ if (leakedSecretName || leakedSecretValue) {
 }
 
 console.log(
-  `Bundle verificado: ${draftSlugs.length} recetas no aprobadas excluidas y secretos del servidor ausentes.`,
+  `Bundle verificado: ${recipes.length - draftSlugs.length} recetas publicadas, ${draftSlugs.length} no aprobadas excluidas y secretos del servidor ausentes.`,
 );

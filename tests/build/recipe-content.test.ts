@@ -20,17 +20,17 @@ describe("production recipe content", () => {
   });
 
   it("returns only approved recipes for a production bundle", () => {
-    const approvedRecipe = {
+    const draftRecipe = {
       ...structuredClone(rawRecipes[0]),
-      id: "approved-recipe",
-      slug: "approved-recipe",
-      publicationStatus: "approved" as const,
+      id: "draft-recipe",
+      slug: "draft-recipe",
+      publicationStatus: "draft" as const,
     };
 
     expect(
-      prepareRecipeContent([rawRecipes[0], approvedRecipe], "production"),
-    ).toEqual([approvedRecipe]);
-    expect(prepareRecipeContent(rawRecipes, "production")).toEqual([]);
+      prepareRecipeContent([rawRecipes[0], draftRecipe], "production"),
+    ).toEqual([rawRecipes[0]]);
+    expect(prepareRecipeContent(rawRecipes, "production")).toHaveLength(45);
   });
 
   it("keeps drafts available outside production for editorial preview", () => {
