@@ -159,6 +159,23 @@
   font-weight: 650;
 }
 
+.ingredient-disclosure {
+  width: 100%;
+  margin-top: var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary-strong);
+  background: white;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.ingredient-disclosure:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
 .planner-error {
   margin: 0;
   padding: var(--space-3);

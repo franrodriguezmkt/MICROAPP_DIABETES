@@ -52,6 +52,7 @@ export function PreferencesForm({
     initialPreferences.excludedIngredientIds,
   );
   const [search, setSearch] = useState("");
+  const [showAllIngredients, setShowAllIngredients] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const visibleIngredients = useMemo(() => {
     const query = normalize(search.trim());
@@ -59,6 +60,27 @@ export function PreferencesForm({
       (ingredient) => !query || normalize(ingredient.label).includes(query),
     );
   }, [ingredientCatalog, search]);
+  const listedIngredients = useMemo(() => {
+    if (search.trim() || showAllIngredients) return visibleIngredients;
+
+    const initial = visibleIngredients.slice(0, 24);
+    const initialIds = new Set(
+      initial.map((ingredient) => ingredient.ingredientId),
+    );
+    const selectedBeyondInitial = ingredientCatalog.filter(
+      (ingredient) =>
+        excludedIngredientIds.includes(ingredient.ingredientId) &&
+        !initialIds.has(ingredient.ingredientId),
+    );
+
+    return [...initial, ...selectedBeyondInitial];
+  }, [
+    excludedIngredientIds,
+    ingredientCatalog,
+    search,
+    showAllIngredients,
+    visibleIngredients,
+  ]);
 
   function toggleMeal(meal: PlannedMealType) {
     setEnabledMeals((current) =>
@@ -134,8 +156,8 @@ export function PreferencesForm({
             placeholder="Ej.: maní, tomate…"
           />
         </label>
-        <div className="ingredient-choice-list">
-          {visibleIngredients.slice(0, 24).map((ingredient) => (
+        <div className="ingredient-choice-list" id="planner-ingredient-list">
+          {listedIngredients.map((ingredient) => (
             <label className="ingredient-choice" key={ingredient.ingredientId}>
               <input
                 className="planner-control"
@@ -150,6 +172,19 @@ export function PreferencesForm({
             <p className="planner-muted">No encontramos ese ingrediente.</p>
           ) : null}
         </div>
+        {!search.trim() && ingredientCatalog.length > 24 ? (
+          <button
+            className="ingredient-disclosure planner-control"
+            type="button"
+            aria-controls="planner-ingredient-list"
+            aria-expanded={showAllIngredients}
+            onClick={() => setShowAllIngredients((current) => !current)}
+          >
+            {showAllIngredients
+              ? "Ver menos ingredientes"
+              : `Ver los ${ingredientCatalog.length} ingredientes`}
+          </button>
+        ) : null}
       </fieldset>
 
       {error ? <p role="alert" className="planner-error">{error}</p> : null}

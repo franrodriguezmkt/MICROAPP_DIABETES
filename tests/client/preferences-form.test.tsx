@@ -57,4 +57,55 @@ describe("PreferencesForm", () => {
       /elige al menos un momento/i,
     );
   });
+
+  it("lets people search, select and reveal ingredients beyond the first 24", async () => {
+    const user = userEvent.setup();
+    const manyIngredients: IngredientCatalogEntry[] = Array.from(
+      { length: 30 },
+      (_, index) => ({
+        ingredientId: `ingredient-${index + 1}`,
+        label:
+          index === 29
+            ? "Quinua especial"
+            : `Ingrediente ${String(index + 1).padStart(2, "0")}`,
+        category: "pantry",
+      }),
+    );
+
+    render(
+      <PreferencesForm
+        ingredientCatalog={manyIngredients}
+        onSave={vi.fn()}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("checkbox", { name: "Quinua especial" }),
+    ).not.toBeInTheDocument();
+    const disclosure = screen.getByRole("button", {
+      name: /ver los 30 ingredientes/i,
+    });
+    expect(disclosure).toHaveAttribute("aria-expanded", "false");
+
+    const search = screen.getByRole("searchbox", {
+      name: /buscar ingrediente/i,
+    });
+    await user.type(search, "quinua");
+    await user.click(
+      screen.getByRole("checkbox", { name: "Quinua especial" }),
+    );
+    await user.clear(search);
+
+    expect(
+      screen.getByRole("checkbox", { name: "Quinua especial" }),
+    ).toBeChecked();
+    const disclosureAfterSearch = screen.getByRole("button", {
+      name: /ver los 30 ingredientes/i,
+    });
+    await user.click(disclosureAfterSearch);
+    expect(disclosureAfterSearch).toHaveAttribute("aria-expanded", "true");
+    expect(
+      screen.getByRole("checkbox", { name: "Ingrediente 29" }),
+    ).toBeVisible();
+  });
 });
