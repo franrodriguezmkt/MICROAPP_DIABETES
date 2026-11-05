@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import rawRecipes from "../../content/recipes/recipes.json";
@@ -35,5 +38,21 @@ describe("production recipe content", () => {
 
   it("keeps drafts available outside production for editorial preview", () => {
     expect(prepareRecipeContent(rawRecipes, "development")).toHaveLength(45);
+  });
+
+  it("publishes one unique local image for every approved recipe", () => {
+    const recipes = prepareRecipeContent(rawRecipes, "production");
+    const imagePaths = recipes.map((recipe) => recipe.imagePath);
+
+    expect(imagePaths).toHaveLength(45);
+    expect(imagePaths.every(Boolean)).toBe(true);
+    expect(new Set(imagePaths).size).toBe(45);
+
+    for (const imagePath of imagePaths) {
+      expect(imagePath).toMatch(/^\/recipes\/[a-z0-9-]+\.webp$/);
+      expect(
+        existsSync(resolve(process.cwd(), "public", imagePath!.slice(1))),
+      ).toBe(true);
+    }
   });
 });

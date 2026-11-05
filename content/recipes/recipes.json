@@ -2,6 +2,7 @@
   {
     "id": "recipe-breakfast-01",
     "slug": "avena-cocida-con-canela-y-manzana-verde",
+    "imagePath": "/recipes/avena-cocida-con-canela-y-manzana-verde.webp",
     "title": "Avena cocida con canela y manzana verde",
     "summary": "Preparación de avena cocida con canela y manzana verde basada en el documento fuente.",
     "category": "breakfast",
@@ -74,6 +75,7 @@
   {
     "id": "recipe-breakfast-02",
     "slug": "omelette-de-espinaca-y-champinones",
+    "imagePath": "/recipes/omelette-de-espinaca-y-champinones.webp",
     "title": "Omelette de espinaca y champiñones",
     "summary": "Preparación de omelette de espinaca y champiñones basada en el documento fuente.",
     "category": "breakfast",
@@ -145,6 +147,7 @@
   {
     "id": "recipe-breakfast-03",
     "slug": "pan-de-centeno-con-aguacate-y-tomate",
+    "imagePath": "/recipes/pan-de-centeno-con-aguacate-y-tomate.webp",
     "title": "Pan de centeno con aguacate y tomate",
     "summary": "Preparación de pan de centeno con aguacate y tomate basada en el documento fuente.",
     "category": "breakfast",
@@ -209,6 +212,7 @@
   {
     "id": "recipe-breakfast-04",
     "slug": "yogur-natural-con-frutos-rojos-y-nueces",
+    "imagePath": "/recipes/yogur-natural-con-frutos-rojos-y-nueces.webp",
     "title": "Yogur natural con frutos rojos y nueces",
     "summary": "Preparación de yogur natural con frutos rojos y nueces basada en el documento fuente.",
     "category": "breakfast",
@@ -267,6 +271,7 @@
   {
     "id": "recipe-breakfast-05",
     "slug": "smoothie-verde-bajo-en-carbohidratos",
+    "imagePath": "/recipes/smoothie-verde-bajo-en-carbohidratos.webp",
     "title": "Smoothie verde",
     "summary": "Preparación de smoothie verde basada en el documento fuente.",
     "category": "breakfast",
@@ -336,6 +341,7 @@
   {
     "id": "recipe-breakfast-06",
     "slug": "panqueques-de-avena-y-banana-sin-harina",
+    "imagePath": "/recipes/panqueques-de-avena-y-banana-sin-harina.webp",
     "title": "Panqueques de avena y banana",
     "summary": "Preparación de panqueques de avena y banana basada en el documento fuente.",
     "category": "breakfast",
@@ -402,6 +408,7 @@
   {
     "id": "recipe-breakfast-07",
     "slug": "tostada-de-ricota-con-semillas-y-pepino",
+    "imagePath": "/recipes/tostada-de-ricota-con-semillas-y-pepino.webp",
     "title": "Tostada de ricota con semillas y pepino",
     "summary": "Preparación de tostada de ricota con semillas y pepino basada en el documento fuente.",
     "category": "breakfast",
@@ -468,6 +475,7 @@
   {
     "id": "recipe-breakfast-08",
     "slug": "huevo-duro-con-palta-y-galletas-integrales",
+    "imagePath": "/recipes/huevo-duro-con-palta-y-galletas-integrales.webp",
     "title": "Huevo duro con palta y galletas integrales",
     "summary": "Preparación de huevo duro con palta y galletas integrales basada en el documento fuente.",
     "category": "breakfast",
@@ -526,6 +534,7 @@
   {
     "id": "recipe-breakfast-09",
     "slug": "pure-de-batata-con-nueces",
+    "imagePath": "/recipes/pure-de-batata-con-nueces.webp",
     "title": "Puré de batata con nueces",
     "summary": "Preparación de puré de batata con nueces basada en el documento fuente.",
     "category": "breakfast",
@@ -583,6 +592,7 @@
   {
     "id": "recipe-breakfast-10",
     "slug": "sandwich-de-clara-de-huevo-y-palta",
+    "imagePath": "/recipes/sandwich-de-clara-de-huevo-y-palta.webp",
     "title": "Sándwich de clara de huevo y palta",
     "summary": "Preparación de sándwich de clara de huevo y palta basada en el documento fuente.",
     "category": "breakfast",
@@ -641,6 +651,7 @@
   {
     "id": "recipe-snack-01",
     "slug": "chips-crujientes-de-kale-al-horno",
+    "imagePath": "/recipes/chips-crujientes-de-kale-al-horno.webp",
     "title": "Chips crujientes de kale al horno",
     "summary": "Preparación de chips crujientes de kale al horno basada en el documento fuente.",
     "category": "snack",
@@ -697,6 +708,7 @@
   {
     "id": "recipe-snack-02",
     "slug": "huevos-rellenos-de-aguacate-y-atun",
+    "imagePath": "/recipes/huevos-rellenos-de-aguacate-y-atun.webp",
     "title": "Huevos rellenos de aguacate y atún",
     "summary": "Preparación de huevos rellenos de aguacate y atún basada en el documento fuente.",
     "category": "snack",
@@ -777,6 +789,7 @@
   {
     "id": "recipe-snack-03",
     "slug": "bastones-de-vegetales-con-hummus",
+    "imagePath": "/recipes/bastones-de-vegetales-con-hummus.webp",
     "title": "Bastones de vegetales con hummus",
     "summary": "Preparación de bastones de vegetales con hummus basada en el documento fuente.",
     "category": "snack",
@@ -833,6 +846,7 @@
   {
     "id": "recipe-snack-04",
     "slug": "rollitos-de-jamon-y-queso-descremado",
+    "imagePath": "/recipes/rollitos-de-jamon-y-queso-descremado.webp",
     "title": "Rollitos de jamón y queso descremado",
     "summary": "Preparación de rollitos de jamón y queso descremado basada en el documento fuente.",
     "category": "snack",
@@ -882,6 +896,7 @@
   {
     "id": "recipe-snack-05",
     "slug": "rodajas-de-manzana-con-mantequilla-de-mani",
+    "imagePath": "/recipes/rodajas-de-manzana-con-mantequilla-de-mani.webp",
     "title": "Rodajas de manzana con mantequilla de maní",
     "summary": "Preparación de rodajas de manzana con mantequilla de maní basada en el documento fuente.",
     "category": "snack",
@@ -932,6 +947,7 @@
   {
     "id": "recipe-lunch-01",
     "slug": "ensalada-de-quinoa-con-vegetales-al-vapor",
+    "imagePath": "/recipes/ensalada-de-quinoa-con-vegetales-al-vapor.webp",
     "title": "Ensalada de quinoa con vegetales al vapor",
     "summary": "Preparación de ensalada de quinoa con vegetales al vapor basada en el documento fuente.",
     "category": "lunch",
@@ -1023,6 +1039,7 @@
   {
     "id": "recipe-lunch-02",
     "slug": "pollo-al-limon-con-espinacas-salteadas",
+    "imagePath": "/recipes/pollo-al-limon-con-espinacas-salteadas.webp",
     "title": "Pollo al limón con espinacas salteadas",
     "summary": "Preparación de pollo al limón con espinacas salteadas basada en el documento fuente.",
     "category": "lunch",
@@ -1098,6 +1115,7 @@
   {
     "id": "recipe-lunch-03",
     "slug": "sopa-de-lentejas-y-espinacas",
+    "imagePath": "/recipes/sopa-de-lentejas-y-espinacas.webp",
     "title": "Sopa de lentejas y espinacas",
     "summary": "Preparación de sopa de lentejas y espinacas basada en el documento fuente.",
     "category": "lunch",
@@ -1202,6 +1220,7 @@
   {
     "id": "recipe-lunch-04",
     "slug": "tacos-de-lechuga-con-carne-magra",
+    "imagePath": "/recipes/tacos-de-lechuga-con-carne-magra.webp",
     "title": "Tacos de lechuga con carne magra",
     "summary": "Preparación de tacos de lechuga con carne magra basada en el documento fuente.",
     "category": "lunch",
@@ -1306,6 +1325,7 @@
   {
     "id": "recipe-lunch-05",
     "slug": "arroz-integral-con-verduras-salteadas",
+    "imagePath": "/recipes/arroz-integral-con-verduras-salteadas.webp",
     "title": "Arroz integral con verduras salteadas",
     "summary": "Preparación de arroz integral con verduras salteadas basada en el documento fuente.",
     "category": "lunch",
@@ -1413,6 +1433,7 @@
   {
     "id": "recipe-lunch-06",
     "slug": "ensalada-de-garbanzos-y-pepino",
+    "imagePath": "/recipes/ensalada-de-garbanzos-y-pepino.webp",
     "title": "Ensalada de garbanzos y pepino",
     "summary": "Preparación de ensalada de garbanzos y pepino basada en el documento fuente.",
     "category": "lunch",
@@ -1502,6 +1523,7 @@
   {
     "id": "recipe-lunch-07",
     "slug": "pechuga-de-pollo-a-la-plancha-con-ensalada-mixta",
+    "imagePath": "/recipes/pechuga-de-pollo-a-la-plancha-con-ensalada-mixta.webp",
     "title": "Pechuga de pollo a la plancha con ensalada mixta",
     "summary": "Preparación de pechuga de pollo a la plancha con ensalada mixta basada en el documento fuente.",
     "category": "lunch",
@@ -1598,6 +1620,7 @@
   {
     "id": "recipe-lunch-08",
     "slug": "filete-de-salmon-al-horno-con-esparragos",
+    "imagePath": "/recipes/filete-de-salmon-al-horno-con-esparragos.webp",
     "title": "Filete de salmón al horno con espárragos",
     "summary": "Preparación de filete de salmón al horno con espárragos basada en el documento fuente.",
     "category": "lunch",
@@ -1682,6 +1705,7 @@
   {
     "id": "recipe-lunch-09",
     "slug": "ensalada-de-atun-con-aguacate-y-huevo",
+    "imagePath": "/recipes/ensalada-de-atun-con-aguacate-y-huevo.webp",
     "title": "Ensalada de atún con aguacate y huevo",
     "summary": "Preparación de ensalada de atún con aguacate y huevo basada en el documento fuente.",
     "category": "lunch",
@@ -1782,6 +1806,7 @@
   {
     "id": "recipe-lunch-10",
     "slug": "sopa-de-verduras-sin-fideos",
+    "imagePath": "/recipes/sopa-de-verduras-sin-fideos.webp",
     "title": "Sopa de verduras sin fideos",
     "summary": "Preparación de sopa de verduras sin fideos basada en el documento fuente.",
     "category": "lunch",
@@ -1900,6 +1925,7 @@
   {
     "id": "recipe-dinner-01",
     "slug": "bowl-de-tofu-con-arroz-integral-y-vegetales",
+    "imagePath": "/recipes/bowl-de-tofu-con-arroz-integral-y-vegetales.webp",
     "title": "Bowl de tofu con arroz integral y vegetales",
     "summary": "Preparación de bowl de tofu con arroz integral y vegetales basada en el documento fuente.",
     "category": "dinner",
@@ -2013,6 +2039,7 @@
   {
     "id": "recipe-dinner-02",
     "slug": "pollo-con-salsa-de-mostaza-y-dulzor-sin-azucar",
+    "imagePath": "/recipes/pollo-con-salsa-de-mostaza-y-dulzor-sin-azucar.webp",
     "title": "Pollo con salsa de mostaza y dulzor sin azúcar añadido",
     "summary": "Preparación de pollo con salsa de mostaza y dulzor sin azúcar añadido basada en el documento fuente.",
     "category": "dinner",
@@ -2092,6 +2119,7 @@
   {
     "id": "recipe-dinner-03",
     "slug": "ensalada-de-lentejas-con-queso-feta-y-tomate",
+    "imagePath": "/recipes/ensalada-de-lentejas-con-queso-feta-y-tomate.webp",
     "title": "Ensalada de lentejas con queso feta y tomate",
     "summary": "Preparación de ensalada de lentejas con queso feta y tomate basada en el documento fuente.",
     "category": "dinner",
@@ -2183,6 +2211,7 @@
   {
     "id": "recipe-dinner-04",
     "slug": "sopa-de-calabaza-sin-crema",
+    "imagePath": "/recipes/sopa-de-calabaza-sin-crema.webp",
     "title": "Sopa de calabaza sin crema",
     "summary": "Preparación de sopa de calabaza sin crema basada en el documento fuente.",
     "category": "dinner",
@@ -2265,6 +2294,7 @@
   {
     "id": "recipe-dinner-05",
     "slug": "albondigas-de-carne-magra-con-pure-de-coliflor",
+    "imagePath": "/recipes/albondigas-de-carne-magra-con-pure-de-coliflor.webp",
     "title": "Albóndigas de carne magra con puré de coliflor",
     "summary": "Preparación de albóndigas de carne magra con puré de coliflor basada en el documento fuente.",
     "category": "dinner",
@@ -2373,6 +2403,7 @@
   {
     "id": "recipe-dinner-06",
     "slug": "guiso-de-berenjena-y-garbanzos",
+    "imagePath": "/recipes/guiso-de-berenjena-y-garbanzos.webp",
     "title": "Guiso de berenjena y garbanzos",
     "summary": "Preparación de guiso de berenjena y garbanzos basada en el documento fuente.",
     "category": "dinner",
@@ -2484,6 +2515,7 @@
   {
     "id": "recipe-dinner-07",
     "slug": "zoodles-con-pesto-ligero",
+    "imagePath": "/recipes/zoodles-con-pesto-ligero.webp",
     "title": "Zoodles con pesto ligero",
     "summary": "Preparación de zoodles con pesto ligero basada en el documento fuente.",
     "category": "dinner",
@@ -2576,6 +2608,7 @@
   {
     "id": "recipe-dinner-08",
     "slug": "pechuga-rellena-de-espinaca-y-queso",
+    "imagePath": "/recipes/pechuga-rellena-de-espinaca-y-queso.webp",
     "title": "Pechuga rellena de espinaca y queso",
     "summary": "Preparación de pechuga rellena de espinaca y queso basada en el documento fuente.",
     "category": "dinner",
@@ -2650,6 +2683,7 @@
   {
     "id": "recipe-dinner-09",
     "slug": "guiso-de-carne-con-papas-y-zanahorias",
+    "imagePath": "/recipes/guiso-de-carne-con-papas-y-zanahorias.webp",
     "title": "Guiso de carne con papas y zanahorias",
     "summary": "Preparación de guiso de carne con papas y zanahorias basada en el documento fuente.",
     "category": "dinner",
@@ -2761,6 +2795,7 @@
   {
     "id": "recipe-dinner-10",
     "slug": "pollo-con-vegetales-al-wok",
+    "imagePath": "/recipes/pollo-con-vegetales-al-wok.webp",
     "title": "Pollo con vegetales al wok",
     "summary": "Preparación de pollo con vegetales al wok basada en el documento fuente.",
     "category": "dinner",
@@ -2868,6 +2903,7 @@
   {
     "id": "recipe-dessert-01",
     "slug": "mousse-de-aguacate-y-cacao-sin-azucar",
+    "imagePath": "/recipes/mousse-de-aguacate-y-cacao-sin-azucar.webp",
     "title": "Mousse de aguacate y cacao sin azúcar añadido",
     "summary": "Preparación de mousse de aguacate y cacao sin azúcar añadido basada en el documento fuente.",
     "category": "dessert",
@@ -2936,6 +2972,7 @@
   {
     "id": "recipe-dessert-02",
     "slug": "pudin-de-chia-con-leche-vegetal-y-vainilla",
+    "imagePath": "/recipes/pudin-de-chia-con-leche-vegetal-y-vainilla.webp",
     "title": "Pudín de chía con leche vegetal y vainilla",
     "summary": "Preparación de pudín de chía con leche vegetal y vainilla basada en el documento fuente.",
     "category": "dessert",
@@ -2997,6 +3034,7 @@
   {
     "id": "recipe-dessert-03",
     "slug": "gelatina-sin-azucar-con-frutas-frescas",
+    "imagePath": "/recipes/gelatina-sin-azucar-con-frutas-frescas.webp",
     "title": "Gelatina sin azúcar con frutas frescas",
     "summary": "Preparación de gelatina sin azúcar con frutas frescas basada en el documento fuente.",
     "category": "dessert",
@@ -3051,6 +3089,7 @@
   {
     "id": "recipe-dessert-04",
     "slug": "manzana-al-horno-con-canela",
+    "imagePath": "/recipes/manzana-al-horno-con-canela.webp",
     "title": "Manzana al horno con canela",
     "summary": "Preparación de manzana al horno con canela basada en el documento fuente.",
     "category": "dessert",
@@ -3122,6 +3161,7 @@
   {
     "id": "recipe-dessert-05",
     "slug": "flan-de-coco-sin-azucar",
+    "imagePath": "/recipes/flan-de-coco-sin-azucar.webp",
     "title": "Flan de coco sin azúcar añadido",
     "summary": "Preparación de flan de coco sin azúcar añadido basada en el documento fuente.",
     "category": "dessert",
@@ -3207,6 +3247,7 @@
   {
     "id": "recipe-dessert-06",
     "slug": "galletas-de-avena-y-platano",
+    "imagePath": "/recipes/galletas-de-avena-y-platano.webp",
     "title": "Galletas de avena y plátano",
     "summary": "Preparación de galletas de avena y plátano basada en el documento fuente.",
     "category": "dessert",
@@ -3287,6 +3328,7 @@
   {
     "id": "recipe-dessert-07",
     "slug": "yogur-griego-con-frutos-rojos-y-nueces",
+    "imagePath": "/recipes/yogur-griego-con-frutos-rojos-y-nueces.webp",
     "title": "Yogur griego con frutos rojos y nueces",
     "summary": "Preparación de yogur griego con frutos rojos y nueces basada en el documento fuente.",
     "category": "dessert",
@@ -3358,6 +3400,7 @@
   {
     "id": "recipe-dessert-08",
     "slug": "trufas-de-cacao-y-almendra-sin-azucar",
+    "imagePath": "/recipes/trufas-de-cacao-y-almendra-sin-azucar.webp",
     "title": "Trufas de cacao y almendra sin azúcar añadido",
     "summary": "Preparación de trufas de cacao y almendra sin azúcar añadido basada en el documento fuente.",
     "category": "dessert",
@@ -3438,6 +3481,7 @@
   {
     "id": "recipe-dessert-09",
     "slug": "helado-de-platano-congelado-y-cacao",
+    "imagePath": "/recipes/helado-de-platano-congelado-y-cacao.webp",
     "title": "Helado de plátano congelado y cacao",
     "summary": "Preparación de helado de plátano congelado y cacao basada en el documento fuente.",
     "category": "dessert",
@@ -3499,6 +3543,7 @@
   {
     "id": "recipe-dessert-10",
     "slug": "barritas-de-frutos-secos-y-semillas",
+    "imagePath": "/recipes/barritas-de-frutos-secos-y-semillas.webp",
     "title": "Barritas de frutos secos y semillas",
     "summary": "Preparación de barritas de frutos secos y semillas basada en el documento fuente.",
     "category": "dessert",
