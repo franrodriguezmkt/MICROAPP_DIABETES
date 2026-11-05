@@ -18,6 +18,20 @@ function renderShell(path = "/recetas") {
 }
 
 describe("app shell", () => {
+  it("uses the supplied transparent brand logo in the application header", () => {
+    renderShell();
+
+    const logo = screen.getByRole("img", {
+      name: "Mi Semana de Recetas",
+    });
+    expect(logo).toHaveAttribute(
+      "src",
+      "/brand/mi-semana-de-recetas-logo.png",
+    );
+    expect(logo).toHaveAttribute("width", "192");
+    expect(logo).toHaveAttribute("height", "192");
+  });
+
   it("shows_the_five_destinations_in_the_approved_order", () => {
     renderShell();
 

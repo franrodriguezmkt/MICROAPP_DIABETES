@@ -1,7 +1,6 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 import { AppIcon, type AppIconName } from "./AppIcon";
-import { BrandMark } from "./BrandMark";
 
 const navigation = [
   { to: "/semana", label: "Semana", icon: "week" },
@@ -26,7 +25,13 @@ export function AppShell() {
       </a>
       <aside className="app-sidebar">
         <header className="app-header">
-          <BrandMark className="brand-mark" />
+          <img
+            className="brand-logo"
+            src="/brand/mi-semana-de-recetas-logo.png"
+            alt="Mi Semana de Recetas"
+            width="192"
+            height="192"
+          />
           <div className="brand-copy">
             <p className="eyebrow">Recetas para organizarte</p>
             <p className="brand-name">Mi semana de recetas</p>
