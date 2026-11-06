@@ -9,11 +9,13 @@ import {
 
 type AccessPageProps = {
   client?: AuthClient;
+  mode?: "activate" | "login";
 };
 
-export function AccessPage({ client }: AccessPageProps) {
+export function AccessPage({ client, mode = "activate" }: AccessPageProps) {
   const navigate = useNavigate();
   const auth = client ?? getBrowserAuthClient();
+  const isLogin = mode === "login";
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,17 +46,22 @@ export function AccessPage({ client }: AccessPageProps) {
           <BrandMark className="access-card__mark brand-mark" />
           <div>
             <p className="eyebrow">Mi semana de recetas</p>
-            <h1 id="access-title">Activa tu acceso</h1>
+            <h1 id="access-title">
+              {isLogin ? "Inicia sesión" : "Activa tu acceso"}
+            </h1>
           </div>
         </header>
 
         <p className="access-card__intro">
-          Escribe el mismo correo que utilizaste al comprar en Hotmart. Te
-          enviaremos un acceso seguro para comprobar que el correo es tuyo.
+          {isLogin
+            ? "Escribe el correo con el que ya activaste tu compra. Te enviaremos un código temporal para entrar de forma segura."
+            : "Escribe el mismo correo que utilizaste al comprar en Hotmart. Te enviaremos un acceso seguro para comprobar que el correo es tuyo."}
         </p>
 
         <form className="access-form" onSubmit={submit}>
-          <label htmlFor="purchase-email">Correo usado en Hotmart</label>
+          <label htmlFor="purchase-email">
+            {isLogin ? "Correo con acceso" : "Correo usado en Hotmart"}
+          </label>
           <input
             id="purchase-email"
             name="email"
@@ -71,9 +78,20 @@ export function AccessPage({ client }: AccessPageProps) {
             </p>
           ) : null}
           <button className="access-button" type="submit" disabled={submitting}>
-            {submitting ? "Enviando…" : "Enviar acceso"}
+            {submitting
+              ? "Enviando…"
+              : isLogin
+                ? "Enviar código para ingresar"
+                : "Enviar acceso"}
           </button>
         </form>
+
+        <p className="access-card__alternate">
+          {isLogin ? "¿Compraste recién?" : "¿Ya activaste tu compra?"}{" "}
+          <Link to={isLogin ? "/activar" : "/ingresar"}>
+            {isLogin ? "Activar mi compra" : "Iniciar sesión"}
+          </Link>
+        </p>
 
         <p className="access-card__privacy">
           Por seguridad, el mensaje será el mismo aunque el correo no tenga una

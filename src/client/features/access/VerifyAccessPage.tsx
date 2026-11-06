@@ -27,7 +27,7 @@ export function VerifyAccessPage({ client }: VerifyAccessPageProps) {
     if (error) errorRef.current?.focus();
   }, [error]);
 
-  if (!email) return <Navigate to="/activar" replace />;
+  if (!email) return <Navigate to="/ingresar" replace />;
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

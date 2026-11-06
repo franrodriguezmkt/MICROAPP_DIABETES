@@ -90,7 +90,7 @@ export function LandingPage({ checkoutUrl, client }: LandingPageProps) {
         return;
       }
       if (callbackParams.has("error")) {
-        navigate("/activar?estado=enlace-vencido", { replace: true });
+        navigate("/ingresar?estado=enlace-vencido", { replace: true });
         return;
       }
       setResolvingAccess(false);
@@ -102,7 +102,7 @@ export function LandingPage({ checkoutUrl, client }: LandingPageProps) {
       .then(applySession)
       .catch(() =>
         active
-          ? navigate("/activar?estado=error-de-acceso", { replace: true })
+          ? navigate("/ingresar?estado=error-de-acceso", { replace: true })
           : undefined,
       );
 
@@ -135,8 +135,8 @@ export function LandingPage({ checkoutUrl, client }: LandingPageProps) {
           <BrandMark className="landing-brand__mark" />
           <span>Mi semana de recetas</span>
         </Link>
-        <Link className="landing-existing-user" to="/activar">
-          Ya compré: activar acceso
+        <Link className="landing-existing-user" to="/ingresar">
+          Ya tengo acceso: ingresar
         </Link>
       </header>
 

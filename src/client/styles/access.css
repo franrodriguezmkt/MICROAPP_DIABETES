@@ -108,6 +108,16 @@
   font-size: 0.875rem;
 }
 
+.access-card__alternate {
+  margin: var(--space-4) 0 0;
+  text-align: center;
+}
+
+.access-card__alternate a {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
 .account-page {
   max-width: 42rem;
   margin-inline: auto;

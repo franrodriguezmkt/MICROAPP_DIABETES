@@ -63,7 +63,7 @@ function fakeAuth(options: {
   };
 }
 
-function ActivationDestination() {
+function LoginDestination() {
   const location = useLocation();
   const state = location.state as { from?: string } | null;
   return <p>Destino guardado: {state?.from ?? "ninguno"}</p>;
@@ -77,7 +77,7 @@ function renderPrivate(
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
       <Routes>
-        <Route path="/activar" element={<ActivationDestination />} />
+        <Route path="/ingresar" element={<LoginDestination />} />
         <Route
           element={<AuthProvider client={client} accessProbe={accessProbe} />}
         >

@@ -58,7 +58,14 @@ function renderFlow(client: AuthClient, initialEntry = "/activar") {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
       <Routes>
-        <Route path="/activar" element={<AccessPage client={client} />} />
+        <Route
+          path="/activar"
+          element={<AccessPage client={client} mode="activate" />}
+        />
+        <Route
+          path="/ingresar"
+          element={<AccessPage client={client} mode="login" />}
+        />
         <Route
           path="/verificar"
           element={<VerifyAccessPage client={client} />}
@@ -70,6 +77,34 @@ function renderFlow(client: AuthClient, initialEntry = "/activar") {
 }
 
 describe("email OTP access flow", () => {
+  it("offers a dedicated sign-in entry for returning buyers", () => {
+    renderFlow(fakeClient(), "/ingresar");
+
+    expect(
+      screen.getByRole("heading", { name: /inicia sesión/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("textbox", { name: /correo con acceso/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /enviar código para ingresar/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /activar mi compra/i }),
+    ).toHaveAttribute("href", "/activar");
+  });
+
+  it("keeps first-time activation separate from sign-in", () => {
+    renderFlow(fakeClient(), "/activar");
+
+    expect(
+      screen.getByRole("heading", { name: /activa tu acceso/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /iniciar sesión/i }),
+    ).toHaveAttribute("href", "/ingresar");
+  });
+
   it("asks only for the purchase email and moves to code verification", async () => {
     const user = userEvent.setup();
     renderFlow(fakeClient());

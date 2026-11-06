@@ -114,12 +114,12 @@ describe("public product landing", () => {
     expect(screen.queryByRole("link", { name: /quiero mi acceso/i })).not.toBeInTheDocument();
   });
 
-  it("keeps_activation_as_a_separate_existing_buyer_action", () => {
+  it("keeps_sign_in_as_a_separate_existing_buyer_action", () => {
     renderLanding("https://pay.hotmart.com/ABC123");
 
     const header = screen.getByRole("banner");
     expect(
-      within(header).getByRole("link", { name: /ya compré: activar acceso/i }),
-    ).toHaveAttribute("href", "/activar");
+      within(header).getByRole("link", { name: /ya tengo acceso: ingresar/i }),
+    ).toHaveAttribute("href", "/ingresar");
   });
 });

@@ -17,7 +17,8 @@ import { LegalPage } from "../features/legal/LegalPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
-  { path: "/activar", element: <AccessPage /> },
+  { path: "/activar", element: <AccessPage mode="activate" /> },
+  { path: "/ingresar", element: <AccessPage mode="login" /> },
   { path: "/verificar", element: <VerifyAccessPage /> },
   { path: "/privacidad", element: <LegalPage type="privacy" /> },
   { path: "/terminos", element: <LegalPage type="terms" /> },

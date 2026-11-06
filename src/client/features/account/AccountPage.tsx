@@ -14,7 +14,7 @@ export function AccountPage() {
     setSubmitting(true);
     try {
       await signOut();
-      navigate("/activar", { replace: true });
+      navigate("/ingresar", { replace: true });
     } catch {
       setError("No pudimos cerrar la sesión. Intenta nuevamente.");
     } finally {

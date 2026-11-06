@@ -92,12 +92,12 @@ test("preview simulado: activa el acceso, planifica y conserva la compra", async
   await page.getByRole("link", { name: "Cuenta" }).click();
   await expect(page.getByText(previewBuyer)).toBeVisible();
   await page.getByRole("button", { name: /cerrar sesión/i }).click();
-  await expect(page).toHaveURL(/\/activar$/);
+  await expect(page).toHaveURL(/\/ingresar$/);
 });
 
-test("preview simulado: una ruta privada anónima vuelve a activación", async ({ page }) => {
+test("preview simulado: una ruta privada anónima vuelve al inicio de sesión", async ({ page }) => {
   await page.goto("/compras");
-  await expect(page).toHaveURL(/\/activar$/);
+  await expect(page).toHaveURL(/\/ingresar$/);
 });
 
 test("preview simulado: un acceso revocado solo puede abrir Cuenta", async ({ page }) => {
@@ -113,5 +113,5 @@ test("preview simulado: un acceso revocado solo puede abrir Cuenta", async ({ pa
   await expect(page).toHaveURL(/\/cuenta\?estado=inactivo$/);
   await expect(page.getByText(/acceso inactivo/i)).toBeVisible();
   await page.getByRole("button", { name: /cerrar sesión/i }).click();
-  await expect(page).toHaveURL(/\/activar$/);
+  await expect(page).toHaveURL(/\/ingresar$/);
 });

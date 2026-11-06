@@ -19,7 +19,7 @@ export function PrivateRoute() {
   if (status === "anonymous") {
     return (
       <Navigate
-        to="/activar"
+        to="/ingresar"
         replace
         state={{ from: `${location.pathname}${location.search}` }}
       />

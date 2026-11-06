@@ -59,14 +59,14 @@ test("public landing connects the product story to the safe Hotmart checkout", a
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
   await expectNoHorizontalOverflow(page);
-  await expect(page.getByRole("link", { name: /ya compré: activar acceso/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /ya tengo acceso: ingresar/i })).toBeVisible();
 });
 
 test("resources remain private and approved documents can be downloaded", async ({
   page,
 }) => {
   await page.goto("/recursos");
-  await expect(page).toHaveURL(/\/activar$/);
+  await expect(page).toHaveURL(/\/ingresar$/);
 
   await seedPreviewSession(page);
   await page.goto("/recursos");

@@ -140,8 +140,8 @@ export function LegalPage({ type }: { type: LegalPageType }) {
           <BrandMark className="legal-brand__mark" />
           <span>Mi semana de recetas</span>
         </Link>
-        <Link className="legal-access-link" to="/activar">
-          Activar acceso
+        <Link className="legal-access-link" to="/ingresar">
+          Iniciar sesión
         </Link>
       </header>
 
