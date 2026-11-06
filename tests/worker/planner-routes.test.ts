@@ -297,6 +297,31 @@ describe("preview planner routes", () => {
     });
   });
 
+  it("requires a bearer session for every saved-week production route", async () => {
+    const app = createWorkerApp({
+      plannerPreview: false,
+      recipes,
+      ingredientCatalog,
+    });
+
+    for (const [method, path] of [
+      ["GET", "/api/saved-weeks"],
+      ["PATCH", "/api/saved-weeks/2026-10-19"],
+      ["DELETE", "/api/saved-weeks/2026-10-19"],
+    ]) {
+      const response = await app.request(`http://local.test${path}`, {
+        method,
+        headers: { "content-type": "application/json" },
+        body: method === "PATCH" ? JSON.stringify({ title: "Semana" }) : undefined,
+      });
+
+      expect(response.status, `${method} ${path}`).toBe(401);
+      await expect(response.json()).resolves.toMatchObject({
+        code: "AUTH_REQUIRED",
+      });
+    }
+  });
+
   it("uses the authorized user and their scoped repository in production", async () => {
     const userSupabase = {
       from() {

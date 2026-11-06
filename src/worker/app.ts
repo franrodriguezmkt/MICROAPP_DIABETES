@@ -95,6 +95,8 @@ export function createWorkerApp(
     app.use("/api/me", authorize);
     app.use("/api/me/*", authorize);
     app.use("/api/weeks/*", authorize);
+    app.use("/api/saved-weeks", authorize);
+    app.use("/api/saved-weeks/*", authorize);
   }
 
   const productionRecipeRepository =
