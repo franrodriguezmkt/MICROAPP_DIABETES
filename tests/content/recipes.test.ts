@@ -39,10 +39,12 @@ describe("recipe content inventory", () => {
     });
   });
 
-  it("keeps all imported content out of production until reviewed", () => {
+  it("publishes the complete owner-approved inventory", () => {
     expect(
       rawRecipes.every(
-        (recipe) => recipe.publicationStatus === "draft",
+        (recipe) =>
+          recipe.publicationStatus === "approved" &&
+          !recipe.tags.includes("needs_professional_review"),
       ),
     ).toBe(true);
   });

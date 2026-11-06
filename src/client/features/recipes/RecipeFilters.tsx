@@ -7,6 +7,18 @@ type RecipeFiltersProps = {
   onCategoryChange: (value: RecipeCategory | "") => void;
 };
 
+const categoryOptions: ReadonlyArray<{
+  value: RecipeCategory | "";
+  label: string;
+}> = [
+  { value: "", label: "Todas" },
+  { value: "breakfast", label: "Desayunos" },
+  { value: "lunch", label: "Almuerzos" },
+  { value: "dinner", label: "Cenas" },
+  { value: "snack", label: "Snacks" },
+  { value: "dessert", label: "Postres" },
+];
+
 export function RecipeFilters({
   search,
   category,
@@ -25,22 +37,22 @@ export function RecipeFilters({
           onChange={(event) => onSearchChange(event.target.value)}
         />
       </div>
-      <div className="field field--category">
-        <label htmlFor="recipe-category">Categoría</label>
-        <select
-          id="recipe-category"
-          value={category}
-          onChange={(event) =>
-            onCategoryChange(event.target.value as RecipeCategory | "")
-          }
-        >
-          <option value="">Todas</option>
-          <option value="breakfast">Desayunos</option>
-          <option value="lunch">Almuerzos</option>
-          <option value="dinner">Cenas</option>
-          <option value="snack">Snacks</option>
-          <option value="dessert">Postres</option>
-        </select>
+      <div
+        className="recipe-category-chips"
+        role="group"
+        aria-label="Categorías de recetas"
+      >
+        {categoryOptions.map((option) => (
+          <button
+            key={option.value || "all"}
+            className="recipe-category-chip"
+            type="button"
+            aria-pressed={category === option.value}
+            onClick={() => onCategoryChange(option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
       </div>
     </div>
   );

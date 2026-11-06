@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
@@ -79,10 +79,7 @@ describe("recipe catalog", () => {
     await user.clear(
       screen.getByRole("searchbox", { name: /buscar recetas/i }),
     );
-    await user.selectOptions(
-      screen.getByRole("combobox", { name: /categoría/i }),
-      "lunch",
-    );
+    await user.click(screen.getByRole("button", { name: "Almuerzos" }));
 
     await waitFor(() => {
       expect(
@@ -91,6 +88,78 @@ describe("recipe catalog", () => {
     });
     expect(
       screen.queryByRole("link", { name: /pudín de chía/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("offers_snack_as_a_first_class_category", async () => {
+    const user = userEvent.setup();
+    renderCatalogWith([
+      recipe(),
+      recipe({
+        id: "recipe-snack-01",
+        slug: "yogur-con-frutos-rojos",
+        title: "Yogur con frutos rojos",
+        category: "snack",
+      }),
+    ]);
+
+    const categories = screen.getByRole("group", {
+      name: /categorías de recetas/i,
+    });
+    expect(
+      within(categories).getAllByRole("button").map((button) => button.textContent),
+    ).toEqual([
+      "Todas",
+      "Desayunos",
+      "Almuerzos",
+      "Cenas",
+      "Snacks",
+      "Postres",
+    ]);
+
+    await user.click(within(categories).getByRole("button", { name: "Snacks" }));
+
+    expect(
+      await screen.findByRole("link", { name: /yogur con frutos rojos/i }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("link", { name: /pudín de chía/i }),
+    ).not.toBeInTheDocument();
+    expect(within(categories).getByRole("button", { name: "Snacks" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+
+  it("keeps_long_titles_and_metadata_in_the_accessible_name_flow", async () => {
+    const longTitle =
+      "Tostada integral con aguacate, tomate fresco y semillas tostadas";
+    renderCatalogWith([
+      recipe({
+        id: "recipe-snack-02",
+        slug: "tostada-integral-aguacate-tomate",
+        title: longTitle,
+        category: "snack",
+        servingsBase: 3,
+        prepMinutes: 12,
+        cookMinutes: 5,
+      }),
+    ]);
+
+    const link = await screen.findByRole("link", { name: longTitle });
+    const card = link.closest("article");
+    expect(card).not.toBeNull();
+    expect(within(card!).getByText("17 min")).toBeVisible();
+    expect(within(card!).getByText("3 porciones")).toBeVisible();
+  });
+
+  it("uses_the_shared_recipe_visual", async () => {
+    renderCatalogWith([recipe()]);
+
+    await screen.findByRole("link", { name: /pudín de chía/i });
+    expect(screen.getByTestId("recipe-visual")).toBeVisible();
+    expect(
+      screen.queryByRole("img", { name: /pudín de chía/i }),
     ).not.toBeInTheDocument();
   });
 

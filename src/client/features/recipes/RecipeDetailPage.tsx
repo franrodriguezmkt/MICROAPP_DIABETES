@@ -5,10 +5,12 @@ import type { Recipe } from "../../../domain/recipes/recipe";
 import type { RecipeRepository } from "../../../domain/recipes/recipeRepository";
 import { scaleIngredient } from "../../../domain/recipes/servingScale";
 import { EmptyState } from "../../components/EmptyState";
+import { RecipeVisual } from "../../components/RecipeVisual";
 import { recipeRepository } from "../../lib/content";
 import {
   formatAllergenLabels,
   formatIngredientQuantity,
+  formatRecipeCategory,
 } from "./recipeViewModel";
 
 export function RecipeDetailPage({
@@ -79,12 +81,9 @@ export function RecipeDetailPage({
       <Link className="back-link" to="/recetas">← Volver a recetas</Link>
 
       <header className="recipe-detail__header">
-        <div className={`detail-visual detail-visual--${recipe.category}`} aria-hidden="true">
-          <span className="plate-motif" />
-          <span className="leaf-motif" />
-        </div>
+        <RecipeVisual recipe={recipe} variant="detail" />
         <div className="recipe-detail__intro">
-          <p className="eyebrow">Receta en biblioteca</p>
+          <p className="eyebrow">{formatRecipeCategory(recipe.category)}</p>
           <h1>{recipe.title}</h1>
           <p>{recipe.summary}</p>
           <div className="recipe-detail__meta">

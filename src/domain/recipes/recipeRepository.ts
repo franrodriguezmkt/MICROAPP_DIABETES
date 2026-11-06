@@ -9,6 +9,10 @@ export type RecipeQuery = {
 
 export interface RecipeRepository {
   list(query?: RecipeQuery): Promise<Recipe[]>;
+  getById(
+    id: string,
+    options?: { includeDrafts?: boolean },
+  ): Promise<Recipe | null>;
   getBySlug(
     slug: string,
     options?: { includeDrafts?: boolean },

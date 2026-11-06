@@ -1,4 +1,19 @@
-import type { IngredientUnit } from "../../../domain/recipes/recipe";
+import type {
+  IngredientUnit,
+  RecipeCategory,
+} from "../../../domain/recipes/recipe";
+
+const recipeCategoryLabels: Record<RecipeCategory, string> = {
+  breakfast: "Desayuno",
+  lunch: "Almuerzo",
+  dinner: "Cena",
+  snack: "Snack",
+  dessert: "Postre",
+};
+
+export function formatRecipeCategory(category: RecipeCategory): string {
+  return recipeCategoryLabels[category];
+}
 
 const singularUnits: Record<IngredientUnit, string> = {
   g: "g",

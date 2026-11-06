@@ -309,7 +309,7 @@ Al cambiar las porciones o sustituir una receta, la lista se recalculara a parti
 
 - Entrega de OTP y recuperacion de acceso.
 - En desarrollo se usara el mecanismo de prueba de Supabase.
-- Antes del lanzamiento se configurara un SMTP con dominio validado. Resend ofrece un plan gratuito inicial de 3.000 correos por mes y 100 por dia al momento de redactar este documento.
+- Antes del lanzamiento se configurara Brevo como SMTP con dominio validado. Al 21 de octubre de 2026, su documentacion oficial indica 300 envios diarios en el plan gratuito; el limite se verificara nuevamente antes de publicar.
 
 ### Flujo tecnico resumido
 
@@ -575,7 +575,7 @@ El MVP puede desarrollarse y probarse con costo de infraestructura cercano a cer
 
 - Cloudflare Workers Free: 100.000 solicitudes por dia segun la documentacion consultada.
 - Supabase Free: 50.000 usuarios activos mensuales, 500 MB de base de datos y 1 GB de archivos segun la documentacion consultada.
-- Resend Free: 3.000 correos por mes y 100 por dia segun la pagina de precios consultada.
+- Brevo Free: 300 correos por dia segun la documentacion oficial consultada el 21 de octubre de 2026.
 - Hotmart: sin costo inicial, pero descuenta tarifas de cada venta aprobada.
 - Dominio: opcional durante desarrollo y recomendado antes del lanzamiento; es el costo fijo inicial mas probable.
 
@@ -583,7 +583,7 @@ Riesgos del nivel gratuito:
 
 - Supabase puede pausar proyectos gratuitos con baja actividad.
 - El correo predeterminado de Supabase no es apto para produccion y tiene restricciones fuertes.
-- Al superar 100 correos diarios se necesitara ajustar el metodo de acceso o el plan SMTP.
+- Al aproximarse a 300 correos diarios se necesitara revisar abuso, limites de Supabase y el plan SMTP.
 - Los limites y precios pueden cambiar; se verificaran nuevamente antes del lanzamiento.
 
 ## 19. Checklist de lanzamiento
