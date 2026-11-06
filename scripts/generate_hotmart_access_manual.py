@@ -27,7 +27,8 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output" / "pdf" / "manual-acceso-mi-semana-de-recetas.pdf"
 ICON = ROOT / "public" / "icons" / "icon-512.png"
-APP_URL = "https://mi-semana-de-recetas.franrodriguezmkt.workers.dev"
+APP_URL = "https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/activar"
+LOGIN_URL = "https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/ingresar"
 
 PAGE_W, PAGE_H = A4
 MARGIN = 19 * mm
@@ -85,7 +86,7 @@ def cover(canvas, doc) -> None:
 
     canvas.setFillColor(INK)
     canvas.setFont("AppBold", 16)
-    canvas.drawString(MARGIN, PAGE_H - 126 * mm, "Tu acceso comienza con el correo de compra")
+    canvas.drawString(MARGIN, PAGE_H - 126 * mm, "Activa tu compra con el mismo correo")
     canvas.setFillColor(GRAY)
     canvas.setFont("AppRegular", 10.5)
     text = canvas.beginText(MARGIN, PAGE_H - 141 * mm)
@@ -116,7 +117,7 @@ def cover(canvas, doc) -> None:
 
     canvas.setFillColor(GRAY)
     canvas.setFont("AppRegular", 8.5)
-    canvas.drawString(MARGIN, 26 * mm, "Aplicación web instalable (PWA) - Versión 1.0 - 20 de octubre de 2026")
+    canvas.drawString(MARGIN, 26 * mm, "Aplicación web instalable (PWA) - Versión 1.1 - 6 de noviembre de 2026")
     canvas.drawString(MARGIN, 20 * mm, "Productor y autor: Franrodriguezmkt")
     canvas.restoreState()
 
@@ -190,7 +191,7 @@ def build() -> None:
     story.append(Paragraph("Cómo entrar y empezar", s["title"]))
     for number, text in [
         ("1", "Finaliza la compra en Hotmart."),
-        ("2", f"Abre <b>{APP_URL}</b> desde tu navegador."),
+        ("2", f"Abre <b>{APP_URL}</b> desde tu navegador para activar la compra."),
         ("3", "Escribe el mismo correo utilizado en la compra. No hace falta ingresar el código de transacción."),
         ("4", "Revisa tu correo y escribe el código de seis dígitos recibido."),
         ("5", "Configura tus preferencias y genera tu primera semana de recetas."),
@@ -223,15 +224,17 @@ def build() -> None:
         "Si el correo de acceso tarda, revisa también spam, promociones o correo no deseado. El acceso es personal y queda vinculado al correo de compra.", s["note"],
     ))
 
+    story.append(Paragraph("¿Ya activaste tu compra?", s["h2"]))
+    story.append(Paragraph(
+        f"Si estás entrando desde otro navegador o dispositivo, abre <b>{LOGIN_URL}</b>. "
+        "Escribe el mismo correo y recibirás un código temporal nuevo. No necesitas activar la compra otra vez.", s["body"],
+    ))
+
     story.append(Paragraph("Información importante", s["h2"]))
     story.append(Paragraph(
         "La información de recetas y planificación es educativa y general. Este producto no diagnostica, trata ni controla la diabetes y no reemplaza las indicaciones de médicos o nutricionistas. Ante alergias, medicación o necesidades particulares, consulta a un profesional de la salud.", s["body"],
     ))
 
-    story.append(Paragraph("Autoría", s["h2"]))
-    story.append(Paragraph(
-        "La estructura del producto, sus textos, experiencia de planificación y documentación pertenecen a <b>Franrodriguezmkt</b>. Las referencias utilizadas para elaborar el contenido educativo se registran dentro del proyecto del producto.", s["body"],
-    ))
     doc.build(story)
 
 

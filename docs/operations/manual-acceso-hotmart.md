@@ -3,9 +3,11 @@
 ## Manual de acceso, uso y autoría
 
 **Formato del producto:** aplicación web instalable (PWA)  
-**Dirección de acceso:** https://mi-semana-de-recetas.franrodriguezmkt.workers.dev  
+**Activar una compra nueva:** https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/activar
+
+**Ingresar si ya activaste el acceso:** https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/ingresar
 **Productor y autor:** Franrodriguezmkt  
-**Versión del manual:** 1.0 - 20 de octubre de 2026
+**Versión del manual:** 1.1 - 6 de noviembre de 2026
 
 ## Qué recibe el comprador
 
@@ -22,10 +24,12 @@ La aplicación incluye:
 ## Cómo activar el acceso
 
 1. Finaliza la compra en Hotmart.
-2. Abre la dirección de acceso indicada en este manual.
+2. Abre **Activar una compra nueva**: https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/activar
 3. Escribe el mismo correo electrónico utilizado en la compra. No hace falta ingresar el código de transacción.
 4. Revisa tu correo y escribe el código de seis dígitos recibido.
 5. Al validarlo, podrás entrar a tu semana, recetas y lista de compras.
+
+Si ya activaste tu compra anteriormente y estás entrando desde otro navegador o dispositivo, usa **Iniciar sesión**: https://mi-semana-de-recetas.franrodriguezmkt.workers.dev/ingresar. Escribe el mismo correo y recibirás un código temporal nuevo.
 
 Si el correo tarda unos minutos, revisa también las carpetas de spam, promociones o correo no deseado. El acceso es personal y está vinculado al correo utilizado en Hotmart.
 
